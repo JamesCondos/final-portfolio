@@ -1,5 +1,5 @@
 import React from 'react'
-import { Github, Link, works } from '../../../library'
+import { Link, works } from '../../../library'
 import { Headings } from '../../core/headings/headings'
 import './style.css'
 
@@ -55,7 +55,7 @@ export { BasicModal }
 
 
 
-const Works = React.forwardRef<HTMLDivElement>((props, ref) => {
+const Works = React.forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     <div ref={ref} className="works">
       {/*  Display the section title and subtitle */}

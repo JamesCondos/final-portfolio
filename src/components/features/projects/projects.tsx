@@ -1,12 +1,12 @@
 import React from 'react'
-import { Github, Link, projects } from '../../../library'
+import { Github, projects } from '../../../library'
 import { Headings } from '../../core/headings/headings'
 import './style.css'
-import { BiColorFill } from 'react-icons/bi'
 
 
 
-const Projects = React.forwardRef<HTMLDivElement>((props, ref) => {
+
+const Projects = React.forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     
     <div ref={ref} className="projects">

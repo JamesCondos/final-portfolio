@@ -9,7 +9,7 @@ import {
 } from '../../../library'
 import './style.css'
 
-const Socials = React.forwardRef<HTMLDivElement>((props, ref) => {
+const Socials = React.forwardRef<HTMLDivElement>((_props, ref) => {
   // 🎨 Mapping icons to components for dynamic rendering
   const icons = { Github, Instagram, LinkedIn, Blog }
 
