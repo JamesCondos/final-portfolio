@@ -2,16 +2,13 @@ import React from 'react'
 import { Headings } from '../../core/headings/headings'
 import './style.css'
 
-import { Github, Link, works } from '../../../library'
+
 
 import './style.css'
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 
-const About = React.forwardRef<HTMLDivElement>((props, ref) => {
+
+const About = React.forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     <div ref={ref} className="about-section">
 

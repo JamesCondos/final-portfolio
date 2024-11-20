@@ -38,7 +38,7 @@ const MotionBlock = ({ className, delay, children }: MotionBlockProps) => (
   </motion.div>
 )
 
-const Home = React.forwardRef<HTMLDivElement>((props, ref) => {
+const Home = React.forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     
     <><div ref={ref} className="wrapper">
