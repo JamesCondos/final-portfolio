@@ -42,8 +42,14 @@ const Home = React.forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     
     <><div ref={ref} className="wrapper">
-      
-  <img  src = '\final-portfolio\me.jpg'></img>
+    
+    <motion.img
+      src="/final-portfolio/me.jpg"
+      alt="Description of the image"
+      initial={{ x: 100, opacity: 0 }} // Start from left with zero opacity
+      animate={{ x: 0, opacity: 1 }}    // Move to center with full opacity
+      transition={{ duration: 0.9, ease: "easeOut" }} // Customize the transition
+    />
 
   
 
@@ -51,6 +57,7 @@ const Home = React.forwardRef<HTMLDivElement>((_props, ref) => {
 
       <div className="bundle">
         <MotionBlock className="chunck" delay={0.2}>
+       
           <MotionBlock className="three-line-primary-V1" delay={0.6} />
           <MotionBlock className="three-line-secondary-V1" delay={0.8} />
           <MotionBlock className="three-line-tertiary-V1" delay={1} />

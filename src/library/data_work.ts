@@ -15,6 +15,7 @@ export const works = [
 
     externalUrl: 'https://www.gameplancoaching.com.au/',
     languages: ['Labs', 'Teaching', 'Physics'],
+    modal: '',
 
   },
   {
@@ -22,6 +23,7 @@ export const works = [
    
     externalUrl: 'https://www.gameplancoaching.com.au/',
     languages: ['Tutoring', 'STEM', 'Maths'],
+    modal: '',
  
   },
   {
@@ -29,6 +31,7 @@ export const works = [
     //githubUrl: '',
     externalUrl: 'https://www.apa.com.au/',
     languages: ['Software Development', 'CICD', 'Intern'],
+    modal: '',
 
   },
   {
@@ -36,6 +39,7 @@ export const works = [
     //githubUrl: '',
     externalUrl: 'https://www.caulfieldgs.vic.edu.au/?gad_source=1&gclid=CjwKCAjw3P-2BhAEEiwA3yPhwKe7_aLr9hZ2yixYEayo-jO5uH3ghicHNt-hZ6NAmG9QIIUmwcICyxoCCNYQAvD_BwE',
     languages: ['Teaching', 'Maths', 'STEM'],
+    modal: 'CGS',
 
   },
   {
@@ -43,6 +47,7 @@ export const works = [
     //githubUrl: '',
     //externalUrl: '',
     languages: ['Professional Development', 'Intern'],
+    modal: 'ALTO',
 
   },
 ]

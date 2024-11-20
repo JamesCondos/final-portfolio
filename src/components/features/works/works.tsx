@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-
 const style = {
   position: 'fixed' as 'fixed',
   top: '50%',
@@ -15,26 +14,34 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  borderRadius: '8px',  // Optional: adds rounded corners to the modal
+  borderRadius: '8px',
   boxShadow: 24,
   p: 4,
-  outline: 'none',      // Removes the border when focusing the modal
+  outline: 'none',
 };
 
-function BasicModal({ open, handleClose }: { open: boolean; handleClose: () => void }) {
+function BasicModal({
+  open,
+  handleClose,
+  modalContent,
+  modalTitle,
+}: {
+  open: boolean;
+  handleClose: () => void;
+  modalContent: string;
+  modalTitle: string;
+}) {
   useEffect(() => {
     if (open) {
-      // Disable background scroll and add padding to compensate for scrollbar
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+     
       document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    
     } else {
-      // Re-enable background scroll and remove padding
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
     }
-    
-    // Cleanup on component unmount
+
     return () => {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
@@ -50,12 +57,10 @@ function BasicModal({ open, handleClose }: { open: boolean; handleClose: () => v
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
+          {modalTitle}
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Duis mollis, est non commodo luctus, nisi erat porttitor liguladsaaaaa
-          Dashboard dsadsadsadsas d sads ds sa    ads dsa dsadsaads 
-           sdadsa saddsa s a dsaa ds.
+          {modalContent}
         </Typography>
       </Box>
     </Modal>
@@ -64,14 +69,22 @@ function BasicModal({ open, handleClose }: { open: boolean; handleClose: () => v
 
 export { BasicModal };
 
-
-
-
-
 const Works = React.forwardRef<HTMLDivElement>((_props, ref) => {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [selectedModalContent, setSelectedModalContent] = React.useState('');
+  const [selectedModalTitle, setSelectedModalTitle] = React.useState('');
+
+  const handleOpen = (modalTitle: string, modalContent: string) => {
+    setSelectedModalTitle(modalTitle);       // Set the unique title
+    setSelectedModalContent(modalContent);   // Set the unique content
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedModalContent('');
+    setSelectedModalTitle('');
+  };
 
   return (
     <div ref={ref} className="works">
@@ -81,7 +94,7 @@ const Works = React.forwardRef<HTMLDivElement>((_props, ref) => {
           <div
             key={work.title}
             className="works-card"
-            onClick={handleOpen}
+            onClick={() => handleOpen(work.title, work.modal)}
             style={{ cursor: 'pointer' }}
           >
             <div className="project-link">
@@ -103,16 +116,16 @@ const Works = React.forwardRef<HTMLDivElement>((_props, ref) => {
           </div>
         ))}
       </div>
-      <BasicModal open={open} handleClose={handleClose} />
+      <BasicModal 
+        open={open} 
+        handleClose={handleClose} 
+        modalContent={selectedModalContent} 
+        modalTitle={selectedModalTitle} 
+      />
     </div>
   );
 });
 
-
-
-
 Works.displayName = 'Works';
 
 export { Works };
-
-
