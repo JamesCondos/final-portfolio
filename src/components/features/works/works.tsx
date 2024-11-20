@@ -8,17 +8,21 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
 const style = {
-  position: 'fixed' as 'fixed',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  borderRadius: '8px',
+  width: 900,
+  bgcolor: '#eeeee4',
+  borderRadius: '30px',
   boxShadow: 24,
-  p: 4,
+  p: 8,
   outline: 'none',
+ 
+  
+  
 };
+
 
 function BasicModal({
   open,
@@ -56,10 +60,22 @@ function BasicModal({
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography id="modal-modal-title" variant="h6" component="h2"
+        sx={{
+          fontWeight: 'bold',
+          fontSize: '2.5rem',
+          mb: 2,
+          backgroundColor: '#313f49',                
+          padding: '15px',         // Minimal padding around the text
+          borderRadius: '8px',        // Rounded corners around text background
+          textAlign: 'center',        // Center-align text
+          display: 'inline',           // Make the element occupy full width for centering
+          margin: '0 auto',
+          color: 'white'           // Center the element itself
+        }}>
           {modalTitle}
         </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        <Typography id="modal-modal-description" sx={{ mt: 2,fontSize: '1.5rem', }}>
           {modalContent}
         </Typography>
       </Box>

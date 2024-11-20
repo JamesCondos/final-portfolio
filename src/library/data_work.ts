@@ -39,7 +39,8 @@ export const works = [
     //githubUrl: '',
     externalUrl: 'https://www.caulfieldgs.vic.edu.au/?gad_source=1&gclid=CjwKCAjw3P-2BhAEEiwA3yPhwKe7_aLr9hZ2yixYEayo-jO5uH3ghicHNt-hZ6NAmG9QIIUmwcICyxoCCNYQAvD_BwE',
     languages: ['Teaching', 'Maths', 'STEM'],
-    modal: 'CGS',
+    modal: "Previously, a MathematicsTeaching Assistant at Caulfield Grammar School, where I am mainly helping and teaching students in the areas of their maths that they would like to excel at and improve in,\
+    This comes from myself organising lessons for students, asssting teachers in lesson plans, working in teaching teams and attempting to give students in years 7 - 10 the motivation they need. "
 
   },
   {
