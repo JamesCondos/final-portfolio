@@ -1,55 +1,55 @@
-import React from 'react'
-import { Headings } from '../../core/headings/headings'
-import './style.css'
-
-
-
-import './style.css'
-
-
+import React from 'react';
+import { Headings } from '../../core/headings/headings';
+import './style.css';
+import { MathJax, MathJaxContext } from 'better-react-mathjax';
 
 const About = React.forwardRef<HTMLDivElement>((_props, ref) => {
+  // LaTeX for Schrödinger equation
+  const schrodingerEquation = `
+    i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\mathbf{r}, t) =
+    \\left[-\\frac{\\hbar^2}{2m}\\nabla^2 + V(\\mathbf{r}, t)\\right]\\Psi(\\mathbf{r}, t)
+  `;
+
+  const mathJaxConfig = {
+    loader: { load: ['[tex]/ams'] },
+    tex: {
+      packages: { '[+]': ['ams'] },
+    },
+    chtml: {
+      displayAlign: 'center',
+      scale: 1.0, // Adjust scale if needed
+    },
+  };
+
   return (
     <div ref={ref} className="about-section">
+      {/* MathJaxContext with configuration */}
+      <MathJaxContext config={mathJaxConfig}>
+      <h1 className="neonText">
+  <MathJax inline>{`\\(${schrodingerEquation}\\)`}</MathJax>
+</h1>
 
-
+      </MathJaxContext>
 
       {/* 🎯 Display the section title and subtitle */}
-      <Headings title="About" subtitle="Hi, I'm James." />{' '}
-      {/* 📝 Edit the biography below to reflect your own journey and interests */}
+      <Headings title="About" subtitle="Hi, I'm James." />
       <p className="about-text">
-      Hello! My name is James Condos, I have just graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and am beginning a MSc in Electrical Engineering from the University of Melbourne in 2023.
-
-      My passion in STEM comes from my interests in Signal Theory, Machine Learning, Quantum Computing, Embedded Systems, and Physics specifically. 
-      These fundemental ideas are pushing the envelope of human nature, and what is inherently contributing to a better tomorrow. <br></br><br></br>
-       My experience and project work has been spread out across mutliple disciplines, and am actively trying to get more involved in interesting engineering and research projects, whilst also gaining more experience in industry.
-        {/* 🔗 Update the href attribute with your Instagram link */}
+        Hello! My name is James Condos, I have just graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and am beginning an MSc in Electrical Engineering from the University of Melbourne in 2023.
+        <br />
+        My passion in STEM comes from my interests in Signal Theory, Machine Learning, Quantum Computing, Embedded Systems, and Physics specifically. These fundamental ideas are pushing the envelope of human nature, and what is inherently contributing to a better tomorrow.
         <br />
         <br />
-        
-      
-
-
-
-        
-    
-<a href="\final-portfolio\JamesCondos_Resume_Aug_2024.pdf" download className="button">Download my Resume!</a>
-        
-
-      
-       
+        My experience and project work have been spread out across multiple disciplines, and I am actively trying to get more involved in interesting engineering and research projects, whilst also gaining more experience in the industry.
+        <br />
+        <br />
+        <a href="\final-portfolio\JamesCondos_Resume_Aug_2024.pdf" download className="button">
+          Download my Resume!
+        </a>
       </p>
-
-
-    
-      
-
     </div>
+  );
+});
 
-    
-  )
-})
+About.displayName = 'About';
 
-About.displayName = 'About'
-
-export { About }
+export { About };
