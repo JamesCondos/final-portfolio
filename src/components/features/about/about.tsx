@@ -34,7 +34,7 @@ const About = React.forwardRef<HTMLDivElement>((_props, ref) => {
       {/* 🎯 Display the section title and subtitle */}
       <Headings title="About" subtitle="Hi, I'm James." />
       <p className="about-text">
-        Hello! My name is James Condos, I have just graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and am beginning an MSc in Electrical Engineering from the University of Melbourne in 2023.
+        Hello! My name is James Condos, I  graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and I am currently studying a MSc in Electrical Engineering from the University of Melbourne, graduating at the end of 2026.
         <br />
         My passion in STEM comes from my interests in Signal Theory, Machine Learning, Quantum Computing, Embedded Systems, and Physics specifically. These fundamental ideas are pushing the envelope of human nature, and what is inherently contributing to a better tomorrow.
         <br />
