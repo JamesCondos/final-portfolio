@@ -44,11 +44,11 @@ export const works = [
 
   },
   {
-    title: 'ALTO Climate Challenge',
+    title: 'PHM Technology',
     //githubUrl: '',
-    //externalUrl: '',
-    languages: ['Professional Development', 'Intern'],
-    modal: 'ALTO',
+    externalUrl: 'https://www.phmtechnology.com/',
+    languages: ['Discrete Event Simulations', 'LLMs', 'AI', 'Django'],
+    modal: 'Insert',
 
   },
 ]
