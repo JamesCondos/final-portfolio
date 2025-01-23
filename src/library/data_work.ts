@@ -6,7 +6,7 @@ export const works = [
     title: 'Melbourne Space Program', // Enter project title.
    // githubUrl: '', // Enter GitHub URL.
     externalUrl: 'https://www.melbournespace.com.au/', // Enter live site URL.
-    languages: ['Control', 'Management', 'Satellites'], // Specify technologies used.
+    languages: ['Control Systems', 'PCB', 'Management', 'Satellites'], // Specify technologies used.
     modal: '',
     
   },
@@ -30,7 +30,7 @@ export const works = [
     title: 'APA Group',
     //githubUrl: '',
     externalUrl: 'https://www.apa.com.au/',
-    languages: ['Software Development', 'CICD', 'Intern'],
+    languages: ['Software Development', 'CICD'],
     modal: '',
 
   },
