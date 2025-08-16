@@ -39,7 +39,7 @@ export const works = [
     //githubUrl: '',
     externalUrl: 'https://www.caulfieldgs.vic.edu.au/?gad_source=1&gclid=CjwKCAjw3P-2BhAEEiwA3yPhwKe7_aLr9hZ2yixYEayo-jO5uH3ghicHNt-hZ6NAmG9QIIUmwcICyxoCCNYQAvD_BwE',
     languages: ['Teaching', 'Maths', 'STEM'],
-    modal: "Previously, a MathematicsTeaching Assistant at Caulfield Grammar School, where I am mainly helping and teaching students in the areas of their maths that they would like to excel at and improve in,\
+    modal: "Previously, a Mathematics Teaching Assistant at Caulfield Grammar School, where I am mainly helping and teaching students in the areas of their maths that they would like to excel at and improve in,\
     This comes from myself organising lessons for students, asssting teachers in lesson plans, working in teaching teams and attempting to give students in years 7 - 10 the motivation they need. "
 
   },
@@ -48,7 +48,12 @@ export const works = [
     //githubUrl: '',
     externalUrl: 'https://www.phmtechnology.com/',
     languages: ['Discrete Event Simulations', 'LLMs', 'AI', 'Django'],
-    modal: 'Insert',
+    modal: 'Conducted a research project with Discrete-Event-Simulations (DES) and Deep Reinforcement\
+Learning (DRL) for multi-agent simulations. Developed a deterministic decision agent for\
+maintenance operators, which was to be extended to a stochastic framework.\
+• Gained experience with advanced maintenance and reliability software, MADe, which\
+creates digital risk twins.'
+
 
   },
 ]

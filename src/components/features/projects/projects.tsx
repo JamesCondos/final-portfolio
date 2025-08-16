@@ -11,8 +11,6 @@ const Projects = React.forwardRef<HTMLDivElement>((_props, ref) => {
     
     <div ref={ref} className="projects">
 
-      
-      {/* 🎯 Display the section title and subtitle */}
       <Headings title="Projects" subtitle="Stuff I’ve Worked On" />
 
       
@@ -58,24 +56,4 @@ export { Projects }
 
 
 
-
-export default function Dashboard(): ReturnType<React.FC> {
-  const [showModal, setShowModal] = React.useState<boolean>(false);
-
-  function toggleModal() {
-    setShowModal(!showModal);
-  }
-
-  return (
-    <>
-      <h1>Dashboard</h1>
-      <div className="projects-card">
-      <span>Toggle Card</span>
-      <button type="button" className="projects-card" onClick={toggleModal}>Open</button>
-      </div>
-    </>
-  );
-}
-
-export { Dashboard }
 
