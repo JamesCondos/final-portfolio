@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, works } from '../../../library';
 import './style.css';
 import Box from '@mui/material/Box';
