@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, works } from '../../../library';
-import { Headings } from '../../core/headings/headings';
 import './style.css';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -169,7 +165,8 @@ const Works = React.forwardRef<HTMLDivElement>((_props, ref) => {
     cursor: 'pointer',
     fontSize: 24,
     border: '1px solid transparent',
-    position: 'absolute', top: -11, right: -11   
+    position: 'absolute', top: -11, right: -11,
+    
   }}
               >
                 <Link />
