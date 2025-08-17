@@ -27,8 +27,19 @@
     ---color-code-a: linear-gradient(90deg, #819bf7 0%, #4dffd5 100%);
     ---color-code-b: linear-gradient(90deg, #ffe9a6 0%, #ff7373 100%);
     ---color-code-c: linear-gradient(90deg, #f3a6ff 0%, #a3afff 100%);
+    color-scheme: light;
   }
-  
+  :root { --page-scale: 1; }
+
+/* Wrap your whole app with #page-scale (next step) */
+#page-scale {
+  transform: scale(var(--page-scale));
+  transform-origin: top center;
+  /* expand layout width so it still spans the viewport after scaling */
+  width: calc(100% / var(--page-scale));
+}
+
+
   * {
     margin: 0;
     margin: 0;
@@ -88,6 +99,7 @@
     border: solid 1px !important;
     border-color: rgba(255, 255, 255, 0.15) !important;
     border-radius: 3em;
+    color: #00ff7b !important;
     cursor: pointer;
     display: inline-block;
     font-size: 0.6em;
@@ -373,13 +385,65 @@ body.modal-open {
 }
   
   
+/* === Projects grid – bulletproof responsive columns === */
+.projects-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(16px, 2.5vw, 28px);
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* phones */
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+}
+
+/* very narrow phones */
+@media (max-width: 380px) {
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* cards shrink correctly inside grid cells */
+.projects-card,
+.project-card {
+  width: auto !important;     /* remove any fixed width */
+  min-width: 0 !important;    /* allow shrinking */
+}
+.projects-card * { overflow-wrap: anywhere; }
+
+  
+  
+
   
   
   
   
   
-  
-  
+:root { --mobile-scale: 1; }
+
+/* Mobile-only zoom-out wrapper */
+@media (max-width: 640px) {
+  #mobile-zoom {
+    transform: scale(var(--mobile-scale));
+    transform-origin: top center;
+    /* counter-scale width so layout still spans the viewport */
+    width: calc(100% / var(--mobile-scale));
+  }
+
+  /* avoid sideways scroll from the counter-scale */
+  html, body { overflow-x: hidden; }
+}
   
   
   
