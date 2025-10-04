@@ -1,4 +1,5 @@
-import React from 'react'
+
+import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import './style.css'
 
@@ -38,7 +39,7 @@ const MotionBlock = ({ className, delay, children }: MotionBlockProps) => (
   </motion.div>
 )
 
-const Home = React.forwardRef<HTMLDivElement>((_props, ref) => {
+const Home = forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     
     <><div ref={ref} className="wrapper">

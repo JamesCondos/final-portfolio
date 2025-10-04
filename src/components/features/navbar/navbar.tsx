@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { navbarData } from '../../../library'
 import './style.css'
 

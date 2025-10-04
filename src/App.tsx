@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useRef } from 'react'
 import { Navbar } from './components/features/navbar/navbar'
 import { About, Projects, Socials, Contact, Footer, Works} from './components'

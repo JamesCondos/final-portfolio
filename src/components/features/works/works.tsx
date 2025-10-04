@@ -1,9 +1,12 @@
-import React from 'react';
+import { forwardRef } from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { Link, works } from '../../../library';
 import './style.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { useRef } from 'react';
 
 
 function BasicModal({
@@ -18,7 +21,7 @@ function BasicModal({
   modalTitle: string;
 }) {
   // Toggle a class that neutralizes transforms on html/body while open
-  React.useEffect(() => {
+  useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
     if (open) {
@@ -96,11 +99,11 @@ export { BasicModal };
 
 
 
-const Works = React.forwardRef<HTMLDivElement>((_props, ref) => {
-  const [open, setOpen] = React.useState(false);
-  const [selectedModalContent, setSelectedModalContent] = React.useState('');
-  const [selectedModalTitle, setSelectedModalTitle] = React.useState('');
-  const scrollYRef = React.useRef(0);  // ⬅️ remember scroll here
+const Works = forwardRef<HTMLDivElement>((_props, ref) => {
+  const [open, setOpen] = useState(false);
+  const [selectedModalContent, setSelectedModalContent] = useState('');
+  const [selectedModalTitle, setSelectedModalTitle] = useState('');
+  const scrollYRef = useRef(0);  // ⬅️ remember scroll here
 
   const handleOpen = (modalTitle: string, modalContent: string) => {
     scrollYRef.current = window.scrollY || 0;        // ⬅️ capture scroll
@@ -110,7 +113,7 @@ const Works = React.forwardRef<HTMLDivElement>((_props, ref) => {
   };
 
   // When the modal opens, snap back to where we were
-  React.useEffect(() => {
+  useEffect(() => {
     if (open) {
       // do it twice to beat layout/portal timing
       const y = scrollYRef.current;

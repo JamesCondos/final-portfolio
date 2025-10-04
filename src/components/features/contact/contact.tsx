@@ -1,8 +1,9 @@
-import React from 'react'
+
+import { forwardRef } from 'react'
 import { Headings } from '../../core/headings/headings'
 import './style.css'
 
-const Contact = React.forwardRef<HTMLDivElement>((_props, ref) => {
+const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     <div ref={ref} className="contact">
       {/* 🎯 Headings component for consistent styling across the application */}

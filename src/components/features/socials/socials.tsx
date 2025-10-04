@@ -1,5 +1,6 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import { Headings } from '../../core/headings/headings'
+import { createElement } from 'react'
 import {
   Github,
   Instagram,
@@ -9,7 +10,7 @@ import {
 } from '../../../library'
 import './style.css'
 
-const Socials = React.forwardRef<HTMLDivElement>((_props, ref) => {
+const Socials = forwardRef<HTMLDivElement>((_props, ref) => {
   // 🎨 Mapping icons to components for dynamic rendering
   const icons = { Github, Instagram, LinkedIn, Blog }
 
@@ -28,7 +29,7 @@ const Socials = React.forwardRef<HTMLDivElement>((_props, ref) => {
             rel="noreferrer"
           >
             {/* Display the icon associated with each link */}
-            {React.createElement(icons[link.icon as keyof typeof icons])}
+            {createElement(icons[link.icon as keyof typeof icons])}
             <span className="socials-name">{link.name}</span>
           </a>
         ))}

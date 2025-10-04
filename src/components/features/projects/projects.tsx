@@ -1,4 +1,4 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import { Github, projects } from '../../../library'
 import { Headings } from '../../core/headings/headings'
 import './style.css'
@@ -6,7 +6,7 @@ import './style.css'
 
 
 
-const Projects = React.forwardRef<HTMLDivElement>((_props, ref) => {
+const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     
     <div ref={ref} className="projects">

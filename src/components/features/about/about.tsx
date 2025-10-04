@@ -1,9 +1,9 @@
-import React from 'react';
+import { forwardRef } from 'react'
 import { Headings } from '../../core/headings/headings';
 import './style.css';
 import { MathJax, MathJaxContext } from 'better-react-mathjax';
 
-const About = React.forwardRef<HTMLDivElement>((_props, ref) => {
+const About = forwardRef<HTMLDivElement>((_props, ref) => {
   // LaTeX for Schrödinger equation
   const schrodingerEquation = `
     i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\mathbf{r}, t) =
@@ -42,7 +42,7 @@ const About = React.forwardRef<HTMLDivElement>((_props, ref) => {
         My experience and project work have been spread out across multiple disciplines, and I am actively trying to get more involved in interesting engineering and research projects, whilst also gaining more experience in the industry.
         <br />
         <br />
-        <a href="\final-portfolio\James_Condos_August_Resume_2025.pdf" download className="button">
+        <a href="\final-portfolio\James_Condos_Resume_Oct2025" download className="button">
           Download my Resume!
         </a>
       </p>
