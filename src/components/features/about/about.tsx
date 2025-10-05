@@ -42,7 +42,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
         My experience and project work have been spread out across multiple disciplines, and I am actively trying to get more involved in interesting engineering and research projects, whilst also gaining more experience in the industry.
         <br />
         <br />
-        <a href="\final-portfolio\James_Condos_Resume_Oct2025" download className="button">
+        <a href="\final-portfolio\Public\James_Condos_Resume_Oct2025" download className="button">
           Download my Resume!
         </a>
       </p>
