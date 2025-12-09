@@ -77,6 +77,14 @@
   background-position: center;
 }
 
+.works-card:nth-child(8) {
+  background-image: url('/loop.png');
+  background-size:     cover;      
+  background-color: white;
+  background-position: center;
+}
+
+
 
 .project-link {
   display: flex;
