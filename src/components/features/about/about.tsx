@@ -5,10 +5,10 @@ import { MathJax, MathJaxContext } from 'better-react-mathjax';
 
 const About = forwardRef<HTMLDivElement>((_props, ref) => {
   // LaTeX for Schrödinger equation
-  const schrodingerEquation = `
+  const schrodingerEquation = /*
     i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\mathbf{r}, t) =
     \\left[-\\frac{\\hbar^2}{2m}\\nabla^2 + V(\\mathbf{r}, t)\\right]\\Psi(\\mathbf{r}, t)
-  `;
+  ` */ `Portfolio Still In Progress`;
 
   const mathJaxConfig = {
     loader: { load: ['[tex]/ams'] },
@@ -26,7 +26,8 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
       {/* MathJaxContext with configuration */}
       <MathJaxContext config={mathJaxConfig}>
       <h1 className="neonText">
-  <MathJax inline>{`\\(${schrodingerEquation}\\)`}</MathJax>
+  {/* <MathJax inline>{`\\(${schrodingerEquation}\\)`}</MathJax> */}
+  {`(${schrodingerEquation})`}
 </h1>
 
       </MathJaxContext>
