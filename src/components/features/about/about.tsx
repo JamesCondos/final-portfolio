@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { Headings } from '../../core/headings/headings';
 import './style.css';
-import { MathJax, MathJaxContext } from 'better-react-mathjax';
+//import { MathJax, MathJaxContext } from 'better-react-mathjax';
 
 const About = forwardRef<HTMLDivElement>((_props, ref) => {
   // LaTeX for Schrödinger equation
