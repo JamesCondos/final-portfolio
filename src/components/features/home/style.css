@@ -486,12 +486,19 @@ img {
     height: 6px;
   }
 
-  div[class^="four-line"],
-  div[class^="three-line"],
-  div[class^="two-line"],
+  div[class^="four-line"]:not(.four-line-tertiary-V2),
+  div[class^="three-line"]:not(.three-line-tertiary-V1),
+  div[class^="two-line"]:not(.two-line-secondary-V1),
   .one-line-primary,
   .one-line-secondary {
     height: 6px;
+  }
+
+  .four-line-tertiary-V2,
+  .three-line-tertiary-V1,
+  .two-line-secondary-V1 {
+    max-width: 10px;
+    height: 10px;
   }
 }
 
