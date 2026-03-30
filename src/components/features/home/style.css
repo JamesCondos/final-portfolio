@@ -309,19 +309,23 @@ img {
 
 @media screen and (max-width: 600px) {
   .wrapper {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: center;
+    gap: 1rem;
   }
 
   .arrow {
-    margin: 20px 0;
+    margin: 20px 10px;
     height: clamp(8rem, 18vh, 14rem);
   }
 
   .bundle {
-    width: 100%;
-    max-width: min(320px, 40vw);
+    width: auto;
+    flex: 1 1 min(220px, 50%);
+    max-width: min(320px, 55vw);
+    min-width: 170px;
   }
 
   .distance-left-chunck {
@@ -332,6 +336,12 @@ img {
     margin-left: 0;
     padding: 20px 0 35px 0;
   }
+
+  img {
+    width: min(160px, 30vw);
+    max-width: 100%;
+  }
+
   .title {
     font-size: calc(60 / 20 * 1rem);
   }
