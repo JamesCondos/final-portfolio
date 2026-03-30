@@ -101,5 +101,14 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .about-section .neonText {
+    font-size: calc(22 / 20 * 1rem);
+    padding: 0.2em 0.45em;
+    border-width: 2px;
+    top: -40px;
+  }
+}
+
 
 
