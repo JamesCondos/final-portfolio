@@ -15,8 +15,8 @@ const useFluidCursor = () => {
     PRESSURE: 0.1,
     PRESSURE_ITERATIONS: 20,
     CURL: 3,
-    SPLAT_RADIUS: 0.2,
-    SPLAT_FORCE: 6000,
+    SPLAT_RADIUS: 0.08,
+    SPLAT_FORCE: 3200,
     SHADING: true,
     COLOR_UPDATE_SPEED: 10,
     PAUSED: false,
@@ -1101,9 +1101,9 @@ const useFluidCursor = () => {
 
   function clickSplat(pointer) {
     const color = generateColor();
-    color.r *= 10.0;
-    color.g *= 10.0;
-    color.b *= 10.0;
+    color.r *= 4.5;
+    color.g *= 4.5;
+    color.b *= 4.5;
     let dx = 10 * (Math.random() - 0.5);
     let dy = 30 * (Math.random() - 0.5);
     splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
@@ -1239,9 +1239,9 @@ const useFluidCursor = () => {
 
   function generateColor() {
     let c = HSVtoRGB(Math.random(), 1.0, 1.0);
-    c.r *= 0.35;
-    c.g *= 0.35;
-    c.b *= 0.35;
+    c.r *= 0.24;
+    c.g *= 0.24;
+    c.b *= 0.24;
     return c;
   }
 

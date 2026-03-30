@@ -92,7 +92,7 @@ const Home = forwardRef<HTMLDivElement>((_props, ref) => {
           <MotionBlock as="h2" className="subtitle" delay={1.2}>
             <MorphingText
               texts={['Electrical Engineer', 'Physicist', 'Machine Learning Enthusiast', 'Lego Enjoyer']} // <- 🔄 Change these to your titles or roles
-              className="!mx-0 !h-[1.15em] !w-max !max-w-none !text-left !font-[inherit] !leading-[1.1] whitespace-nowrap !text-[3rem] !md:text-[1.4rem] !lg:text-[1.55rem]"
+              className="!mx-0 !h-[1.15em] !w-max !max-w-none !text-left !font-[inherit] !leading-[1.1] whitespace-nowrap !text-[3rem]"
             />
           </MotionBlock>
         </MotionBlock>

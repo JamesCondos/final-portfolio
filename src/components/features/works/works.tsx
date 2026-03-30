@@ -1,5 +1,4 @@
-import { forwardRef } from 'react';
-import { useRef } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
 import { works } from '../../../library';
 import './style.css';
@@ -7,10 +6,21 @@ import { AnimatedSpan, Terminal, TypingAnimation } from '@/components/ui/termina
 
 const Works = forwardRef<HTMLDivElement>((_props, ref) => {
   const terminalRef = useRef<HTMLDivElement>(null);
+  const [terminalLoopKey, setTerminalLoopKey] = useState(0);
   const hasEnteredViewport = useInView(terminalRef, {
     once: true,
     amount: 0.45,
   });
+
+  useEffect(() => {
+    if (!hasEnteredViewport) return;
+
+    const intervalId = window.setInterval(() => {
+      setTerminalLoopKey((prev) => prev + 1);
+    }, 12000);
+
+    return () => window.clearInterval(intervalId);
+  }, [hasEnteredViewport]);
 
   const highlights = Array.from(
     new Set(works.flatMap((work) => work.languages))
@@ -20,7 +30,10 @@ const Works = forwardRef<HTMLDivElement>((_props, ref) => {
     <div ref={ref} className="works">
       <div className="terminal-single-wrap" ref={terminalRef}>
         {hasEnteredViewport ? (
-          <Terminal className="work-terminal work-terminal-single !rounded-[0.95rem] !border-zinc-700 !bg-[#3a3a3c] [&>div:first-child]:!bg-black [&>div:first-child]:!border-zinc-700 [&>pre]:!bg-[#3a3a3c] [&>pre]:!text-zinc-100 overflow-hidden">
+          <Terminal
+            key={terminalLoopKey}
+            className="work-terminal work-terminal-single !rounded-[0.95rem] !border-zinc-700 !bg-[#3a3a3c] [&>div:first-child]:!bg-black [&>div:first-child]:!border-zinc-700 [&>pre]:!bg-[#3a3a3c] [&>pre]:!text-zinc-100 overflow-hidden"
+          >
             <TypingAnimation className="text-emerald-300" duration={16} startOnView>
               {'$ sudo ./deploy_ml_stack.sh --env production'}
             </TypingAnimation>

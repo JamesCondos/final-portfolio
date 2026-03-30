@@ -7,7 +7,6 @@ type NavProps = {
   homeRef: React.RefObject<HTMLDivElement>
   aboutRef: React.RefObject<HTMLDivElement>
   projectsRef: React.RefObject<HTMLDivElement>
-  worksRef: React.RefObject<HTMLDivElement>
   contactRef: React.RefObject<HTMLDivElement>
 }
 
@@ -16,24 +15,11 @@ export function Navbar({
   homeRef,
   aboutRef,
   projectsRef,
-  worksRef,
   contactRef,
 }: NavProps) {
-  const [isScrolled, setIsScrolled] = useState<boolean>(false)
   const [activeLink, setActiveLink] = useState<number>()
 
-  const changeBackground = () => {
-    if (window.scrollY >= 40) {
-      setIsScrolled(true)
-    } else {
-      setIsScrolled(false)
-    }
-  }
-
-  window.addEventListener('scroll', changeBackground)
-
-  // Conditionally set CSS classes based on state
-  const navBackground = isScrolled ? 'nav-links-filled' : 'nav-links'
+  const navItems = navbarData.navigator.filter((item) => item.name !== 'Works')
 
   // Handle navigation link clicks to scroll to sections
   const handleLinkClick = (index: number) => {
@@ -49,9 +35,6 @@ export function Navbar({
         scrollToSection(projectsRef)
         break
       case 3:
-        scrollToSection(worksRef)
-        break
-      case 4:
         scrollToSection(contactRef)
         break
       default:
@@ -61,8 +44,8 @@ export function Navbar({
 
   return (
     <div className="nav">
-      <div className={navBackground}>
-        {navbarData.navigator.map((nav, index) => (
+      <div className="nav-links-filled">
+        {navItems.map((nav, index) => (
           <span
             key={index}
             onClick={() => handleLinkClick(index)}
@@ -80,9 +63,7 @@ export function Navbar({
               ? 'About'
               : activeLink === 2
               ? 'Projects'
-              : activeLink === 3 
-              ? 'Works'
-              : activeLink === 4 && 'Contact'
+              : activeLink === 3 && 'Contact'
           }`}
         />
       </div>

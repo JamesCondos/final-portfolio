@@ -30,7 +30,6 @@ export default function App() {
         homeRef={homeRef}
         aboutRef={aboutRef}
         projectsRef={projectsRef}
-        worksRef={worksRef}
         contactRef={contactRef}
       />
       <main>

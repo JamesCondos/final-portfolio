@@ -86,8 +86,7 @@
 
 .nav-slider.Contact {
   width: 75px;
-
-  transform: translateX(172px);
+  transform: translateX(175px);
 }
 
 @media screen and (min-width: 385px) {
@@ -115,7 +114,7 @@
 
   .nav-slider.Contact {
     width: 75px;
-    transform: translateX(240px);
+    transform: translateX(230px);
   }
 }
 
@@ -154,7 +153,7 @@
   }
 
   .nav-slider.Contact {
-    transform: translateX(305px);
+    transform: translateX(245px);
     width: 85px;
   }
 }
@@ -190,7 +189,7 @@
   }
 
   .nav-slider.Contact {
-    transform: translateX(480px);
+    transform: translateX(360px);
     width: 100px;
     width: 105px;
   }

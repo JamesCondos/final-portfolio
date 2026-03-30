@@ -1,17 +1,15 @@
 import { forwardRef } from 'react'
+import { MathJax, MathJaxContext } from 'better-react-mathjax';
 import { Headings } from '../../core/headings/headings';
 import './style.css';
-//import { MathJax, MathJaxContext } from 'better-react-mathjax';
 
 const About = forwardRef<HTMLDivElement>((_props, ref) => {
   // LaTeX for Schrödinger equation
-  const schrodingerEquation = /*
-    i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\mathbf{r}, t) =
-    \\left[-\\frac{\\hbar^2}{2m}\\nabla^2 + V(\\mathbf{r}, t)\\right]\\Psi(\\mathbf{r}, t)
-  ` */ `Portfolio Still In Progress`;
+  const schrodingerEquation =
+    'i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\mathbf{r}, t) = \\left[-\\frac{\\hbar^2}{2m}\\nabla^2 + V(\\mathbf{r}, t)\\right]\\Psi(\\mathbf{r}, t)';
 
 
-/*  const mathJaxConfig = {
+  const mathJaxConfig = {
     loader: { load: ['[tex]/ams'] },
     tex: {
       packages: { '[+]': ['ams'] },
@@ -20,18 +18,17 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
       displayAlign: 'center',
       scale: 1.0, // Adjust scale if needed
     },
-  }; */
+  };
 
   return (
     <div ref={ref} className="about-section">
       {/* MathJaxContext with configuration */}
-    {/*<MathJaxContext config={mathJaxConfig}> */}
+    <MathJaxContext config={mathJaxConfig}>
       <h1 className="neonText">
-  {/* <MathJax inline>{`\\(${schrodingerEquation}\\)`}</MathJax> */}
-  {`(${schrodingerEquation})`}
+  <MathJax inline dynamic>{`\\(${schrodingerEquation}\\)`}</MathJax>
 </h1>
 
-     {/* </div> </MathJaxContext> */}
+     </MathJaxContext>
 
       {/* 🎯 Display the section title and subtitle */}
       <Headings title="About" subtitle="Hi, I'm James." />

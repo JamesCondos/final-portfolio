@@ -7,7 +7,7 @@
   pointer-events: none !important;
   z-index: 9999 !important;
   background: transparent !important;
-  filter: saturate(1.25) brightness(1.05);
+  filter: saturate(0.9) brightness(0.9);
   mix-blend-mode: normal !important;
   transform: none !important;
 }
