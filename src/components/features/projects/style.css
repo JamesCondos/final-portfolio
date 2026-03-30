@@ -107,7 +107,7 @@
 /* Phones: 2 columns (change to 1 if you prefer) */
 @media (max-width: 640px) {
   .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 }
 
