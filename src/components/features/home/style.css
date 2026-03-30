@@ -309,29 +309,25 @@ img {
 
 @media screen and (max-width: 600px) {
   .wrapper {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    gap: 0.6rem;
   }
 
   .arrow {
-    margin: 12px 0;
+    margin: 12px 6px;
     height: clamp(4.5rem, 14vh, 7rem);
     max-width: 4px;
-    align-self: center;
   }
 
   .bundle {
-    width: 100%;
-    flex: 1 1 100%;
-    max-width: 100%;
-    min-width: 0;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: auto;
+    flex: 0 0 45%;
+    max-width: min(180px, 45vw);
+    min-width: 120px;
+    align-self: flex-start;
   }
 
   .distance-left-chunck {
@@ -346,7 +342,6 @@ img {
   .name {
     margin-left: 0;
     padding: 4px 0 8px 0;
-    text-align: center;
   }
 
   img {
