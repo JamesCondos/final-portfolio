@@ -153,21 +153,6 @@ const Works = forwardRef<HTMLDivElement>((_props, ref) => {
                   e.stopPropagation();
                   if (work.externalUrl) window.open(work.externalUrl, '_blank', 'noopener,noreferrer');
                 }}
-                 style={{   // anchor to the card (works-card is already position:relative)
-              // move closer to the right
-    width: 44,               // square size
-    height: 44,
-    display: 'inline-flex',  // center the icon inside
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,              // prevent oval from padding mismatch
-    lineHeight: 0,           // prevent extra vertical space from fonts
-    cursor: 'pointer',
-    fontSize: 24,
-    border: '1px solid transparent',
-    position: 'absolute', top: -11, right: -11,
-    
-  }}
               >
                 <Link />
               </button>
