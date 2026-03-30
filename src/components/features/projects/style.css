@@ -99,8 +99,8 @@
 
   .project-link {
     position: absolute;
-    top: 0.85rem;
-    right: 0.85rem;
+    top: 0.45rem;
+    right: 0.45rem;
     align-self: flex-end;
     width: auto;
   }
@@ -108,6 +108,7 @@
   .project-link a {
     font-size: 0.75rem;
     margin-left: 0;
+    padding: 0;
   }
 
   .project-name {
