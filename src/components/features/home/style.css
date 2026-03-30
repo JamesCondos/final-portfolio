@@ -311,7 +311,7 @@ img {
   .wrapper {
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-evenly;
     gap: 0.6rem;
   }
@@ -327,7 +327,7 @@ img {
     flex: 0 0 45%;
     max-width: min(180px, 45vw);
     min-width: 120px;
-    align-self: flex-start;
+    align-self: center;
   }
 
   .distance-left-chunck {
