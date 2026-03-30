@@ -1,0 +1,19 @@
+#fluid {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+  background: transparent !important;
+  filter: blur(24px) saturate(1.75) brightness(1.05);
+  mix-blend-mode: normal !important;
+  transform: none !important;
+}
+
+.fluid-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}

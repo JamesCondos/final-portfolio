@@ -44,10 +44,14 @@
     margin: 0;
     margin: 0;
     box-sizing: border-box;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
     font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
       'Helvetica Neue', Arial, sans-serif;
+  }
+
+  html,
+  body,
+  #root {
+    transform: none !important;
   }
   
   *::selection {
@@ -447,5 +451,30 @@ body.modal-open {
   
   
   
-  
-  
+/* --- fluid background wiring (non-Tailwind) --- */
+.hero {
+  position: relative;
+  min-height: 70vh;            /* full section height */
+  color: #fff;                 /* your text color on dark bg */
+}
+
+.fx-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;        /* don't block clicks */
+  overflow: hidden;
+}
+
+.fx-layer canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: blur(28px) saturate(1.5);
+  background: #000;            /* best look/perf on black */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;                 /* keep text above the canvas */
+  text-align: center;
+}
