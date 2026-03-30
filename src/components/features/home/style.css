@@ -316,7 +316,12 @@ img {
 
   .arrow {
     margin: 20px 0;
-    height: clamp(12rem, 25vh, 20rem);
+    height: clamp(8rem, 18vh, 14rem);
+  }
+
+  .bundle {
+    width: 100%;
+    max-width: min(320px, 40vw);
   }
 
   .distance-left-chunck {

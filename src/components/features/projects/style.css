@@ -107,14 +107,14 @@
 /* Phones: 2 columns (change to 1 if you prefer) */
 @media (max-width: 640px) {
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-/* Very narrow phones: 1 column */
+/* Very narrow phones: keep 3 columns */
 @media (max-width: 420px) {
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
