@@ -497,8 +497,9 @@ img {
   .four-line-tertiary-V2,
   .three-line-tertiary-V1,
   .two-line-secondary-V1 {
-    max-width: 10px;
-    height: 10px;
+    max-width: 6px;
+    width: 6px;
+    height: 6px;
   }
 }
 
