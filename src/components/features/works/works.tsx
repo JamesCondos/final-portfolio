@@ -144,7 +144,7 @@ const Works = forwardRef<HTMLDivElement>((_props, ref) => {
             tabIndex={0}
             onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleOpen(work.title, work.modal)}
           >
-            <div className="project-link">
+            <div className="project-button">
               {/* avoid <a href=""> jumps: use a button */}
               <button
                 type="button"
@@ -160,11 +160,8 @@ const Works = forwardRef<HTMLDivElement>((_props, ref) => {
     display: 'inline-flex',  // center the icon inside
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'transparent',
-    borderRadius: 12,        // or 0 for sharp corners
     padding: 0,              // prevent oval from padding mismatch
     lineHeight: 0,           // prevent extra vertical space from fonts
-    boxSizing: 'border-box',
     cursor: 'pointer',
     fontSize: 24,
     border: '1px solid transparent',
