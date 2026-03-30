@@ -313,140 +313,173 @@ img {
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .arrow {
-    margin: 20px 10px;
-    height: clamp(8rem, 18vh, 14rem);
+    margin: 14px 8px;
+    height: clamp(5.5rem, 16vh, 9rem);
+    max-width: 4px;
   }
 
   .bundle {
     width: auto;
-    flex: 1 1 min(180px, 45%);
-    max-width: min(280px, 50vw);
-    min-width: 150px;
+    flex: 1 1 min(150px, 38%);
+    max-width: min(210px, 40vw);
+    min-width: 120px;
   }
 
   .distance-left-chunck {
     margin-left: 0;
   }
 
+  .chunck {
+    gap: 0.25rem;
+    margin-bottom: 10px;
+  }
+
   .name {
     margin-left: 0;
-    padding: 12px 0 20px 0;
+    padding: 8px 0 12px 0;
   }
 
   img {
-    width: min(140px, 28vw);
+    width: min(110px, 20vw);
     max-width: 100%;
   }
 
   .title {
-    font-size: calc(42 / 20 * 1rem);
+    font-size: calc(32 / 20 * 1rem);
   }
 
   .subtitle {
-    font-size: calc(28 / 20 * 1rem);
+    font-size: calc(20 / 20 * 1rem);
   }
 
   .four-line-primary-V1 {
-    max-width: 32px;
+    max-width: 28px;
+    height: 10px;
   }
 
   .four-line-secondary-V1 {
-    max-width: 15px;
+    max-width: 10px;
+    height: 10px;
   }
   .four-line-tertiary-V1 {
-    max-width: 55px;
+    max-width: 40px;
+    height: 10px;
   }
   .four-line-prevention-V1 {
-    max-width: 90px;
+    max-width: 60px;
+    height: 10px;
   }
 
   .four-line-primary-V2 {
-    max-width: 80px;
+    max-width: 55px;
+    height: 10px;
   }
   .four-line-secondary-V2 {
-    max-width: 35px;
+    max-width: 28px;
+    height: 10px;
   }
   .four-line-tertiary-V2 {
-    max-width: 15px;
+    max-width: 10px;
+    height: 10px;
   }
   .four-line-prevention-V2 {
-    max-width: 80px;
+    max-width: 60px;
+    height: 10px;
   }
 
   .four-line-primary-V3 {
-    max-width: 80px;
+    max-width: 55px;
+    height: 10px;
   }
 
   .four-line-secondary-V3 {
-    max-width: 15px;
+    max-width: 10px;
+    height: 10px;
   }
 
   .four-line-tertiary-V3 {
-    max-width: 65px;
+    max-width: 45px;
+    height: 10px;
   }
   .four-line-prevention-V3 {
-    max-width: 100px;
+    max-width: 70px;
+    height: 10px;
   }
 
   .four-line-primary-V4 {
-    max-width: 80px;
+    max-width: 55px;
+    height: 10px;
   }
   .four-line-secondary-V4 {
-    max-width: 15px;
+    max-width: 10px;
+    height: 10px;
   }
   .four-line-tertiary-V4 {
-    max-width: 55px;
+    max-width: 40px;
+    height: 10px;
   }
 
   .four-line-prevention-V4 {
-    max-width: 50px;
+    max-width: 35px;
+    height: 10px;
   }
 
   .three-line-primary-V1 {
-    max-width: 80px;
+    max-width: 55px;
+    height: 10px;
   }
 
   .three-line-secondary-V1 {
-    max-width: 60px;
+    max-width: 40px;
+    height: 10px;
   }
 
   .three-line-tertiary-V1 {
-    max-width: 15px;
+    max-width: 10px;
+    height: 10px;
   }
 
   .three-line-primary-V2 {
-    max-width: 80px;
+    max-width: 55px;
+    height: 10px;
   }
 
   .three-line-secondary-V2 {
-    max-width: 50px;
+    max-width: 35px;
+    height: 10px;
   }
 
   .three-line-tertiary-V2 {
-    max-width: 180px;
+    max-width: 120px;
+    height: 10px;
   }
 
   .two-line-primary-V1 {
-    max-width: 200px;
+    max-width: 120px;
+    height: 10px;
   }
 
   .two-line-primary-V2 {
-    max-width: 70px;
+    max-width: 45px;
+    height: 10px;
   }
 
   .two-line-secondary-V2 {
-    max-width: 220px;
+    max-width: 120px;
+    height: 10px;
   }
 
   .one-line-primary {
-    max-width: 180px;
+    max-width: 120px;
+    height: 10px;
   }
 
   .one-line-secondary {
-    max-width: 200px;
+    max-width: 130px;
+    height: 10px;
   }
 }
