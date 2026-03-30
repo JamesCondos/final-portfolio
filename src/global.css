@@ -124,6 +124,13 @@
     gap: 150px;
   }
 
+  @media screen and (max-width: 768px) {
+    main {
+      padding-left: clamp(18px, 6vw, 30px);
+      padding-right: clamp(18px, 6vw, 30px);
+    }
+  }
+
   /* Button */
 
   .button {
