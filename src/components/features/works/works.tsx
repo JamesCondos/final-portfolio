@@ -1,179 +1,58 @@
-import { forwardRef } from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Link, works } from '../../../library';
-import './style.css';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import { forwardRef } from 'react';
 import { useRef } from 'react';
-
-
-function BasicModal({
-  open,
-  handleClose,
-  modalContent,
-  modalTitle,
-}: {
-  open: boolean;
-  handleClose: () => void;
-  modalContent: string;
-  modalTitle: string;
-}) {
-  // Toggle a class that neutralizes transforms on html/body while open
-  useEffect(() => {
-    const html = document.documentElement;
-    const body = document.body;
-    if (open) {
-      html.classList.add('modal-open');
-      body.classList.add('modal-open');
-    } else {
-      html.classList.remove('modal-open');
-      body.classList.remove('modal-open');
-    }
-    return () => {
-      html.classList.remove('modal-open');
-      body.classList.remove('modal-open');
-    };
-  }, [open]);
-
-  return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      keepMounted
-      disableScrollLock        // we already fixed scroll jump in Works; leave body alone
-      disableAutoFocus         // avoid focus-induced scrolling
-      disableEnforceFocus
-      disableRestoreFocus
-      sx={{
-        display: 'flex',           // ⬅️ center the child
-        alignItems: 'center',
-        justifyContent: 'center',
-        p: 2,                      // viewport padding so it never hugs edges
-      }}
-    >
-      <Box
-        role="dialog"
-        aria-modal="true"
-        sx={{
-          width: { xs: '92vw', sm: 600, md: 900 },
-          maxWidth: '92vw',
-          maxHeight: '85vh',
-          overflow: 'auto',
-          bgcolor: '#eeeee4',
-          borderRadius: '30px',
-          boxShadow: 24,
-          outline: 'none',
-          p: { xs: 3, sm: 6 },
-        }}
-      >
-        <Typography
-          id="modal-modal-title"
-          variant="h6"
-          component="h2"
-          sx={{
-            fontWeight: 'bold',
-            fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
-            mb: 2,
-            backgroundColor: '#313f49',
-            borderRadius: '8px',
-            color: 'white',
-            px: 2,
-            py: 1,
-          }}
-        >
-          {modalTitle}
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '1.25rem' }}>
-          {modalContent}
-        </Typography>
-      </Box>
-    </Modal>
-  );
-}
-
-export { BasicModal };
-
-
+import { useInView } from 'framer-motion';
+import { works } from '../../../library';
+import './style.css';
+import { AnimatedSpan, Terminal, TypingAnimation } from '@/components/ui/terminal';
 
 const Works = forwardRef<HTMLDivElement>((_props, ref) => {
-  const [open, setOpen] = useState(false);
-  const [selectedModalContent, setSelectedModalContent] = useState('');
-  const [selectedModalTitle, setSelectedModalTitle] = useState('');
-  const scrollYRef = useRef(0);  // ⬅️ remember scroll here
+  const terminalRef = useRef<HTMLDivElement>(null);
+  const hasEnteredViewport = useInView(terminalRef, {
+    once: true,
+    amount: 0.45,
+  });
 
-  const handleOpen = (modalTitle: string, modalContent: string) => {
-    scrollYRef.current = window.scrollY || 0;        // ⬅️ capture scroll
-    setSelectedModalTitle(modalTitle);
-    setSelectedModalContent(modalContent);
-    setOpen(true);
-  };
-
-  // When the modal opens, snap back to where we were
-  useEffect(() => {
-    if (open) {
-      // do it twice to beat layout/portal timing
-      const y = scrollYRef.current;
-      requestAnimationFrame(() => window.scrollTo(0, y));
-      setTimeout(() => window.scrollTo(0, y), 0);
-    }
-  }, [open]);
-
-  const handleClose = () => {
-    setOpen(false);
-    // restore again after closing
-    const y = scrollYRef.current;
-    requestAnimationFrame(() => window.scrollTo(0, y));
-    setTimeout(() => window.scrollTo(0, y), 0);
-  };
+  const highlights = Array.from(
+    new Set(works.flatMap((work) => work.languages))
+  ).slice(0, 8);
 
   return (
     <div ref={ref} className="works">
-      {/* ... unchanged ... */}
-      <div className="projects-grid">
-        {works.map((work) => (
-          <div
-            key={work.title}
-            className="works-card"
-            onClick={() => handleOpen(work.title, work.modal)}
-            style={{ cursor: 'pointer' }}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleOpen(work.title, work.modal)}
-          >
-            <div className="project-button">
-              {/* avoid <a href=""> jumps: use a button */}
-              <button
-                type="button"
-                aria-label="open external"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (work.externalUrl) window.open(work.externalUrl, '_blank', 'noopener,noreferrer');
-                }}
-              >
-                <Link />
-              </button>
-            </div>
-
-            <p className="project-name">{work.title}</p>
-            <div className="project-language">
-              {work.languages.map((language) => (
-                <span key={language}>{language}</span>
-              ))}
-            </div>
-          </div>
-        ))}
+      <div className="terminal-single-wrap" ref={terminalRef}>
+        {hasEnteredViewport ? (
+          <Terminal className="work-terminal work-terminal-single !rounded-[0.95rem] !border-zinc-700 !bg-[#3a3a3c] [&>div:first-child]:!bg-black [&>div:first-child]:!border-zinc-700 [&>pre]:!bg-[#3a3a3c] [&>pre]:!text-zinc-100 overflow-hidden">
+            <TypingAnimation className="text-emerald-300" duration={16} startOnView>
+              {'$ sudo ./deploy_ml_stack.sh --env production'}
+            </TypingAnimation>
+            <AnimatedSpan className="pl-2 text-zinc-200">
+              {'[ok] CUDA runtime online | [ok] Linux services healthy'}
+            </AnimatedSpan>
+            <AnimatedSpan className="pl-2 text-cyan-300">
+              {'> Training robust models for real-world engineering systems'}
+            </AnimatedSpan>
+            <AnimatedSpan className="pl-2 text-violet-300">
+              {'> Bash + Python + MLOps pipelines, built to ship not just demo'}
+            </AnimatedSpan>
+            <TypingAnimation className="pl-2 text-lime-300" duration={12}>
+              {'$ python infer.py --model latest --device cuda --batch 64'}
+            </TypingAnimation>
+            <AnimatedSpan className="pl-2 text-sky-300">
+              {'[result] latency: 12ms | throughput: 3.4k samples/s'}
+            </AnimatedSpan>
+            <AnimatedSpan className="pl-2 text-zinc-200">
+              {`> Domains: ${highlights.join(' | ')}`}
+            </AnimatedSpan>
+            <AnimatedSpan className="pl-2 text-amber-300">
+              {'> Telemetry stable | pipelines reproducible | systems green'}
+            </AnimatedSpan>
+            <AnimatedSpan className="pl-2 text-rose-300">
+              {'> Kernel, models, and control loops tuned for production-grade reliability'}
+            </AnimatedSpan>
+          </Terminal>
+        ) : (
+          <div className="work-terminal-placeholder" aria-hidden="true" />
+        )}
       </div>
-
-      <BasicModal
-        open={open}
-        handleClose={handleClose}
-        modalContent={selectedModalContent}
-        modalTitle={selectedModalTitle}
-      />
     </div>
   );
 });

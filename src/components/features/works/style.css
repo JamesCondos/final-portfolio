@@ -2,6 +2,69 @@
   width: 100%;
 }
 
+.terminal-single-wrap {
+  width: 100%;
+  display: flex;
+}
+
+.work-terminal-single {
+  width: 100%;
+  max-width: 100%;
+  min-height: clamp(18rem, 45vh, 28rem);
+}
+
+.work-terminal-placeholder {
+  width: 100%;
+  min-height: clamp(18rem, 45vh, 28rem);
+  border: 1px solid #3f3f46;
+  border-radius: 0.95rem;
+  background: linear-gradient(
+    to bottom,
+    #000000 0,
+    #000000 3.4rem,
+    #3a3a3c 3.4rem,
+    #3a3a3c 100%
+  );
+}
+
+.terminal-grid {
+  width: 100%;
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.terminal-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.work-terminal {
+  max-width: none;
+}
+
+.terminal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.terminal-action-btn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-white);
+  padding: 0.45rem 0.8rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.terminal-action-btn:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
 .projects-grid {
   width: 100%;
   display: grid;
@@ -155,6 +218,11 @@
 }
 
 @media screen and (max-width: 640px) {
+  .terminal-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 0.7rem;

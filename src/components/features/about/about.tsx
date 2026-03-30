@@ -1,4 +1,5 @@
 import { forwardRef } from 'react'
+import { MorphingText } from '@/components/ui/morphing-text'
 import { Headings } from '../../core/headings/headings';
 import './style.css';
 //import { MathJax, MathJaxContext } from 'better-react-mathjax';
@@ -9,6 +10,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
     i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\mathbf{r}, t) =
     \\left[-\\frac{\\hbar^2}{2m}\\nabla^2 + V(\\mathbf{r}, t)\\right]\\Psi(\\mathbf{r}, t)
   ` */ `Portfolio Still In Progress`;
+
 
 /*  const mathJaxConfig = {
     loader: { load: ['[tex]/ams'] },
@@ -34,6 +36,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
 
       {/* 🎯 Display the section title and subtitle */}
       <Headings title="About" subtitle="Hi, I'm James." />
+    
       <p className="about-text">
         Hello! My name is James Condos, I  graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and I am currently studying a MSc in Electrical Engineering from the University of Melbourne, graduating at the end of 2026.
         <br />
