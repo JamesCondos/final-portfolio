@@ -312,7 +312,7 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 0.6rem;
   }
 
@@ -324,9 +324,9 @@ img {
 
   .bundle {
     width: auto;
-    flex: 0 0 32%;
-    max-width: min(120px, 35vw);
-    min-width: 100px;
+    flex: 0 0 45%;
+    max-width: min(180px, 45vw);
+    min-width: 120px;
     align-self: flex-start;
   }
 
@@ -345,7 +345,7 @@ img {
   }
 
   img {
-    width: min(150px, 44vw);
+    width: min(160px, 44vw);
     max-width: 100%;
   }
 
