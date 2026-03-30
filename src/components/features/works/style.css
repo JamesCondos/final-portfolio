@@ -106,6 +106,8 @@
 .project-language {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 0.25rem;
 }
 
 .project-language span {
@@ -134,23 +136,29 @@
 @media screen and (max-width: 640px) {
   .projects-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
   }
 
   .works-card {
-    aspect-ratio: 1.2 / 1;
-    padding: 0.85rem;
+    aspect-ratio: 1.15 / 1;
+    padding: 0.75rem;
   }
 
   .project-link a {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .project-name {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.1;
   }
 
   .project-language span {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .works {
+    overflow-x: hidden;
   }
 }
 
