@@ -34,32 +34,40 @@ const Works = forwardRef<HTMLDivElement>((_props, ref) => {
             key={terminalLoopKey}
             className="work-terminal work-terminal-single !rounded-[0.95rem] !border-zinc-700 !bg-[#3a3a3c] [&>div:first-child]:!bg-black [&>div:first-child]:!border-zinc-700 [&>pre]:!bg-[#3a3a3c] [&>pre]:!text-zinc-100 overflow-hidden"
           >
-            <TypingAnimation className="text-emerald-300" duration={16} startOnView>
-              {'$ sudo ./deploy_ml_stack.sh --env production'}
+            <TypingAnimation className="text-zinc-100" duration={14} startOnView>
+              {'$ uname -a'}
             </TypingAnimation>
-            <AnimatedSpan className="pl-2 text-zinc-200">
-              {'[ok] CUDA runtime online | [ok] Linux services healthy'}
+            <AnimatedSpan className="pl-2 text-zinc-300">
+              {'Linux ml-node 6.8.0-generic x86_64 GNU/Linux'}
             </AnimatedSpan>
-            <AnimatedSpan className="pl-2 text-cyan-300">
-              {'> Training robust models for real-world engineering systems'}
-            </AnimatedSpan>
-            <AnimatedSpan className="pl-2 text-violet-300">
-              {'> Bash + Python + MLOps pipelines, built to ship not just demo'}
-            </AnimatedSpan>
-            <TypingAnimation className="pl-2 text-lime-300" duration={12}>
-              {'$ python infer.py --model latest --device cuda --batch 64'}
+
+            <TypingAnimation className="text-zinc-100" duration={12}>
+              {'$ systemctl --failed --no-pager'}
             </TypingAnimation>
-            <AnimatedSpan className="pl-2 text-sky-300">
-              {'[result] latency: 12ms | throughput: 3.4k samples/s'}
+            <AnimatedSpan className="pl-2 text-red-300">
+              {'[error] model-sync.service failed (code=1)'}
             </AnimatedSpan>
-            <AnimatedSpan className="pl-2 text-zinc-200">
-              {`> Domains: ${highlights.join(' | ')}`}
+            <TypingAnimation className="text-zinc-100" duration={10}>
+              {'$ sudo systemctl restart model-sync.service'}
+            </TypingAnimation>
+            <AnimatedSpan className="pl-2 text-emerald-300">
+              {'[ok] model-sync.service active (running)'}
+            </AnimatedSpan>
+
+            <TypingAnimation className="text-zinc-100" duration={10}>
+              {'$ python infer.py --device cuda --batch 64 --warmup'}
+            </TypingAnimation>
+            <AnimatedSpan className="pl-2 text-zinc-300">
+              {'latency=11.8ms  throughput=3.4k samples/s  gpu_mem=4.2GB'}
             </AnimatedSpan>
             <AnimatedSpan className="pl-2 text-amber-300">
-              {'> Telemetry stable | pipelines reproducible | systems green'}
+              {'[warn] one shard skipped checksum; auto-repair scheduled'}
             </AnimatedSpan>
-            <AnimatedSpan className="pl-2 text-rose-300">
-              {'> Kernel, models, and control loops tuned for production-grade reliability'}
+            <AnimatedSpan className="pl-2 text-emerald-300">
+              {'[ok] pipeline healthy | telemetry stable | checkpoints synced'}
+            </AnimatedSpan>
+            <AnimatedSpan className="pl-2 text-zinc-300">
+              {`stack: ${highlights.join(' | ')}`}
             </AnimatedSpan>
           </Terminal>
         ) : (
