@@ -5,25 +5,23 @@
 .projects-grid {
   width: 100%;
   display: grid;
-  grid-gap: 2rem;
+  gap: clamp(1rem, 2vw, 1.5rem);
   grid-template-columns: repeat(3, 1fr);
 }
 
 .works-card {
-  height: 20rem;
   width: 100%;
+  aspect-ratio: 1.25 / 1;
   display: flex;
-  padding: 1.5rem;
+  padding: 1rem;
   position: relative;
   flex-direction: column;
-  color: rgb(0,0,0,0);
+  color: rgba(0,0,0,0);
   transition: all 0.2s ease;
   justify-content: space-between;
   border: 1px solid var(--color-body);
   border-radius: 30px;
   z-index: 7;
-  
-  
 }
 
 .works-card:first-child {
@@ -93,13 +91,13 @@
 
 .project-link a {
   padding: 0 5px 5px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-left: 10px;
   color: var(--color-body);
 }
 
 .project-name {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 900;
   text-align: center;
 }
@@ -136,6 +134,23 @@
 @media screen and (max-width: 640px) {
   .projects-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .works-card {
+    aspect-ratio: 1.2 / 1;
+    padding: 0.85rem;
+  }
+
+  .project-link a {
+    font-size: 1rem;
+  }
+
+  .project-name {
+    font-size: 1.2rem;
+  }
+
+  .project-language span {
+    font-size: 0.75rem;
   }
 }
 
