@@ -540,6 +540,12 @@ body.modal-open {
     width: calc(100% / var(--mobile-scale));
   }
 
+  main {
+    padding-left: 30px;
+    padding-right: 30px;
+    max-width: calc(100% - 60px);
+  }
+
   /* avoid sideways scroll from the counter-scale */
   html, body { overflow-x: hidden; }
 }
