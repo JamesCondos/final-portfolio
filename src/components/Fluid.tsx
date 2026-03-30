@@ -1144,18 +1144,6 @@ const useFluidCursor = () => {
     clickSplat(pointer);
   });
 
-  document.body.addEventListener('mousemove', function handleFirstMouseMove(e) {
-    let pointer = pointers[0];
-    const { x: posX, y: posY } = getPointerPos(e.clientX, e.clientY);
-    let color = generateColor();
-
-    update();
-    updatePointerMoveData(pointer, posX, posY, color);
-
-    // Remove this event listener after the first mousemove event
-    document.body.removeEventListener('mousemove', handleFirstMouseMove);
-  });
-
   window.addEventListener('mousemove', (e) => {
     let pointer = pointers[0];
     const { x: posX, y: posY } = getPointerPos(e.clientX, e.clientY);
@@ -1163,27 +1151,6 @@ const useFluidCursor = () => {
 
     updatePointerMoveData(pointer, posX, posY, color);
   });
-
-  document.body.addEventListener(
-    'touchstart',
-    function handleFirstTouchStart(e) {
-      const touches = e.targetTouches;
-      let pointer = pointers[0];
-
-      for (let i = 0; i < touches.length; i++) {
-        const { x: posX, y: posY } = getPointerPos(
-          touches[i].clientX,
-          touches[i].clientY
-        );
-
-        update();
-        updatePointerDownData(pointer, touches[i].identifier, posX, posY);
-      }
-
-      // Remove this event listener after the first touchstart event
-      document.body.removeEventListener('touchstart', handleFirstTouchStart);
-    }
-  );
 
   window.addEventListener('touchstart', (e) => {
     const touches = e.targetTouches;
@@ -1221,6 +1188,12 @@ const useFluidCursor = () => {
       updatePointerUpData(pointer);
     }
   });
+
+  // Start the fluid animation immediately after initialization.
+  const initialPointer = pointers[0];
+  updatePointerDownData(initialPointer, -1, canvas.width * 0.5, canvas.height * 0.5);
+  clickSplat(initialPointer);
+  update();
 
   function updatePointerDownData(pointer, id, posX, posY) {
     pointer.id = id;
