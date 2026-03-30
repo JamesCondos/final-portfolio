@@ -36,6 +36,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
       <p className="about-text">
         Hello! My name is James Condos, I  graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and I am currently studying a MSc in Electrical Engineering from the University of Melbourne, graduating at the end of 2026.
         <br />
+        <br />
         My passion in STEM comes from my interests in Signal Theory, Machine Learning, Quantum Computing, Embedded Systems, and Physics specifically. These fundamental ideas are pushing the envelope of human nature, and what is inherently contributing to a better tomorrow.
         <br />
         <br />
