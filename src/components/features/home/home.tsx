@@ -1,4 +1,4 @@
-
+import { MorphingText } from '@/components/ui/morphing-text'
 import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import './style.css'
@@ -90,7 +90,10 @@ const Home = forwardRef<HTMLDivElement>((_props, ref) => {
             James Condos {/* <- 🔄 Change this to your name or brand */}
           </MotionBlock>
           <MotionBlock as="h2" className="subtitle" delay={1.2}>
-            Electrical Engineer and Physicist {/* <- 🔄 Update this to reflect your role */}
+            <MorphingText
+              texts={['Electrical Engineer', 'Physicist', 'Machine Learning Enthusiast', 'Lego Enjoyer']} // <- 🔄 Change these to your titles or roles
+              className="!mx-0 !h-[1.15em] !w-max !max-w-none !text-left !font-[inherit] !leading-[1.1] whitespace-nowrap !text-[3rem] !md:text-[1.4rem] !lg:text-[1.55rem]"
+            />
           </MotionBlock>
         </MotionBlock>
         <MotionBlock className="chunck" delay={0.2}>

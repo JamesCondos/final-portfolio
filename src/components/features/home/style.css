@@ -71,8 +71,9 @@ img {
 }
 
 .subtitle {
-  font-weight: 400;
-  font-size: calc(40 / 20 * 1rem);
+  font-weight: 500;
+  font-size: calc(80 / 20 * 1rem);
+  line-height: 1.1;
   color: var(--color-white);
 }
 
