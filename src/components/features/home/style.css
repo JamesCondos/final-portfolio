@@ -311,7 +311,7 @@ img {
   .wrapper {
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     gap: 0.75rem;
   }
@@ -324,9 +324,10 @@ img {
 
   .bundle {
     width: auto;
-    flex: 0 0 min(150px, 36%);
-    max-width: min(170px, 38vw);
-    min-width: 120px;
+    flex: 0 0 48%;
+    max-width: min(200px, 48vw);
+    min-width: 130px;
+    align-self: center;
   }
 
   .distance-left-chunck {
@@ -344,16 +345,16 @@ img {
   }
 
   img {
-    width: min(100px, 20vw);
+    width: min(140px, 42vw);
     max-width: 100%;
   }
 
   .title {
-    font-size: calc(32 / 20 * 1rem);
+    font-size: calc(28 / 20 * 1rem);
   }
 
   .subtitle {
-    font-size: calc(18 / 20 * 1rem);
+    font-size: calc(16 / 20 * 1rem);
   }
 
   .four-line-primary-V1 {
@@ -482,4 +483,10 @@ img {
     max-width: 130px;
     height: 10px;
   }
-}
+  div[class^="four-line"],
+  div[class^="three-line"],
+  div[class^="two-line"],
+  .one-line-primary,
+  .one-line-secondary {
+    height: 16px;
+  }}
