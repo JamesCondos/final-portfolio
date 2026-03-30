@@ -90,19 +90,27 @@
   .projects-card {
     aspect-ratio: 1.15 / 1;
     padding: 0.75rem;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .project-link a {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    margin-left: 0;
   }
 
   .project-name {
-    font-size: 1rem;
-    line-height: 1.1;
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+
+  .project-language {
+    justify-content: center;
   }
 
   .project-language span {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .projects-grid {
@@ -116,7 +124,7 @@
 
 @media screen and (max-width: 1000px) {
   .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -131,21 +139,21 @@
 /* Laptops/tablets: 2 columns */
 @media (max-width: 1024px) {
   .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* phones: keep 3 columns */
+/* phones: 1 column */
 @media (max-width: 640px) {
   .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 }
 
-/* Very narrow phones: keep 3 columns */
+/* Very narrow phones: 1 column */
 @media (max-width: 420px) {
   .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 }
 
