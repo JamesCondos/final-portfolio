@@ -1,5 +1,4 @@
 import { forwardRef } from 'react'
-import { MorphingText } from '@/components/ui/morphing-text'
 import { Headings } from '../../core/headings/headings';
 import './style.css';
 //import { MathJax, MathJaxContext } from 'better-react-mathjax';
