@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { navbarData } from '../../../library'
 import './style.css'
 
@@ -41,33 +41,6 @@ export function Navbar({
         break
     }
   }
-
-  useEffect(() => {
-    const sectionRefs = [homeRef, aboutRef, projectsRef, contactRef]
-
-    const updateActiveSection = () => {
-      const scrollPosition = window.scrollY + 140
-      let currentIndex = 0
-
-      sectionRefs.forEach((sectionRef, index) => {
-        if (!sectionRef.current) return
-        if (scrollPosition >= sectionRef.current.offsetTop) {
-          currentIndex = index
-        }
-      })
-
-      setActiveLink(currentIndex)
-    }
-
-    updateActiveSection()
-    window.addEventListener('scroll', updateActiveSection, { passive: true })
-    window.addEventListener('resize', updateActiveSection)
-
-    return () => {
-      window.removeEventListener('scroll', updateActiveSection)
-      window.removeEventListener('resize', updateActiveSection)
-    }
-  }, [homeRef, aboutRef, projectsRef, contactRef])
 
   return (
     <div className="nav">
