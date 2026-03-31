@@ -197,25 +197,58 @@
 
 @media screen and (max-width: 460px) {
   .nav {
-    padding: 0 1rem;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92vw, 340px);
+    margin-top: 0;
+    padding: 0;
+    z-index: 30;
   }
 
   .nav-links,
   .nav-links-filled {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.35rem;
-    padding: 0.5rem 0.75rem;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0.45rem 0.4rem;
   }
 
   .nav-links-item {
-    padding: 10px 8px;
-    margin: 4px;
+    padding: 10px 4px;
+    margin: 0;
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 11px;
+    text-align: center;
+    flex: 1;
   }
 
   .nav-slider {
-    display: none;
+    display: block;
+    left: 6px;
+    height: 30px;
+    width: calc((100% - 12px) / 4);
+  }
+
+  .nav-slider.Home {
+    transform: translateX(0);
+    width: calc((100% - 12px) / 4);
+  }
+
+  .nav-slider.About {
+    transform: translateX(calc((100% - 12px) / 4));
+    width: calc((100% - 12px) / 4);
+  }
+
+  .nav-slider.Projects {
+    transform: translateX(calc(((100% - 12px) / 4) * 2));
+    width: calc((100% - 12px) / 4);
+  }
+
+  .nav-slider.Contact {
+    transform: translateX(calc(((100% - 12px) / 4) * 3));
+    width: calc((100% - 12px) / 4);
   }
 }
