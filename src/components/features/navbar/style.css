@@ -198,13 +198,13 @@
 @media screen and (max-width: 460px) {
   .nav {
     position: fixed;
-    top: 10px;
+    top: 4px;
     left: 50%;
     transform: translateX(-50%);
     width: min(92vw, 340px);
     margin-top: 0;
     padding: 0;
-    z-index: 30;
+    z-index: 1000;
   }
 
   .nav-links,
@@ -250,5 +250,18 @@
   .nav-slider.Contact {
     transform: translateX(calc(((100% - 12px) / 4) * 3));
     width: calc((100% - 12px) / 4);
+  }
+}
+
+@media screen and (min-width: 461px) and (max-width: 689px) {
+  .nav {
+    position: fixed;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90vw, 420px);
+    margin-top: 0;
+    padding: 0;
+    z-index: 1000;
   }
 }
