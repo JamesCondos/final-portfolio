@@ -667,3 +667,22 @@ body.modal-open {
     @apply font-sans;
     }
 }
+
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+.magicui-shine-border {
+  animation: shine var(--duration, 14s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magicui-shine-border {
+    animation: none;
+  }
+}
