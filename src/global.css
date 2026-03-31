@@ -110,8 +110,7 @@
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
-    background: var(--color-gradient-g);
-    background-color: var(--color-gradient-g);
+    background-color: #05070e;
   }
   main {
     margin: auto;
@@ -162,6 +161,12 @@
     text-transform: uppercase;
     white-space: nowrap;
 
+  }
+
+  a.button.about-resume-button {
+    border: 1px solid #00ff7b !important;
+    border-color: #00ff7b !important;
+    color: #00ff7b !important;
   }
 
     input[type="submit"],

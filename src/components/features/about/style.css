@@ -39,6 +39,11 @@
   opacity: 1;
 }
 
+.about-resume-button {
+  border-color: var(--color-green) !important;
+  color: var(--color-green) !important;
+}
+
 @media screen and (max-width: 768px) {
   .about-text,
   .about-link {
