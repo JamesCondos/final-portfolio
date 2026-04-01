@@ -48,6 +48,22 @@ export const projects = [
     modal:
       'A digital clock implemented on FPGA hardware using Verilog, focused on reliable timing logic, display control, and hardware validation.',
   },
+  {
+    title: 'Coming Soon',
+    githubUrl: '',
+    externalUrl: '',
+    languages: ['Template', 'Coming Soon'],
+    modal:
+      'Use this placeholder for a future project. Replace the title, links, technologies, and description with your own details.',
+  },
+  {
+    title: 'Coming Soon',
+    githubUrl: '',
+    externalUrl: '',
+    languages: ['Template', 'Coming Soon'],
+    modal:
+      'Use this placeholder for another future project. Update this card with your own repository, stack, and summary when ready.',
+  },
 ]
 
 // 📱 Social media links: Update with your URLs and choose appropriate icons.

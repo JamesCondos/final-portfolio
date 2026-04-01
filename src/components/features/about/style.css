@@ -108,10 +108,28 @@
 
 @media screen and (max-width: 600px) {
   .about-section .neonText {
-    font-size: calc(22 / 20 * 1rem);
+    font-size: 0.75rem;
     padding: 0.2em 0.45em;
     border-width: 2px;
     top: -40px;
+  }
+
+  .about-section .neonText .MathJax,
+  .about-section .neonText mjx-container {
+    font-size: 0.75em !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .about-section .neonText {
+    font-size: 0.58rem;
+    top: -32px;
+    padding: 0.18em 0.35em;
+  }
+
+  .about-section .neonText .MathJax,
+  .about-section .neonText mjx-container {
+    font-size: 0.7em !important;
   }
 }
 

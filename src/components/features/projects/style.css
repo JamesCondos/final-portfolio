@@ -40,8 +40,14 @@
 .projects-card:nth-child(5) {
   background-image: var(--color-gradient-e);
 }
-.projects-card:last-child {
+.projects-card:nth-child(6) {
   background-image: var(--color-gradient-f);
+}
+.projects-card:nth-child(7) {
+  background-image: var(--color-gradient-b);
+}
+.projects-card:nth-child(8) {
+  background-image: var(--color-gradient-d);
 }
 
 .project-link {
@@ -75,6 +81,14 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .projects-card:nth-last-child(2) {
+    grid-column: 2;
+  }
+
+  .projects-card:last-child {
+    grid-column: 3;
+  }
+
   .projects-card:hover {
     border: 1px solid var(--color-white);
     background-color: transparent;
