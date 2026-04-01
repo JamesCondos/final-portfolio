@@ -18,7 +18,7 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
         >
           LinkedIn
         </a>{' '}
-        or a email on{' '}
+        or an email on{' '}
         <a
 
         >
