@@ -22,7 +22,7 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
         <a
 
         >
-          James.Condos@outlook.com
+          Jamesacondos@gmail.com
         </a>
         . Always welcome new people! 
         
