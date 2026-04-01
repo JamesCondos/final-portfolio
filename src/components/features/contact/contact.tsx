@@ -7,7 +7,7 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     <div ref={ref} className="contact">
       {/* 🎯 Headings component for consistent styling across the application */}
-      <Headings title="Contact" subtitle="Look Who's Here" />
+      <Headings title="Contact" subtitle="And if you would like to get in touch with me 😊" />
       {/* 📝 Information text about how to contact */}
       <div className="contact-text">
         The fastest way to get in touch with me is to send me a message on{' '}
