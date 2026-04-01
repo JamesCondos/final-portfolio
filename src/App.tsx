@@ -1,7 +1,7 @@
 
 import { useRef } from 'react'
 import { Navbar } from './components/features/navbar/navbar'
-import { About, Projects, Socials, Contact, Footer, Works} from './components'
+import { About, Projects, Socials, Contact, Footer } from './components'
 import { Home } from './components/features/home/home'
 
 
@@ -11,7 +11,6 @@ export default function App() {
   const aboutRef = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
-  const worksRef = useRef<HTMLDivElement>(null)
 
   // Function to scroll to a specific section
   const scrollToSection = (elementRef: React.RefObject<HTMLDivElement>) => {
@@ -36,7 +35,6 @@ export default function App() {
         <Home ref={homeRef} />
         <About ref={aboutRef} />
         <Projects ref={projectsRef} />
-        <Works ref={worksRef} />
         <Socials ref={contactRef} />
         <Contact ref={contactRef} />
         <Footer />
