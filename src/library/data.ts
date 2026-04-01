@@ -54,7 +54,7 @@ export const projects = [
     externalUrl: '',
     languages: ['Template', 'Coming Soon'],
     modal:
-      'Use this placeholder for a future project. Replace the title, links, technologies, and description with your own details.',
+      'Coming Soon',
   },
   {
     title: 'Coming Soon',
@@ -62,7 +62,7 @@ export const projects = [
     externalUrl: '',
     languages: ['Template', 'Coming Soon'],
     modal:
-      'Use this placeholder for another future project. Update this card with your own repository, stack, and summary when ready.',
+      'Coming Soon',
   },
 ]
 
