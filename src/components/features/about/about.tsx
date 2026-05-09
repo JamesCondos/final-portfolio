@@ -44,7 +44,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
         <br />
         <br />
         <a
-          href="/final-portfolio/James_Condos_Resume_2026.pdf"
+          href="/final-portfolio/My_Resume__May_2026.pdf"
           download
           className="button about-resume-button"
           style={{ borderColor: 'var(--color-green)', color: 'var(--color-green)' }}
