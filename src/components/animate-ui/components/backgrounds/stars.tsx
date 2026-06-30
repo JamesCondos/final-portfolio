@@ -36,11 +36,10 @@ function StarLayer({
   className,
   ...props
 }: StarLayerProps) {
-  const [boxShadow, setBoxShadow] = React.useState<string>('');
-
-  React.useEffect(() => {
-    setBoxShadow(generateStars(count, starColor));
-  }, [count, starColor]);
+  const boxShadow = React.useMemo(
+    () => generateStars(count, starColor),
+    [count, starColor],
+  );
 
   return (
     <motion.div
@@ -111,9 +110,10 @@ function StarsBackground({
       data-slot="stars-background"
       className={cn(
         'relative size-full overflow-hidden bg-[radial-gradient(ellipse_at_bottom,_#262626_0%,_#000_100%)]',
+        { 'pointer-events-none': !pointerEvents },
         className,
       )}
-      onMouseMove={handleMouseMove}
+      onMouseMove={pointerEvents ? handleMouseMove : undefined}
       {...props}
     >
       <motion.div
@@ -121,13 +121,13 @@ function StarsBackground({
         className={cn({ 'pointer-events-none': !pointerEvents })}
       >
         <StarLayer
-          count={1000}
+          count={260}
           size={1}
           transition={{ repeat: Infinity, duration: speed, ease: 'linear' }}
           starColor={starColor}
         />
         <StarLayer
-          count={400}
+          count={90}
           size={2}
           transition={{
             repeat: Infinity,
@@ -137,7 +137,7 @@ function StarsBackground({
           starColor={starColor}
         />
         <StarLayer
-          count={200}
+          count={35}
           size={3}
           transition={{
             repeat: Infinity,

@@ -13,14 +13,25 @@ const shouldUseFluidCursor = () => {
 
 export default function FluidCursor() {
   const [isEnabled] = useState(shouldUseFluidCursor)
+  const [shouldMountCanvas, setShouldMountCanvas] = useState(false)
 
   useEffect(() => {
     if (!isEnabled) return
 
-    useFluidCursor()
+    const timeoutId = window.setTimeout(() => {
+      setShouldMountCanvas(true)
+    }, 900)
+
+    return () => window.clearTimeout(timeoutId)
   }, [isEnabled])
 
-  if (!isEnabled) return null
+  useEffect(() => {
+    if (!shouldMountCanvas) return
+
+    useFluidCursor()
+  }, [shouldMountCanvas])
+
+  if (!isEnabled || !shouldMountCanvas) return null
 
   return <canvas id="fluid" className="fluid-canvas" />
 }

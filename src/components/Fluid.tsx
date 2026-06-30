@@ -7,13 +7,13 @@ const useFluidCursor = () => {
   //try to adjust settings
 
   let config = {
-    SIM_RESOLUTION: 128,
-    DYE_RESOLUTION: 1440,
+    SIM_RESOLUTION: 96,
+    DYE_RESOLUTION: 768,
     CAPTURE_RESOLUTION: 512,
     DENSITY_DISSIPATION: 3.5,
     VELOCITY_DISSIPATION: 2,
     PRESSURE: 0.1,
-    PRESSURE_ITERATIONS: 20,
+    PRESSURE_ITERATIONS: 12,
     CURL: 3,
     SPLAT_RADIUS: 0.08,
     SPLAT_FORCE: 3200,

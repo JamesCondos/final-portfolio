@@ -50,7 +50,7 @@ export const projects = [
   },
   {
     title: 'AI and LLM Research Paper',
-    githubUrl: '',
+    githubUrl: 'https://github.com/JamesCondos/SOML_Final_Project_Paper',
     externalUrl: '',
     languages: ['Python', 'AWQ Quantisation'],
     modal:
