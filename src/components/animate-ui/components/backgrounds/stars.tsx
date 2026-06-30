@@ -6,9 +6,8 @@ import {
   motion,
   useMotionValue,
   useSpring,
-  type SpringOptions,
   type Transition,
-} from 'motion/react';
+} from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 
@@ -74,7 +73,7 @@ function StarLayer({
 type StarsBackgroundProps = React.ComponentProps<'div'> & {
   factor?: number;
   speed?: number;
-  transition?: SpringOptions;
+  transition?: Parameters<typeof useSpring>[1];
   starColor?: string;
   pointerEvents?: boolean;
 };

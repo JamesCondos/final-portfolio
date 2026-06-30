@@ -49,12 +49,12 @@ export const projects = [
       'A digital clock implemented on FPGA hardware using Verilog, focused on reliable timing logic, display control, and hardware validation.',
   },
   {
-    title: 'Coming Soon',
+    title: 'AI and LLM Research Paper',
     githubUrl: '',
     externalUrl: '',
-    languages: ['Template', 'Coming Soon'],
+    languages: ['Python', 'AWQ Quantisation'],
     modal:
-      'Coming Soon',
+      "Reproduced the results and conducted research extensions on 'Activation-Aware-Quantisation' by Lin et al. Explored the use of Large Language Models, how they're deployed, and how different models perform. More concretely, we also compared the major differences between GPTQ and AWQ quanitsation, and how different calibration methods can affect the performance of the model and mathematical justification. ",
   },
   {
     title: 'Coming Soon',

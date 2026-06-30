@@ -1,15 +1,20 @@
-
 .about-text {
   line-height: 1.8;
   font-size: calc(25 / 16 * 1rem);
   color: var(--color-light-gray);
 }
 
+@media screen and (min-width: 769px) {
+  .about-section {
+    margin-top: -90px;
+  }
+}
+
 .about-link {
   font-weight: 600;
   font-size: calc(18 / 16 * 1rem);
   margin: 0 1px 0 3px;
-  padding: 0 0px 0 5px;
+  padding: 0 0 0 5px;
   position: relative;
   display: inline-block;
   color: var(--color-white);
@@ -53,85 +58,66 @@
   }
 }
 
-
-
-
-
-
-
-.neonText {
-  color: #fff;
-  text-shadow:
-    0 0 7px #fff,
-    0 0 10px #fff,
-    0 0 21px #fff,
-    0 0 42px #bc13fe,
-    0 0 82px #bc13fe,
-    0 0 92px #bc13fe,
-    0 0 102px #bc13fe,
-    0 0 151px #bc13fe;
-}
-  
-.about-section h1,
-.about-section h2 {
-  text-align: center;
-  font-weight: 400;
-}
-  
-.about-section .neonText {
-  top: -70px;
+.about-signal {
   position: relative;
-  max-width: fit-content;
-  text-align: center;
-  margin: 0 auto;
-  font-size: 35.2px;
-  animation: pulsate 1.5s infinite alternate;
-  border: 3.2px solid #fff;
-  border-radius: 32px;
-  padding: 0.4em;
-  box-shadow: 0 0 3.2px #fff,
-              0 0 3.2px #fff,
-              0 0 32px #bc13fe,
-              0 0 12.8px #bc13fe,
-              0 0 44.8px #bc13fe,
-              inset 0 0 20.8px #bc13fe;
+  width: 100%;
+  margin: 0 0 2rem;
+  padding: 0.95rem 0 1rem 1.2rem;
+  border-left: 2px solid rgba(121, 251, 206, 0.9);
 }
 
-@keyframes pulsate {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.03);
-  }
+.about-signal::before {
+  content: '';
+  position: absolute;
+  top: 0.6rem;
+  bottom: 0.7rem;
+  left: -2px;
+  width: 2px;
+  background: var(--color-green);
+  box-shadow: 0 0 18px rgba(121, 251, 206, 0.75);
+}
+
+.about-signal::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(121, 251, 206, 0.55), transparent);
+}
+
+.about-signal-kicker {
+  margin: 0 0 0.2rem;
+  color: var(--color-white);
+  font-size: calc(30 / 16 * 1rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-shadow: 0 0 22px rgba(121, 251, 206, 0.18);
+}
+
+.about-signal-text {
+  max-width: 64rem;
+  margin: 0;
+  color: var(--color-green);
+  font-size: calc(25 / 16 * 1rem);
+  line-height: 1.6;
 }
 
 @media screen and (max-width: 600px) {
-  .about-section .neonText {
+  .about-signal {
+    margin-bottom: 1.35rem;
+    padding: 0.75rem 0 0.85rem 0.85rem;
+  }
+
+  .about-signal-kicker {
+    font-size: 1.25rem;
+    line-height: 1.45;
+  }
+
+  .about-signal-text {
     font-size: 1rem;
-    padding: 0.2em 0.45em;
-    border-width: 2px;
-    top: -40px;
-  }
-
-  .about-section .neonText .MathJax,
-  .about-section .neonText mjx-container {
-    font-size: 0.75em !important;
+    line-height: 1.55;
   }
 }
-
-@media screen and (max-width: 420px) {
-  .about-section .neonText {
-    font-size: 0.58rem;
-    top: -32px;
-    padding: 0.18em 0.35em;
-  }
-
-  .about-section .neonText .MathJax,
-  .about-section .neonText mjx-container {
-    font-size: 0.7em !important;
-  }
-}
-
-
-

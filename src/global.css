@@ -114,7 +114,7 @@
   }
   main {
     margin: auto;
-    padding: 25px;
+    padding: 110px 25px 25px;
     max-width: 75rem;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -125,6 +125,7 @@
 
   @media screen and (max-width: 768px) {
     main {
+      padding-top: 96px;
       padding-left: clamp(18px, 6vw, 30px);
       padding-right: clamp(18px, 6vw, 30px);
     }
@@ -483,7 +484,7 @@
   @media screen and (max-width: 600px) {
     main {
       gap: 60px;
-      padding: 15px;
+      padding: 92px 15px 15px;
     }
   }
 

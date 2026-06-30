@@ -1,38 +1,21 @@
 import { forwardRef } from 'react'
-import { MathJax, MathJaxContext } from 'better-react-mathjax';
-import { Headings } from '../../core/headings/headings';
-import './style.css';
+import { Headings } from '../../core/headings/headings'
+import './style.css'
 
 const About = forwardRef<HTMLDivElement>((_props, ref) => {
-  // LaTeX for Schrödinger equation
-  const schrodingerEquation =
-    'i\\hbar \\frac{\\partial}{\\partial t}\\Psi(\\mathbf{r}, t) = \\left[-\\frac{\\hbar^2}{2m}\\nabla^2 + V(\\mathbf{r}, t)\\right]\\Psi(\\mathbf{r}, t)';
-
-
-  const mathJaxConfig = {
-    loader: { load: ['[tex]/ams'] },
-    tex: {
-      packages: { '[+]': ['ams'] },
-    },
-    chtml: {
-      displayAlign: 'center',
-      scale: 1.0, // Adjust scale if needed
-    },
-  };
-
   return (
     <div ref={ref} className="about-section">
-      {/* MathJaxContext with configuration */}
-    <MathJaxContext config={mathJaxConfig}>
-      <h1 className="neonText">
-  <MathJax inline dynamic>{`\\(${schrodingerEquation}\\)`}</MathJax>
-</h1>
+      <div className="about-signal" aria-label="Professional focus">
+        <p className="about-signal-kicker">
+          From first principles to working systems.
+        </p>
+        <p className="about-signal-text">
+          Machine learning, embedded engineering, and computational physics.
+        </p>
+      </div>
 
-     </MathJaxContext>
-
-      {/* 🎯 Display the section title and subtitle */}
       <Headings title="About" subtitle="Hi, I'm James." />
-    
+
       <p className="about-text">
         Hello! My name is James Condos, I  graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and I am currently studying a MSc in Electrical Engineering from the University of Melbourne, graduating at the end of 2026.
         <br />
@@ -53,9 +36,9 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
         </a>
       </p>
     </div>
-  );
-});
+  )
+})
 
-About.displayName = 'About';
+About.displayName = 'About'
 
-export { About };
+export { About }

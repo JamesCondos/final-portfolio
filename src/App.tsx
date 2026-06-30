@@ -15,8 +15,11 @@ export default function App() {
   // Function to scroll to a specific section
   const scrollToSection = (elementRef: React.RefObject<HTMLDivElement>) => {
     if (elementRef.current) {
+      const navHeight =
+        document.querySelector<HTMLElement>('.nav')?.getBoundingClientRect().height ?? 0
+
       window.scrollTo({
-        top: elementRef.current.offsetTop,
+        top: window.scrollY + elementRef.current.getBoundingClientRect().top - navHeight - 24,
         behavior: 'smooth',
       })
     }
