@@ -25,12 +25,12 @@ export const projects = [
       'An AI agent for Cachex built with adversarial search and game-theoretic heuristics to improve strategic decision-making in competitive play.',
   },
   {
-    title: 'Flappy Bird But Better',
-    githubUrl: 'https://github.com/JamesCondos/Flappy_Bird_Enhanced_Game',
+    title: 'ROS2 Autonomous Robot',
+    githubUrl: '',
    // externalUrl: '',
-    languages: ['Java Language'],
+    languages: ['Python, ROS2, SLAM, NAV2'],
     modal:
-      'A rebuilt Flappy Bird-style game with cleaner architecture, improved gameplay tuning, and additional features beyond the classic mechanics.',
+      'Designing and implementing an autonomous indoor plant-monitoring robot using ROS2. The robot was built to navigate a mapped indoor environment, visit multiple plant inspection locations, avoid obstacles and capture images without manual intervention using LiDAR-based SLAM, AMCL localisation, Nav2 path planning, YOLO-based plant detection.',
   },
   {
     title: 'Doubly Connected Edged List',
@@ -52,7 +52,7 @@ export const projects = [
     title: 'AI and LLM Research Paper',
     githubUrl: 'https://github.com/JamesCondos/SOML_Final_Project_Paper',
     externalUrl: '',
-    languages: ['Python', 'AWQ Quantisation'],
+    languages: ['Python', 'AWQ Quantisation', 'Research'],
     modal:
       "Reproduced the results and conducted research extensions on 'Activation-Aware-Quantisation' by Lin et al. Explored the use of Large Language Models, how they're deployed, and how different models perform. More concretely, we also compared the major differences between GPTQ and AWQ quanitsation, and how different calibration methods can affect the performance of the model and mathematical justification. ",
   },
