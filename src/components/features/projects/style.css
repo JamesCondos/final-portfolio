@@ -53,7 +53,7 @@
 .project-link {
   display: flex;
   justify-content: flex-end;
-  font-size: 1.3rem;
+  font-size: 1.9rem;
 }
 
 .projects-card:focus-visible {
@@ -114,9 +114,10 @@
   .project-link {
     position: absolute;
     top: 0.45rem;
-    right: 0.45rem;
+    right: 0.85rem;
     align-self: flex-end;
     width: auto;
+    font-size: 0.9rem;
   }
 
   .project-link a {
