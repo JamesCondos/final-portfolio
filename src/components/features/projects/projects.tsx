@@ -35,6 +35,8 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
     }
     const previousHtmlOverflow = htmlStyle.overflow
 
+    document.documentElement.classList.add('project-modal-open')
+    document.body.classList.add('project-modal-open')
     htmlStyle.overflow = 'hidden'
     bodyStyle.overflow = 'hidden'
     bodyStyle.position = 'fixed'
@@ -51,6 +53,8 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
       bodyStyle.left = previousBodyStyles.left
       bodyStyle.right = previousBodyStyles.right
       bodyStyle.width = previousBodyStyles.width
+      document.documentElement.classList.remove('project-modal-open')
+      document.body.classList.remove('project-modal-open')
       window.scrollTo(0, scrollY)
     }
   }, [activeProject])

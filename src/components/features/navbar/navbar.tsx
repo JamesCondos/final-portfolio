@@ -94,6 +94,10 @@ export function Navbar({
     const syncActiveLink = () => {
       frameId = null
 
+      if (document.body.classList.contains('project-modal-open')) {
+        return
+      }
+
       const navHeight =
         document.querySelector<HTMLElement>('.nav')?.getBoundingClientRect().height ?? 0
       const marker = navHeight + Math.min(window.innerHeight * 0.25, 160)
