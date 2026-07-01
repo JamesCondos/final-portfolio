@@ -65,7 +65,7 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
 
   return (
     <div ref={ref} className="projects">
-      <Headings title="Projects" subtitle="Stuff I’ve Worked On" />
+      <Headings title="Projects" subtitle="My Highlighted Work" />
       <div className="projects-grid">
         {projects.map((project) => (
           <div
