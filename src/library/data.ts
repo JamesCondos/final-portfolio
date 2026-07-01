@@ -25,10 +25,10 @@ export const projects = [
       'An AI agent for Cachex built with adversarial search and game-theoretic heuristics to improve strategic decision-making in competitive play.',
   },
   {
-    title: 'ROS2 Autonomous Robot',
+    title: 'ROS 2 Autonomous Robot',
     githubUrl: '',
    // externalUrl: '',
-    languages: ['Python, ROS2, SLAM, NAV2'],
+    languages: ['Python', 'ROS 2', 'SLAM', 'NAV2'],
     modal:
       'Designing and implementing an autonomous indoor plant-monitoring robot using ROS2. The robot was built to navigate a mapped indoor environment, visit multiple plant inspection locations, avoid obstacles and capture images without manual intervention using LiDAR-based SLAM, AMCL localisation, Nav2 path planning, YOLO-based plant detection.',
   },
