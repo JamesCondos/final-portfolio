@@ -1,4 +1,4 @@
-.projects {
+.works {
   width: 100%;
 }
 
@@ -65,7 +65,7 @@
   border-color: rgba(255, 255, 255, 0.55);
 }
 
-.projects-grid {
+.works .projects-grid {
   width: 100%;
   display: grid;
   gap: clamp(1rem, 2vw, 1.5rem);
@@ -168,33 +168,33 @@
 
 
 
-.project-link {
+.works .project-link {
   display: flex;
   justify-content: flex-end;
 }
 
-.project-link a {
+.works .project-link a {
   padding: 0 5px 5px;
   font-size: 1.3rem;
   margin-left: 10px;
   color: var(--color-body);
 }
 
-.project-name {
+.works .project-name {
   font-size: 1.6rem;
   font-weight: 900;
   text-align: center;
 }
 
-.project-wrapper,
-.project-language {
+.works .project-wrapper,
+.works .project-language {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 0.25rem;
 }
 
-.project-language span {
+.works .project-language span {
   font-weight: 500;
   font-size: 0.9rem;
 }
@@ -212,7 +212,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .projects-grid {
+  .works .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -223,7 +223,7 @@
     gap: 0.8rem;
   }
 
-  .projects-grid {
+  .works .projects-grid {
     grid-template-columns: 1fr;
     gap: 0.7rem;
   }
@@ -238,11 +238,11 @@
     text-align: center;
   }
 
-  .project-link a {
+  .works .project-link a {
     font-size: 0.75rem;
   }
 
-  .project-name {
+  .works .project-name {
     font-size: 0.8rem;
     line-height: 1.25;
     white-space: normal;
@@ -252,11 +252,11 @@
     margin: 0;
   }
 
-  .project-language {
+  .works .project-language {
     justify-content: center;
   }
 
-  .project-language span {
+  .works .project-language span {
     font-size: 0.55rem;
     white-space: normal;
     padding: 0.15rem 0.3rem;
@@ -268,11 +268,11 @@
 }
 
 @media screen and (max-width: 420px) {
-  .project-name {
+  .works .project-name {
     font-size: 0.75rem;
   }
 
-  .project-language span {
+  .works .project-language span {
     font-size: 0.5rem;
   }
 }
@@ -364,7 +364,7 @@ body > .MuiDialog-root {
   pointer-events: auto !important;
 }
 
-.projects-grid { grid-gap: clamp(1rem, 3vw, 2rem); }
+.works .projects-grid { grid-gap: clamp(1rem, 3vw, 2rem); }
 .works-card { min-width: 0; }
 .works-card * { overflow-wrap: anywhere; }
 

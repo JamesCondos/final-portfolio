@@ -496,47 +496,6 @@ body.modal-open {
   position: static !important;
 }
 
-/* === Projects grid – bulletproof responsive columns === */
-.projects {
-  overflow-x: hidden;
-}
-
-.projects-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: clamp(16px, 2.5vw, 28px);
-}
-
-/* tablet */
-@media (max-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  }
-}
-
-/* phones */
-@media (max-width: 640px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 14px;
-  }
-}
-
-/* very narrow phones */
-@media (max-width: 380px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  }
-}
-
-/* cards shrink correctly inside grid cells */
-.projects-card,
-.project-card {
-  width: auto !important;     /* remove any fixed width */
-  min-width: 0 !important;    /* allow shrinking */
-}
-.projects-card * { overflow-wrap: anywhere; }
-
 :root { --mobile-scale: 1; }
 
 /* Mobile-only zoom-out wrapper */

@@ -20,14 +20,38 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
   }, [])
 
   useEffect(() => {
-    const previousOverflow = document.body.style.overflow
+    if (!activeProject) return
 
-    if (activeProject) {
-      document.body.style.overflow = 'hidden'
+    const scrollY = window.scrollY
+    const bodyStyle = document.body.style
+    const htmlStyle = document.documentElement.style
+    const previousBodyStyles = {
+      left: bodyStyle.left,
+      overflow: bodyStyle.overflow,
+      position: bodyStyle.position,
+      right: bodyStyle.right,
+      top: bodyStyle.top,
+      width: bodyStyle.width,
     }
+    const previousHtmlOverflow = htmlStyle.overflow
+
+    htmlStyle.overflow = 'hidden'
+    bodyStyle.overflow = 'hidden'
+    bodyStyle.position = 'fixed'
+    bodyStyle.top = `-${scrollY}px`
+    bodyStyle.left = '0'
+    bodyStyle.right = '0'
+    bodyStyle.width = '100%'
 
     return () => {
-      document.body.style.overflow = previousOverflow
+      htmlStyle.overflow = previousHtmlOverflow
+      bodyStyle.overflow = previousBodyStyles.overflow
+      bodyStyle.position = previousBodyStyles.position
+      bodyStyle.top = previousBodyStyles.top
+      bodyStyle.left = previousBodyStyles.left
+      bodyStyle.right = previousBodyStyles.right
+      bodyStyle.width = previousBodyStyles.width
+      window.scrollTo(0, scrollY)
     }
   }, [activeProject])
 
