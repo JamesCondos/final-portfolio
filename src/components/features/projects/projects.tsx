@@ -1,12 +1,31 @@
-import { forwardRef, useEffect, useState } from 'react'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Github, projects } from '../../../library'
 import { Headings } from '../../core/headings/headings'
 import { ShineBorder } from '@/components/ui/shine-border'
 import './style.css'
 
+const shouldPreviewTouchClick = () => {
+  if (typeof window === 'undefined') return false
+
+  return window.matchMedia('(max-width: 1024px), (hover: none), (pointer: coarse)').matches
+}
+
 const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
   const [activeProject, setActiveProject] = useState<(typeof projects)[number] | null>(null)
+  const [touchPreviewProjectTitle, setTouchPreviewProjectTitle] = useState<string | null>(null)
+  const touchPreviewTimerRef = useRef<number | null>(null)
+
+  const clearTouchPreviewTimer = () => {
+    if (touchPreviewTimerRef.current === null) return
+
+    window.clearTimeout(touchPreviewTimerRef.current)
+    touchPreviewTimerRef.current = null
+  }
+
+  useEffect(() => {
+    return () => clearTouchPreviewTimer()
+  }, [])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -64,7 +83,25 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
   }
 
   const closeProjectModal = () => {
+    clearTouchPreviewTimer()
+    setTouchPreviewProjectTitle(null)
     setActiveProject(null)
+  }
+
+  const handleProjectClick = (project: (typeof projects)[number]) => {
+    if (!shouldPreviewTouchClick()) {
+      openProjectModal(project)
+      return
+    }
+
+    clearTouchPreviewTimer()
+    setTouchPreviewProjectTitle(project.title)
+
+    touchPreviewTimerRef.current = window.setTimeout(() => {
+      openProjectModal(project)
+      setTouchPreviewProjectTitle(null)
+      touchPreviewTimerRef.current = null
+    }, 170)
   }
 
   return (
@@ -73,14 +110,18 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
       <div className="projects-grid">
         {projects.map((project) => (
           <div
-            className="projects-card"
+            className={`projects-card ${
+              touchPreviewProjectTitle === project.title ? 'is-touch-preview' : ''
+            }`}
             key={project.title}
             role="button"
             tabIndex={0}
-            onClick={() => openProjectModal(project)}
+            onClick={() => handleProjectClick(project)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault()
+                clearTouchPreviewTimer()
+                setTouchPreviewProjectTitle(null)
                 openProjectModal(project)
               }
             }}
