@@ -71,6 +71,8 @@ function StarLayer({
 
 type StarsBackgroundProps = React.ComponentProps<'div'> & {
   factor?: number;
+  density?: number;
+  mobileDensity?: number;
   speed?: number;
   transition?: Parameters<typeof useSpring>[1];
   starColor?: string;
@@ -81,17 +83,37 @@ function StarsBackground({
   children,
   className,
   factor = 0.05,
+  density = 1,
+  mobileDensity,
   speed = 50,
   transition = { stiffness: 50, damping: 20 },
   starColor = '#fff',
   pointerEvents = true,
   ...props
 }: StarsBackgroundProps) {
+  const [isMobileViewport, setIsMobileViewport] = React.useState(() => {
+    if (typeof window === 'undefined') return false;
+
+    return window.matchMedia('(max-width: 768px)').matches;
+  });
   const offsetX = useMotionValue(1);
   const offsetY = useMotionValue(1);
 
   const springX = useSpring(offsetX, transition);
   const springY = useSpring(offsetY, transition);
+  const resolvedDensity =
+    isMobileViewport && mobileDensity !== undefined ? mobileDensity : density;
+  const starDensity = Math.max(0, resolvedDensity);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const syncViewport = () => setIsMobileViewport(mediaQuery.matches);
+
+    syncViewport();
+    mediaQuery.addEventListener('change', syncViewport);
+
+    return () => mediaQuery.removeEventListener('change', syncViewport);
+  }, []);
 
   const handleMouseMove = React.useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -121,13 +143,13 @@ function StarsBackground({
         className={cn({ 'pointer-events-none': !pointerEvents })}
       >
         <StarLayer
-          count={260}
+          count={Math.round(260 * starDensity)}
           size={1}
           transition={{ repeat: Infinity, duration: speed, ease: 'linear' }}
           starColor={starColor}
         />
         <StarLayer
-          count={90}
+          count={Math.round(90 * starDensity)}
           size={2}
           transition={{
             repeat: Infinity,
@@ -137,7 +159,7 @@ function StarsBackground({
           starColor={starColor}
         />
         <StarLayer
-          count={35}
+          count={Math.round(35 * starDensity)}
           size={3}
           transition={{
             repeat: Infinity,
