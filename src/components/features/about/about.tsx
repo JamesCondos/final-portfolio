@@ -10,14 +10,14 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
           From first principles to working systems.
         </p>
         <p className="about-signal-text">
-          Machine learning, embedded engineering, and computational physics.
+          Machine learning, embedded engineering, and analytical thinking.
         </p>
       </div>
 
       <Headings title="About" subtitle="Hi, I'm James." />
 
       <p className="about-text">
-        Hello! My name is James Condos, I  graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and I am currently studying a MSc in Electrical Engineering from the University of Melbourne, graduating at the end of 2026.
+        Hello! My name is James Condos, I graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and I am currently studying a MSc in Electrical Engineering from the University of Melbourne, graduating at the end of 2026.
         <br />
         <br />
         My passion in STEM comes from my interests in Machine Learning, AI, Autonomous Systems, Computer Science, Quantum Computing and Embedded Systems specifically. These fundamental ideas are pushing the envelope of human nature, and what is inherently contributing to a better tomorrow.
