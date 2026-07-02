@@ -165,13 +165,15 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
                 <div className="project-modal-footer">
                   {activeProject.githubUrl ? (
                     <a
-                      className="project-modal-github"
+                      className="project-modal-github-link"
                       href={activeProject.githubUrl}
                       target="_blank"
                       rel="noreferrer"
-                      aria-label="Open GitHub repository"
                     >
-                      <Github />
+                      <span className="project-modal-github-label">Available Here</span>
+                      <span className="project-modal-github-icon" aria-hidden="true">
+                        <Github />
+                      </span>
                     </a>
                   ) : (
                     <span className="project-modal-no-repo">GitHub repo unavailable</span>
