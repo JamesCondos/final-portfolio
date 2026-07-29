@@ -87,6 +87,7 @@ const Home = forwardRef<HTMLDivElement>((_props, ref) => {
                   'Physicist',
                   'Machine Learning Enthusiast',
                   'Lego Enjoyer',
+                  'Hardware Engineering'
                 ]}
                 className="!mx-0 !h-[1.15em] !w-max !max-w-none !text-left !font-[inherit] !leading-[1.1] whitespace-nowrap !text-[0.9rem] md:!text-[1.35rem] lg:!text-[3rem]"
               />
