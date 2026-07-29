@@ -26,7 +26,7 @@ export const projects = [
   },
   {
     title: 'Hardware Accelerator for a Convolutional Neural Network',
-    githubUrl: 'https://github.com/JamesCondos/Hardware_Accelerated_Computing_Private_V2',
+    githubUrl: 'https://github.com/JamesCondos/Hardware_Accelerated_Computing_Private_V2/tree/James_Code_V2',
    // externalUrl: '',
     languages: ['HLS Vitis', 'C++'],
     modal:

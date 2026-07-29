@@ -14,31 +14,50 @@ import { cn } from '@/lib/utils';
 type StarLayerProps = HTMLMotionProps<'div'> & {
   count: number;
   size: number;
+  seed?: number;
   transition: Transition;
   starColor: string;
 };
 
-function generateStars(count: number, starColor: string) {
+function createSeededRandom(seed: number) {
+  let state = seed >>> 0;
+
+  return () => {
+    state += 0x6d2b79f5;
+    let value = state;
+    value = Math.imul(value ^ (value >>> 15), value | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function generateStars(count: number, starColor: string, seed: number) {
+  const random = createSeededRandom(seed);
   const shadows: string[] = [];
+
   for (let i = 0; i < count; i++) {
-    const x = Math.floor(Math.random() * 4000) - 2000;
-    const y = Math.floor(Math.random() * 4000) - 2000;
+    const x = Math.floor(random() * 4000) - 2000;
+    const y = Math.floor(random() * 4000) - 2000;
     shadows.push(`${x}px ${y}px ${starColor}`);
   }
+
   return shadows.join(', ');
 }
 
 function StarLayer({
   count = 1000,
   size = 1,
+  seed,
   transition = { repeat: Infinity, duration: 50, ease: 'linear' },
   starColor = '#fff',
   className,
   ...props
 }: StarLayerProps) {
+  const layerSeed = seed ?? size * 1009;
   const boxShadow = React.useMemo(
-    () => generateStars(count, starColor),
-    [count, starColor],
+    () => generateStars(count, starColor, layerSeed),
+    [count, starColor, layerSeed],
   );
 
   return (
@@ -50,7 +69,7 @@ function StarLayer({
       {...props}
     >
       <div
-        className="absolute bg-transparent rounded-full"
+        className="absolute left-1/2 bg-transparent rounded-full"
         style={{
           width: `${size}px`,
           height: `${size}px`,
@@ -58,7 +77,7 @@ function StarLayer({
         }}
       />
       <div
-        className="absolute bg-transparent rounded-full top-[2000px]"
+        className="absolute left-1/2 bg-transparent rounded-full top-[2000px]"
         style={{
           width: `${size}px`,
           height: `${size}px`,
@@ -91,13 +110,13 @@ function StarsBackground({
   pointerEvents = true,
   ...props
 }: StarsBackgroundProps) {
-  const [isMobileViewport, setIsMobileViewport] = React.useState(() => {
-    if (typeof window === 'undefined') return false;
-
-    return window.matchMedia('(max-width: 768px)').matches;
-  });
-  const offsetX = useMotionValue(1);
-  const offsetY = useMotionValue(1);
+  const initialDevicePixelRatio = React.useRef(
+    typeof window === 'undefined' ? 1 : window.devicePixelRatio || 1,
+  );
+  const [isMobileViewport, setIsMobileViewport] = React.useState(false);
+  const [zoomCompensation, setZoomCompensation] = React.useState(1);
+  const offsetX = useMotionValue(0);
+  const offsetY = useMotionValue(0);
 
   const springX = useSpring(offsetX, transition);
   const springY = useSpring(offsetY, transition);
@@ -106,13 +125,30 @@ function StarsBackground({
   const starDensity = Math.max(0, resolvedDensity);
 
   React.useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
-    const syncViewport = () => setIsMobileViewport(mediaQuery.matches);
+    const syncViewport = () => {
+      const frameWidth =
+        window.outerWidth || window.screen.width || window.innerWidth;
+      const currentDevicePixelRatio = window.devicePixelRatio || 1;
+      const nextZoomCompensation = Math.min(
+        4,
+        Math.max(
+          0.25,
+          initialDevicePixelRatio.current / currentDevicePixelRatio,
+        ),
+      );
+
+      setIsMobileViewport(frameWidth <= 768);
+      setZoomCompensation(nextZoomCompensation);
+    };
 
     syncViewport();
-    mediaQuery.addEventListener('change', syncViewport);
+    window.addEventListener('resize', syncViewport);
+    window.visualViewport?.addEventListener('resize', syncViewport);
 
-    return () => mediaQuery.removeEventListener('change', syncViewport);
+    return () => {
+      window.removeEventListener('resize', syncViewport);
+      window.visualViewport?.removeEventListener('resize', syncViewport);
+    };
   }, []);
 
   const handleMouseMove = React.useCallback(
@@ -140,34 +176,45 @@ function StarsBackground({
     >
       <motion.div
         style={{ x: springX, y: springY }}
-        className={cn({ 'pointer-events-none': !pointerEvents })}
+        className={cn('absolute inset-0', {
+          'pointer-events-none': !pointerEvents,
+        })}
       >
-        <StarLayer
-          count={Math.round(260 * starDensity)}
-          size={1}
-          transition={{ repeat: Infinity, duration: speed, ease: 'linear' }}
-          starColor={starColor}
-        />
-        <StarLayer
-          count={Math.round(90 * starDensity)}
-          size={2}
-          transition={{
-            repeat: Infinity,
-            duration: speed * 2,
-            ease: 'linear',
+        <div
+          data-slot="star-field"
+          className="absolute inset-0"
+          style={{
+            transform: `scale(${zoomCompensation})`,
+            transformOrigin: 'top center',
           }}
-          starColor={starColor}
-        />
-        <StarLayer
-          count={Math.round(35 * starDensity)}
-          size={3}
-          transition={{
-            repeat: Infinity,
-            duration: speed * 3,
-            ease: 'linear',
-          }}
-          starColor={starColor}
-        />
+        >
+          <StarLayer
+            count={Math.round(260 * starDensity)}
+            size={1}
+            transition={{ repeat: Infinity, duration: speed, ease: 'linear' }}
+            starColor={starColor}
+          />
+          <StarLayer
+            count={Math.round(90 * starDensity)}
+            size={2}
+            transition={{
+              repeat: Infinity,
+              duration: speed * 2,
+              ease: 'linear',
+            }}
+            starColor={starColor}
+          />
+          <StarLayer
+            count={Math.round(35 * starDensity)}
+            size={3}
+            transition={{
+              repeat: Infinity,
+              duration: speed * 3,
+              ease: 'linear',
+            }}
+            starColor={starColor}
+          />
+        </div>
       </motion.div>
       {children}
     </div>
