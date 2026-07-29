@@ -40,6 +40,7 @@ const Home = forwardRef<HTMLDivElement>((_props, ref) => {
     <>
       <div ref={ref} className="wrapper">
         <motion.img
+          className="home-portrait"
           src="/final-portfolio/me.jpg"
           alt="James Condos"
           initial={{ x: 100, opacity: 0 }}
@@ -89,7 +90,7 @@ const Home = forwardRef<HTMLDivElement>((_props, ref) => {
                   'Lego Enjoyer',
                   'Hardware Engineering'
                 ]}
-                className="!mx-0 !h-[1.15em] !w-max !max-w-none !text-left !font-[inherit] !leading-[1.1] whitespace-nowrap !text-[0.9rem] md:!text-[1.35rem] lg:!text-[3rem]"
+                className="hero-morphing-text !mx-0 !h-[1.15em] !w-full !max-w-full !text-left !font-[inherit] !leading-[1.1] !text-[clamp(0.9rem,2.5vw,3rem)]"
               />
             </MotionBlock>
           </MotionBlock>

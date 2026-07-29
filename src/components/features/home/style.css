@@ -1,20 +1,17 @@
 .wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: clamp(8rem, 38vw, 20rem) 4px minmax(0, 1fr);
   align-items: center;
-  height: 100%;
-  min-height: 60vh;
-  gap: 1.5rem;
-  padding: 1rem 0;
+  column-gap: clamp(0.75rem, 3vw, 4rem);
+  width: 100%;
+  padding: clamp(2rem, 3.75vw, 4.5rem) 0;
 }
 
 .arrow {
-  width: 100%;
-  max-width: 4px;
-  min-width: 2px;
-  height: clamp(18rem, 35vh, 30rem);
-  margin: 0 40px;
+  width: 4px;
+  height: clamp(14rem, 18vw, 24rem);
+  margin: 0;
+  justify-self: center;
   background: var(--color-white);
   border-radius: 999px;
 }
@@ -29,15 +26,16 @@
 .chunck {
   display: flex;
   flex-direction: row;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  margin-bottom: clamp(0.125rem, 1vw, 0.9375rem);
+  flex-wrap: nowrap;
+  gap: clamp(0.15rem, 0.6vw, 0.5rem);
 }
 
-img {
-  width: min(320px, 40vw);
-  max-width: 100%;
+.home-portrait {
+  width: 100%;
+  max-width: 20rem;
   height: auto;
+  justify-self: end;
   border-radius: 5%;
   object-fit: cover;
 }
@@ -62,7 +60,8 @@ img {
 
 .title {
   font-weight: 500;
-  font-size: calc(80 / 20 * 1rem);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.2;
   color: var(--color-white);
 }
 
@@ -71,6 +70,10 @@ img {
   font-size: calc(80 / 20 * 1rem);
   line-height: 1.1;
   color: var(--color-white);
+}
+
+.hero-morphing-text {
+  white-space: nowrap;
 }
 
 .four-line-primary-V1 {
@@ -278,7 +281,7 @@ img {
   height: 15px;
   width: 100%;
   max-width: 390px;
-  margin-bottom: 12px;
+  margin-bottom: clamp(0.25rem, 1vw, 0.75rem);
   background: var(---color-code-c);
 }
 
@@ -286,8 +289,22 @@ img {
   height: 15px;
   width: 100%;
   max-width: 300px;
-  margin-bottom: 12px;
+  margin-bottom: clamp(0.25rem, 1vw, 0.75rem);
   background: var(---color-code-b);
+}
+
+div[class^="four-line"],
+div[class^="three-line"],
+div[class^="two-line"],
+.one-line-primary,
+.one-line-secondary {
+  height: clamp(6px, 1.5vw, 15px);
+}
+
+.four-line-tertiary-V2,
+.three-line-tertiary-V1,
+.two-line-secondary-V1 {
+  max-width: clamp(10px, 1.5vw, 15px);
 }
 
 @media screen and (max-width: 769px) {
@@ -295,35 +312,27 @@ img {
     margin-top: 10px;
   }
 
+  .distance-left-chunck,
   .name {
+    margin-left: 0;
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  .title {
+    font-size: clamp(1.1rem, 4vw, 2rem);
   }
 }
 
 @media screen and (max-width: 600px) {
-  .wrapper {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 0.6rem;
-    height: auto;
-    min-height: auto;
-  }
-
   .arrow {
-    margin: 12px 6px;
-    height: clamp(4.5rem, 14vh, 7rem);
-    max-width: 4px;
+    height: clamp(6rem, 38vw, 14rem);
   }
 
   .bundle {
-    width: auto;
-    flex: 0 0 45%;
-    max-width: min(180px, 45vw);
-    min-width: 120px;
-    align-self: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .distance-left-chunck {
@@ -331,18 +340,12 @@ img {
   }
 
   .chunck {
-    gap: 0.15rem;
-    margin-bottom: 2px;
+    flex-wrap: nowrap;
   }
 
   .name {
     margin-left: 0;
     padding: 4px 0 8px 0;
-  }
-
-  img {
-    width: min(160px, 44vw);
-    max-width: 100%;
   }
 
   .title {
@@ -351,6 +354,11 @@ img {
 
   .subtitle {
     font-size: calc(14 / 20 * 1rem);
+  }
+
+  .hero-morphing-text {
+    height: 2.3em !important;
+    white-space: normal;
   }
 
   .four-line-primary-V1 {

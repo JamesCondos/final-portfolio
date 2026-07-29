@@ -25,14 +25,20 @@ export const projects = [
       'An exploration of hybrid quantum-classical learning methods using Qiskit to compare quantum circuit models against classical baselines.',
   },
   {
-    title: 'AI Game: Cachex',
-    githubUrl: 'https://github.com/JamesCondos/AI_Cachex_Bot',
+    title: 'Hardware Accelerator for a Convolutional Neural Network',
+    githubUrl: 'https://github.com/JamesCondos/Hardware_Accelerated_Computing_Private_V2',
    // externalUrl: '',
-    languages: ['Python', 'AI', 'Game Theory'],
+    languages: ['HLS Vitis', 'C++'],
     modal:
-      'An AI agent for Cachex built with adversarial search and game-theoretic heuristics to improve strategic decision-making in competitive play.',
+        `Designed and implemented a hardware accelerator for convolutional neural networks (CNNs) using Vitis HLS
+        and Verilog, targeting low-latency inference on FPGA hardware.
+        Developed and optimised CNN compute kernels in Vitis HLS, applying loop pipelining, unrolling, and
+        memory-interface optimisations to improve throughput and resource efficiency.
+        Achieved ×71 speedup per layer over software execution by accelerating CNN convolution layers on the FPGA.
+        Reduced software execution bottlenecks by offloading computationally intensive CNN layers to custom FPGA
+        hardware.`
   },
-  {
+  {    
     title: 'ROS 2 Autonomous Robot',
     githubUrl: '',
    // externalUrl: '',
