@@ -1,23 +1,19 @@
 // @ts-nocheck
-const startFluidCursor = () => {
+const useFluidCursor = () => {
   const canvas = document.getElementById('fluid');
   if (!canvas) return;
-
-  const listenerController = new AbortController();
-  let animationFrameId = 0;
-  let isDisposed = false;
   resizeCanvas();
 
   //try to adjust settings
 
   let config = {
     SIM_RESOLUTION: 96,
-    DYE_RESOLUTION: 512,
+    DYE_RESOLUTION: 768,
     CAPTURE_RESOLUTION: 512,
     DENSITY_DISSIPATION: 3.5,
     VELOCITY_DISSIPATION: 2,
     PRESSURE: 0.1,
-    PRESSURE_ITERATIONS: 8,
+    PRESSURE_ITERATIONS: 12,
     CURL: 3,
     SPLAT_RADIUS: 0.08,
     SPLAT_FORCE: 3200,
@@ -906,26 +902,17 @@ const startFluidCursor = () => {
   initFramebuffers();
 
   let lastUpdateTime = Date.now();
-  let lastRenderTime = 0;
   let colorUpdateTimer = 0.0;
-  const minimumFrameDuration = 1000 / 60;
 
-  function update(frameTime = performance.now()) {
-    if (isDisposed || document.hidden) return;
-
-    if (frameTime - lastRenderTime < minimumFrameDuration) {
-      animationFrameId = requestAnimationFrame(update);
-      return;
-    }
-
-    lastRenderTime = frameTime;
+  function update() {
     const dt = calcDeltaTime();
+    // console.log(dt)
     if (resizeCanvas()) initFramebuffers();
     updateColors(dt);
     applyInputs();
     step(dt);
     render(null);
-    animationFrameId = requestAnimationFrame(update);
+    requestAnimationFrame(update);
   }
 
   function calcDeltaTime() {
@@ -937,8 +924,8 @@ const startFluidCursor = () => {
   }
 
   function resizeCanvas() {
-    let width = scaleByPixelRatio(window.innerWidth);
-    let height = scaleByPixelRatio(window.innerHeight);
+    let width = scaleByPixelRatio(canvas.clientWidth);
+    let height = scaleByPixelRatio(canvas.clientHeight);
     if (canvas.width != width || canvas.height != height) {
       canvas.width = width;
       canvas.height = height;
@@ -948,8 +935,9 @@ const startFluidCursor = () => {
   }
 
   function getPointerPos(clientX, clientY) {
-    const x = clientX / window.innerWidth;
-    const y = clientY / window.innerHeight;
+    const rect = canvas.getBoundingClientRect();
+    const x = (clientX - rect.left) / rect.width;
+    const y = (clientY - rect.top) / rect.height;
     return {
       x: Math.max(0, Math.min(canvas.width, x * canvas.width)),
       y: Math.max(0, Math.min(canvas.height, y * canvas.height)),
@@ -1149,44 +1137,32 @@ const startFluidCursor = () => {
     return radius;
   }
 
-  window.addEventListener(
-    'mousedown',
-    (e) => {
-      let pointer = pointers[0];
-      const { x: posX, y: posY } = getPointerPos(e.clientX, e.clientY);
-      updatePointerDownData(pointer, -1, posX, posY);
-      clickSplat(pointer);
-    },
-    { passive: true, signal: listenerController.signal }
-  );
+  window.addEventListener('mousedown', (e) => {
+    let pointer = pointers[0];
+    const { x: posX, y: posY } = getPointerPos(e.clientX, e.clientY);
+    updatePointerDownData(pointer, -1, posX, posY);
+    clickSplat(pointer);
+  });
 
-  window.addEventListener(
-    'mousemove',
-    (e) => {
-      let pointer = pointers[0];
-      const { x: posX, y: posY } = getPointerPos(e.clientX, e.clientY);
-      let color = pointer.color;
+  window.addEventListener('mousemove', (e) => {
+    let pointer = pointers[0];
+    const { x: posX, y: posY } = getPointerPos(e.clientX, e.clientY);
+    let color = pointer.color;
 
-      updatePointerMoveData(pointer, posX, posY, color);
-    },
-    { passive: true, signal: listenerController.signal }
-  );
+    updatePointerMoveData(pointer, posX, posY, color);
+  });
 
-  window.addEventListener(
-    'touchstart',
-    (e) => {
-      const touches = e.targetTouches;
-      let pointer = pointers[0];
-      for (let i = 0; i < touches.length; i++) {
-        const { x: posX, y: posY } = getPointerPos(
-          touches[i].clientX,
-          touches[i].clientY
-        );
-        updatePointerDownData(pointer, touches[i].identifier, posX, posY);
-      }
-    },
-    { passive: true, signal: listenerController.signal }
-  );
+  window.addEventListener('touchstart', (e) => {
+    const touches = e.targetTouches;
+    let pointer = pointers[0];
+    for (let i = 0; i < touches.length; i++) {
+      const { x: posX, y: posY } = getPointerPos(
+        touches[i].clientX,
+        touches[i].clientY
+      );
+      updatePointerDownData(pointer, touches[i].identifier, posX, posY);
+    }
+  });
 
   window.addEventListener(
     'touchmove',
@@ -1201,49 +1177,23 @@ const startFluidCursor = () => {
         updatePointerMoveData(pointer, posX, posY, pointer.color);
       }
     },
-    { passive: true, signal: listenerController.signal }
+    false
   );
 
-  window.addEventListener(
-    'touchend',
-    (e) => {
-      const touches = e.changedTouches;
-      let pointer = pointers[0];
+  window.addEventListener('touchend', (e) => {
+    const touches = e.changedTouches;
+    let pointer = pointers[0];
 
-      for (let i = 0; i < touches.length; i++) {
-        updatePointerUpData(pointer);
-      }
-    },
-    { passive: true, signal: listenerController.signal }
-  );
-
-  document.addEventListener(
-    'visibilitychange',
-    () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationFrameId);
-        return;
-      }
-
-      lastUpdateTime = Date.now();
-      lastRenderTime = 0;
-      update();
-    },
-    { signal: listenerController.signal }
-  );
+    for (let i = 0; i < touches.length; i++) {
+      updatePointerUpData(pointer);
+    }
+  });
 
   // Start the fluid animation immediately after initialization.
   const initialPointer = pointers[0];
   updatePointerDownData(initialPointer, -1, canvas.width * 0.5, canvas.height * 0.5);
   clickSplat(initialPointer);
   update();
-
-  return () => {
-    isDisposed = true;
-    cancelAnimationFrame(animationFrameId);
-    listenerController.abort();
-    gl.getExtension('WEBGL_lose_context')?.loseContext();
-  };
 
   function updatePointerDownData(pointer, id, posX, posY) {
     pointer.id = id;
@@ -1350,7 +1300,7 @@ const startFluidCursor = () => {
   }
 
   function scaleByPixelRatio(input) {
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    const pixelRatio = window.devicePixelRatio || 1;
     return Math.floor(input * pixelRatio);
   }
 
@@ -1365,4 +1315,4 @@ const startFluidCursor = () => {
   }
 };
 
-export default startFluidCursor;
+export default useFluidCursor;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -12,35 +12,26 @@ interface MorphingTextProps {
 
 const Texts: React.FC<Pick<MorphingTextProps, "texts">> = ({ texts }) => {
   const [textIndex, setTextIndex] = useState(0)
-  const reduceMotion = Boolean(useReducedMotion())
   const activeText = texts[textIndex % texts.length] ?? ""
 
   useEffect(() => {
-    if (texts.length <= 1 || reduceMotion) return
+    if (texts.length <= 1) return
 
     const intervalId = window.setInterval(() => {
       setTextIndex((currentIndex) => (currentIndex + 1) % texts.length)
     }, cycleTime)
 
     return () => window.clearInterval(intervalId)
-  }, [reduceMotion, texts.length])
-
-  if (reduceMotion) {
-    return (
-      <span className="absolute inset-x-0 top-0 m-auto inline-block w-full">
-        {activeText}
-      </span>
-    )
-  }
+  }, [texts.length])
 
   return (
     <AnimatePresence mode="wait" initial={false}>
       <motion.span
         key={`${activeText}-${textIndex}`}
         className="absolute inset-x-0 top-0 m-auto inline-block w-full"
-        initial={{ opacity: 0, y: "0.18em" }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: "-0.18em" }}
+        initial={{ opacity: 0, y: "0.18em", filter: "blur(3px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        exit={{ opacity: 0, y: "-0.18em", filter: "blur(3px)" }}
         transition={{ duration: 0.42, ease: "easeOut" }}
       >
         {activeText}
