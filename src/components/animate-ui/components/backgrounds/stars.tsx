@@ -2,21 +2,22 @@
 
 import * as React from 'react';
 import {
-  type HTMLMotionProps,
   motion,
   useMotionValue,
+  useReducedMotion,
   useSpring,
   type Transition,
 } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 
-type StarLayerProps = HTMLMotionProps<'div'> & {
+type StarLayerProps = React.ComponentProps<'div'> & {
   count: number;
   size: number;
   seed?: number;
   transition: Transition;
   starColor: string;
+  reduceMotion?: boolean;
 };
 
 function createSeededRandom(seed: number) {
@@ -51,21 +52,32 @@ function StarLayer({
   seed,
   transition = { repeat: Infinity, duration: 50, ease: 'linear' },
   starColor = '#fff',
+  reduceMotion = false,
   className,
+  style,
   ...props
 }: StarLayerProps) {
   const layerSeed = seed ?? size * 1009;
+  const transitionDuration = (transition as { duration?: unknown }).duration;
+  const duration =
+    typeof transitionDuration === 'number' ? transitionDuration : 50;
   const boxShadow = React.useMemo(
     () => generateStars(count, starColor, layerSeed),
     [count, starColor, layerSeed],
   );
 
   return (
-    <motion.div
+    <div
       data-slot="star-layer"
-      animate={{ y: [0, -2000] }}
-      transition={transition}
-      className={cn('absolute top-0 left-0 w-full h-[2000px]', className)}
+      className={cn(
+        'star-layer-drift absolute top-0 left-0 w-full h-[2000px]',
+        className,
+      )}
+      style={{
+        animationDuration: `${duration}s`,
+        animationPlayState: reduceMotion ? 'paused' : 'running',
+        ...style,
+      }}
       {...props}
     >
       <div
@@ -84,7 +96,7 @@ function StarLayer({
           boxShadow: boxShadow,
         }}
       />
-    </motion.div>
+    </div>
   );
 }
 
@@ -110,10 +122,17 @@ function StarsBackground({
   pointerEvents = true,
   ...props
 }: StarsBackgroundProps) {
+  const reduceMotion = Boolean(useReducedMotion());
   const initialDevicePixelRatio = React.useRef(
     typeof window === 'undefined' ? 1 : window.devicePixelRatio || 1,
   );
-  const [isMobileViewport, setIsMobileViewport] = React.useState(false);
+  const [isMobileViewport, setIsMobileViewport] = React.useState(() => {
+    if (typeof window === 'undefined') return false;
+
+    const frameWidth =
+      window.outerWidth || window.screen.width || window.innerWidth;
+    return frameWidth <= 768;
+  });
   const [zoomCompensation, setZoomCompensation] = React.useState(1);
   const offsetX = useMotionValue(0);
   const offsetY = useMotionValue(0);
@@ -163,6 +182,47 @@ function StarsBackground({
     [offsetX, offsetY, factor],
   );
 
+  const starField = (
+    <div
+      data-slot="star-field"
+      className="absolute inset-0"
+      style={{
+        transform: `scale(${zoomCompensation})`,
+        transformOrigin: 'top center',
+      }}
+    >
+      <StarLayer
+        count={Math.round(260 * starDensity)}
+        size={1}
+        transition={{ repeat: Infinity, duration: speed, ease: 'linear' }}
+        starColor={starColor}
+        reduceMotion={reduceMotion}
+      />
+      <StarLayer
+        count={Math.round(90 * starDensity)}
+        size={2}
+        transition={{
+          repeat: Infinity,
+          duration: speed * 2,
+          ease: 'linear',
+        }}
+        starColor={starColor}
+        reduceMotion={reduceMotion}
+      />
+      <StarLayer
+        count={Math.round(35 * starDensity)}
+        size={3}
+        transition={{
+          repeat: Infinity,
+          duration: speed * 3,
+          ease: 'linear',
+        }}
+        starColor={starColor}
+        reduceMotion={reduceMotion}
+      />
+    </div>
+  );
+
   return (
     <div
       data-slot="stars-background"
@@ -174,48 +234,16 @@ function StarsBackground({
       onMouseMove={pointerEvents ? handleMouseMove : undefined}
       {...props}
     >
-      <motion.div
-        style={{ x: springX, y: springY }}
-        className={cn('absolute inset-0', {
-          'pointer-events-none': !pointerEvents,
-        })}
-      >
-        <div
-          data-slot="star-field"
+      {pointerEvents ? (
+        <motion.div
+          style={{ x: springX, y: springY }}
           className="absolute inset-0"
-          style={{
-            transform: `scale(${zoomCompensation})`,
-            transformOrigin: 'top center',
-          }}
         >
-          <StarLayer
-            count={Math.round(260 * starDensity)}
-            size={1}
-            transition={{ repeat: Infinity, duration: speed, ease: 'linear' }}
-            starColor={starColor}
-          />
-          <StarLayer
-            count={Math.round(90 * starDensity)}
-            size={2}
-            transition={{
-              repeat: Infinity,
-              duration: speed * 2,
-              ease: 'linear',
-            }}
-            starColor={starColor}
-          />
-          <StarLayer
-            count={Math.round(35 * starDensity)}
-            size={3}
-            transition={{
-              repeat: Infinity,
-              duration: speed * 3,
-              ease: 'linear',
-            }}
-            starColor={starColor}
-          />
-        </div>
-      </motion.div>
+          {starField}
+        </motion.div>
+      ) : (
+        <div className="pointer-events-none absolute inset-0">{starField}</div>
+      )}
       {children}
     </div>
   );

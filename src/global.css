@@ -641,8 +641,26 @@ body.modal-open {
   animation: shine var(--duration, 14s) linear infinite;
 }
 
+@keyframes star-layer-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, -2000px, 0);
+  }
+}
+
+.star-layer-drift {
+  animation-name: star-layer-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .magicui-shine-border {
+  .magicui-shine-border,
+  .star-layer-drift {
     animation: none;
   }
 }
