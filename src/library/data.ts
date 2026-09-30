@@ -9,7 +9,7 @@ export const projects = [
       "Reproduced the results and conducted research extensions on 'Activation-Aware-Quantisation' by Lin et al. Explored the use of Large Language Models, how they're deployed, and how different models perform. More concretely, we also compared the major differences between GPTQ and AWQ quanitsation, and how different calibration methods can affect the performance of the model and mathematical justification. ",
   },
   {
-    title: 'Tweet Sentiment Reseach Paper', // Enter project title.
+    title: 'Tweet Sentiment Research Paper', // Enter project title.
     githubUrl: 'https://github.com/JamesCondos/ML_TweetSentiment_Research', // Enter GitHub URL.
     externalUrl: '', // Enter live site URL.
     languages: ['Machine Learning', 'Research', 'Python'], // Specify technologies used.

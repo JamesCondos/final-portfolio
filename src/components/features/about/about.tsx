@@ -10,7 +10,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
           From first principles to working systems.
         </p>
         <p className="about-signal-text">
-          Machine learning, embedded systems and hardware engineering.
+          Machine learning, embedded systems and innovative engineering.
         </p>
       </div>
 
