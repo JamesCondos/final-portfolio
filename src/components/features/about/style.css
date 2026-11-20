@@ -29,18 +29,18 @@
   .about-section .section-eyebrow,
   .about-heading-desktop { display: none; }
   .about-heading-mobile { display: inline; }
-  .about-section .section-heading { margin-bottom: 0.65rem; }
+  .about-section .section-heading { margin-bottom: 1rem; }
   .about-section .section-heading h2 { font-size: 1.25rem; }
-  .about-text { line-height: 1.6; }
+  .about-text { line-height: 1.75; }
   .about-text + .about-text,
-  .about-additional { margin-top: 0.75rem; }
+  .about-additional { margin-top: 1rem; }
   .about-section[data-expanded='false'] .about-additional { display: none; }
   .about-more-toggle {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     min-height: 44px;
-    margin-top: 0.25rem;
+    margin-top: 0.75rem;
     color: var(--portfolio-accent);
     font-size: 0.875rem;
   }

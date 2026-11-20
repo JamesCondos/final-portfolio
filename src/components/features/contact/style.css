@@ -120,23 +120,23 @@
 
 @media (max-width: 640px) {
   .contact-grid {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .contact-details {
-    padding-top: 0.85rem;
+    padding-top: 1.25rem;
   }
 
   .contact-label {
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.35rem;
   }
 
   .contact-elsewhere {
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
   }
 
   .contact .contact-resume {
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
   }
 }
 
