@@ -118,6 +118,28 @@
   }
 }
 
+@media (max-width: 640px) {
+  .contact-grid {
+    gap: 1rem;
+  }
+
+  .contact-details {
+    padding-top: 0.85rem;
+  }
+
+  .contact-label {
+    margin-bottom: 0.15rem;
+  }
+
+  .contact-elsewhere {
+    margin-top: 0.75rem;
+  }
+
+  .contact .contact-resume {
+    margin-top: 0.75rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .contact-email {
     transition: none;

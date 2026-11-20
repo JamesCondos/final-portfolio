@@ -414,6 +414,43 @@
   }
 }
 
+@media (max-width: 640px) {
+  .papers-heading { margin-bottom: 0.9rem; }
+  .papers-eyebrow { margin-bottom: 0.3rem; font-size: 0.875rem; }
+  .papers-heading h2 { font-size: 1.5rem; }
+  .papers-intro { margin-top: 0.5rem; line-height: 1.55; }
+  .papers-archive { gap: 0.75rem; }
+  .papers-years-label { display: none; }
+  .papers-year-options { gap: 0.25rem 0.5rem; }
+  .papers .papers-year {
+    gap: 0.35rem;
+    padding: 0.45rem 0.125rem;
+    font-size: 0.875rem;
+  }
+  .paper { padding-block: 0.875rem; }
+  .paper-meta { gap: 0.25rem 0.75rem; }
+  .paper-meta-end { gap: 0.25rem 0.75rem; }
+  .papers .paper-toggle {
+    gap: 0.75rem;
+    min-height: 44px;
+    padding-block: 0.375rem;
+  }
+  .paper-title { font-size: 1.0625rem; line-height: 1.4; }
+  .paper-toggle-icon { flex-basis: 1.5rem; width: 1.5rem; height: 1.5rem; }
+  .paper-summary { line-height: 1.55; }
+  .paper[data-expanded='false'] .paper-overview {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .papers .paper-detail-toggle { display: none; }
+  .paper-details { margin-top: 0.75rem; padding-top: 0.875rem; }
+  .paper-finding { margin-top: 0.875rem; }
+  .paper-finding p { line-height: 1.6; }
+  .paper-figure { margin-top: 1rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .papers *,
   .papers *::before,

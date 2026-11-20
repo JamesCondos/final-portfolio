@@ -5,9 +5,11 @@ import './style.css'
 const Home = forwardRef<HTMLDivElement>((_props, ref) => (
   <div ref={ref} id="home" className="home" role="region" aria-labelledby="home-heading" tabIndex={-1}>
     <div className="home-copy">
-      <p className="section-eyebrow">Research & engineering</p>
-      <h1 id="home-heading">James Condos<span>.</span></h1>
-      <p className="home-focus">Machine learning, electrical engineering & autonomous systems.</p>
+      <div className="home-identity">
+        <p className="section-eyebrow">Research & engineering</p>
+        <h1 id="home-heading">James Condos<span>.</span></h1>
+        <p className="home-focus">Machine learning, electrical engineering & autonomous systems.</p>
+      </div>
       <p className="home-intro">
         I explore machine learning and efficient computing through research and writing,
         alongside projects in autonomous robotics.

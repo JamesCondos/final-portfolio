@@ -321,6 +321,81 @@
   }
 }
 
+@media (max-width: 640px) {
+  .project-feature {
+    gap: 0.9rem;
+    padding: 1rem 0;
+  }
+
+  .project-feature > .project-media .project-image-link {
+    max-width: 20rem;
+    margin-inline: auto;
+  }
+
+  .project-feature > .project-media figcaption {
+    margin-top: 0.4rem;
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  .project-meta {
+    margin-bottom: 0.35rem;
+  }
+
+  .project-summary {
+    margin-top: 0.55rem;
+    line-height: 1.55;
+  }
+
+  .project-technologies {
+    gap: 0.2rem 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .project-resources {
+    margin-top: 0.4rem;
+  }
+
+  .project-disclosure {
+    margin-top: 0.25rem;
+  }
+
+  .project-detail-content {
+    gap: 0.85rem;
+    padding-top: 0.5rem;
+  }
+
+  .project-detail-content p {
+    line-height: 1.6;
+  }
+
+  .project-gallery {
+    gap: 1rem;
+    margin-top: 0.6rem;
+  }
+
+  .projects-more {
+    margin-top: 0.35rem;
+  }
+
+  .projects-more > summary {
+    min-height: 44px;
+  }
+
+  .projects-more-list {
+    gap: 0.6rem;
+    padding-top: 0.5rem;
+  }
+
+  .project-additional {
+    padding-top: 0.9rem;
+  }
+
+  .project-additional .project-resource {
+    margin-top: 0.25rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .project-detail-content {
     animation: none;
