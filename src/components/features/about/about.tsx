@@ -1,40 +1,32 @@
 import { forwardRef } from 'react'
-import { Headings } from '../../core/headings/headings'
 import './style.css'
 
 const About = forwardRef<HTMLDivElement>((_props, ref) => {
   return (
-    <div ref={ref} className="about-section">
-      <div className="about-signal" aria-label="Professional focus">
-        <p className="about-signal-kicker">
-          From first principles to working systems.
+    <div ref={ref} id="about" className="about-section" role="region" aria-labelledby="about-heading" tabIndex={-1}>
+      <header className="section-heading">
+        <p className="section-eyebrow">About</p>
+        <h2 id="about-heading">From first principles to working systems.</h2>
+      </header>
+
+      <div className="about-introduction">
+        <p className="about-text">
+          I’m an electrical engineering master’s student at the University of Melbourne,
+          with a BSc in Mathematical Physics and a Diploma in Computer Science.
         </p>
-        <p className="about-signal-text">
-          Machine learning, embedded systems and innovative engineering.
+        <p className="about-text">
+          My interests span machine learning, AI, autonomous systems, computer science,
+          physics and embedded systems. I enjoy working across these disciplines,
+          understanding the ideas behind them and finding ways to put them into practice.
+          My work has ranged from satellite attitude control and simulation research
+          to quantum machine learning and teaching physics.
+        </p>
+        <p className="about-text">
+          I’m keen to get involved in interesting engineering and research projects
+          while continuing to build experience in industry. Outside of that work,
+          I’m also a Lego enjoyer.
         </p>
       </div>
-
-      <Headings title="About" subtitle="Hi, I'm James." />
-
-      <p className="about-text">
-        Hello! My name is James Condos, I graduated from my BSc in Mathematical Physics and my Diploma in Computer Science in 2022, and I am currently studying a MSc in Electrical Engineering from the University of Melbourne, graduating at the end of 2026.
-        <br />
-        <br />
-        My passion in STEM comes from my interests in Machine Learning, AI, Autonomous Systems, Computer Science, Physics and Embedded Systems specifically. These fundamental ideas are pushing the envelope of human nature, and what is inherently contributing to a better tomorrow.
-        <br />
-        <br />
-        My experience and project work have been spread out across multiple disciplines, and I am actively trying to get more involved in interesting engineering and research projects, whilst also gaining more experience in industry.
-        <br />
-        <br />
-        <a
-          href="/final-portfolio/James_Condos_Resume_July_2026_Updated.pdf"
-          download
-          className="button about-resume-button"
-          style={{ borderColor: 'var(--color-green)', color: 'var(--color-green)' }}
-        >
-          Download my Resume!
-        </a>
-      </p>
     </div>
   )
 })

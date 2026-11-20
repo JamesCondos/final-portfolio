@@ -1,7 +1,11 @@
 
 import { useRef } from 'react'
 import { Navbar } from './components/features/navbar/navbar'
-import { About, Projects, Socials, Contact, Footer } from './components'
+import { About } from './components/features/about/about'
+import { Projects } from './components/features/projects/projects'
+import { Papers } from './components/features/papers/papers'
+import { Contact } from './components/features/contact/contact'
+import { Footer } from './components/features/footer/footer'
 import { Home } from './components/features/home/home'
 
 
@@ -10,35 +14,24 @@ export default function App() {
   const homeRef = useRef<HTMLDivElement>(null)
   const aboutRef = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
+  const papersRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
-
-  // Function to scroll to a specific section
-  const scrollToSection = (elementRef: React.RefObject<HTMLDivElement>) => {
-    if (elementRef.current) {
-      const navHeight =
-        document.querySelector<HTMLElement>('.nav')?.getBoundingClientRect().height ?? 0
-
-      window.scrollTo({
-        top: window.scrollY + elementRef.current.getBoundingClientRect().top - navHeight - 24,
-        behavior: 'smooth',
-      })
-    }
-  }
 
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Navbar
-        scrollToSection={scrollToSection}
         homeRef={homeRef}
         aboutRef={aboutRef}
         projectsRef={projectsRef}
+        papersRef={papersRef}
         contactRef={contactRef}
       />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Home ref={homeRef} />
         <About ref={aboutRef} />
+        <Papers ref={papersRef} />
         <Projects ref={projectsRef} />
-        <Socials ref={contactRef} />
         <Contact ref={contactRef} />
         <Footer />
       </main>

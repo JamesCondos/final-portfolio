@@ -6,6 +6,7 @@ import {
   motion,
   useMotionValue,
   useSpring,
+  useReducedMotion,
   type Transition,
 } from 'framer-motion';
 
@@ -54,6 +55,7 @@ function StarLayer({
   className,
   ...props
 }: StarLayerProps) {
+  const reducedMotion = useReducedMotion();
   const layerSeed = seed ?? size * 1009;
   const boxShadow = React.useMemo(
     () => generateStars(count, starColor, layerSeed),
@@ -63,7 +65,7 @@ function StarLayer({
   return (
     <motion.div
       data-slot="star-layer"
-      animate={{ y: [0, -2000] }}
+      animate={reducedMotion ? { y: 0 } : { y: [0, -2000] }}
       transition={transition}
       className={cn('absolute top-0 left-0 w-full h-[2000px]', className)}
       {...props}

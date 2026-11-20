@@ -1,23 +1,125 @@
-.contact-text {
-  line-height: 1.8;
-  max-width: 800px;
-  font-size: calc(18 / 16 * 1rem);
-  color: var(--color-light-gray);
+.contact {
+  width: 100%;
+  color: var(--portfolio-text);
 }
 
-.contact-text a,
-.contact-text:visited,
-.contact-text a::after {
-  color: var(--color-green);
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: start;
 }
 
-.contact-text a:hover {
+.contact-grid > * {
+  min-width: 0;
+}
+
+.contact .contact-heading {
+  margin-bottom: 0;
+}
+
+.contact-heading h2 {
+  max-width: 13em;
+}
+
+.contact-heading .section-intro {
+  max-width: 27rem;
+}
+
+.contact-details {
+  padding-top: 0.15rem;
+}
+
+.contact-label {
+  margin: 0 0 0.45rem;
+  color: var(--portfolio-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.contact-email {
+  display: inline-block;
+  max-width: 100%;
+  min-height: 44px;
+  padding-block: 0.5rem;
+  color: var(--portfolio-text);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 450;
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
   text-decoration: underline;
+  text-decoration-color: var(--portfolio-line);
+  text-underline-offset: 0.4em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
 }
 
-@media screen and (max-width: 745px) {
-  .contact-text {
-    line-height: 1.5;
-    font-size: 1rem;
+.contact-email:hover {
+  color: var(--portfolio-accent);
+  text-decoration-color: var(--portfolio-accent);
+}
+
+.contact-email:focus-visible {
+  outline: 2px solid var(--portfolio-accent);
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+.contact-elsewhere {
+  margin-top: 1.8rem;
+}
+
+.contact-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-social-links .text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+.contact .contact-resume {
+  margin-top: 1.5rem;
+  max-width: 100%;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.contact-resume span {
+  color: var(--portfolio-muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+@media (max-width: 700px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .contact-heading h2 {
+    max-width: 18em;
+  }
+
+  .contact-details {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--portfolio-line);
+  }
+
+  .contact-email {
+    font-size: clamp(1.1rem, 4.8vw, 1.4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-email {
+    transition: none;
   }
 }

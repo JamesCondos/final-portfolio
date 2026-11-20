@@ -1,198 +1,174 @@
-import { forwardRef, useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
-import { Github, projects } from '../../../library'
-import { Headings } from '../../core/headings/headings'
-import { ShineBorder } from '@/components/ui/shine-border'
+import { forwardRef } from 'react'
+import { FileText, Plus } from 'lucide-react'
+import { Github } from '../../../library/icons'
+import { additionalProjects, featuredProjects, type FeaturedProject } from '../../../library/projects'
 import './style.css'
 
-const shouldPreviewTouchClick = () => {
-  if (typeof window === 'undefined') return false
-
-  return window.matchMedia('(max-width: 1024px), (hover: none), (pointer: coarse)').matches
+type ProjectImageData = {
+  src: string
+  alt: string
+  caption: string
+  width?: number
+  height?: number
+  fit?: 'cover' | 'contain'
+  aspectRatio?: '16 / 9' | '4 / 3' | 'auto'
 }
 
-const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
-  const [activeProject, setActiveProject] = useState<(typeof projects)[number] | null>(null)
-  const [touchPreviewProjectTitle, setTouchPreviewProjectTitle] = useState<string | null>(null)
-  const touchPreviewTimerRef = useRef<number | null>(null)
-
-  const clearTouchPreviewTimer = () => {
-    if (touchPreviewTimerRef.current === null) return
-
-    window.clearTimeout(touchPreviewTimerRef.current)
-    touchPreviewTimerRef.current = null
-  }
-
-  useEffect(() => {
-    return () => clearTouchPreviewTimer()
-  }, [])
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setActiveProject(null)
-      }
-    }
-
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [])
-
-  useEffect(() => {
-    if (!activeProject) return
-
-    const scrollY = window.scrollY
-    const bodyStyle = document.body.style
-    const htmlStyle = document.documentElement.style
-    const previousBodyStyles = {
-      left: bodyStyle.left,
-      overflow: bodyStyle.overflow,
-      position: bodyStyle.position,
-      right: bodyStyle.right,
-      top: bodyStyle.top,
-      width: bodyStyle.width,
-    }
-    const previousHtmlOverflow = htmlStyle.overflow
-
-    document.documentElement.classList.add('project-modal-open')
-    document.body.classList.add('project-modal-open')
-    htmlStyle.overflow = 'hidden'
-    bodyStyle.overflow = 'hidden'
-    bodyStyle.position = 'fixed'
-    bodyStyle.top = `-${scrollY}px`
-    bodyStyle.left = '0'
-    bodyStyle.right = '0'
-    bodyStyle.width = '100%'
-
-    return () => {
-      htmlStyle.overflow = previousHtmlOverflow
-      bodyStyle.overflow = previousBodyStyles.overflow
-      bodyStyle.position = previousBodyStyles.position
-      bodyStyle.top = previousBodyStyles.top
-      bodyStyle.left = previousBodyStyles.left
-      bodyStyle.right = previousBodyStyles.right
-      bodyStyle.width = previousBodyStyles.width
-      document.documentElement.classList.remove('project-modal-open')
-      document.body.classList.remove('project-modal-open')
-      window.scrollTo(0, scrollY)
-    }
-  }, [activeProject])
-
-  const openProjectModal = (project: (typeof projects)[number]) => {
-    setActiveProject(project)
-  }
-
-  const closeProjectModal = () => {
-    clearTouchPreviewTimer()
-    setTouchPreviewProjectTitle(null)
-    setActiveProject(null)
-  }
-
-  const handleProjectClick = (project: (typeof projects)[number]) => {
-    if (!shouldPreviewTouchClick()) {
-      openProjectModal(project)
-      return
-    }
-
-    clearTouchPreviewTimer()
-    setTouchPreviewProjectTitle(project.title)
-
-    touchPreviewTimerRef.current = window.setTimeout(() => {
-      openProjectModal(project)
-      setTouchPreviewProjectTitle(null)
-      touchPreviewTimerRef.current = null
-    }, 170)
-  }
+function ProjectImage({ image, loading = 'lazy' }: {
+  image: ProjectImageData
+  loading?: 'eager' | 'lazy'
+}) {
+  const imageUrl = `${import.meta.env.BASE_URL}${image.src}`
+  const aspectRatio = image.aspectRatio === 'auto' && image.width && image.height
+    ? `auto ${image.width} / ${image.height}`
+    : image.aspectRatio
 
   return (
-    <div ref={ref} className="projects">
-      <Headings title="Projects" subtitle="My Highlighted Work" />
-      <div className="projects-grid">
-        {projects.map((project) => (
-          <div
-            className={`projects-card ${
-              touchPreviewProjectTitle === project.title ? 'is-touch-preview' : ''
-            }`}
-            key={project.title}
-            role="button"
-            tabIndex={0}
-            onClick={() => handleProjectClick(project)}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault()
-                clearTouchPreviewTimer()
-                setTouchPreviewProjectTitle(null)
-                openProjectModal(project)
-              }
-            }}
-          >
-            <div className="project-link" aria-hidden="true">
-              <Github />
-            </div>
-
-            <p className="project-name">{project.title}</p>
-            <div className="project-language">
-              {project.languages.map((language) => (
-                <span key={language}>{language}</span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {activeProject &&
-        createPortal(
-          <div className="project-modal-backdrop" onClick={closeProjectModal} role="presentation">
-            <div
-              className="project-modal"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="project-modal-title"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <ShineBorder
-                borderWidth={2}
-                duration={12}
-                shineColor={['#9fffd7', '#7bdfff', '#9fffd7']}
-              />
-              <div className="project-modal-content">
-                <h3 className="project-modal-title" id="project-modal-title">
-                  {activeProject.title}
-                </h3>
-                <p className="project-modal-description">
-                  {activeProject.modal || `This project uses ${activeProject.languages.join(', ')}.`}
-                </p>
-                <div className="project-modal-footer">
-                  {activeProject.githubUrl ? (
-                    <a
-                      className="project-modal-github-link"
-                      href={activeProject.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <span className="project-modal-github-label">Available Here</span>
-                      <span className="project-modal-github-icon" aria-hidden="true">
-                        <Github />
-                      </span>
-                    </a>
-                  ) : (
-                    <span className="project-modal-no-repo">GitHub repo unavailable</span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>,
-          document.body,
-        )}
-    </div>
+    <figure className="project-media project-media--image">
+      <a
+        className="project-image-link"
+        href={imageUrl}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Open full-size image: ${image.alt} (opens in a new tab)`}
+      >
+        <img
+          src={imageUrl}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          loading={loading}
+          decoding="async"
+          style={{ aspectRatio, objectFit: image.fit, height: 'auto' }}
+        />
+        <span className="project-image-open" aria-hidden="true">View full size</span>
+      </a>
+      <figcaption>{image.caption}</figcaption>
+    </figure>
   )
-})
+}
 
+function ProjectMedia({ project }: { project: FeaturedProject }) {
+  return project.media ? <ProjectImage image={project.media} loading="eager" /> : null
+}
+
+const Projects = forwardRef<HTMLDivElement>((_props, ref) => (
+  <div ref={ref} id="projects" className="projects" role="region" aria-labelledby="projects-heading" tabIndex={-1}>
+    <header className="section-heading">
+      <p className="section-eyebrow">Robotics</p>
+      <h2 id="projects-heading">From software to the physical world.</h2>
+      <p className="section-intro">An autonomous plant-monitoring robot, and the interface I built to understand what it was doing.</p>
+    </header>
+
+    <div className="projects-selected">
+      {featuredProjects.map((project) => (
+        <article
+          className={`project-feature${project.media ? '' : ' project-feature--text'}`}
+          key={project.id}
+          aria-labelledby={`${project.id}-title`}
+        >
+          <ProjectMedia project={project} />
+          <div className="project-feature-content">
+            <div className="project-meta">
+              <p className="project-category">{project.category}</p>
+              {project.year && <time className="project-year" dateTime={String(project.year)}>{project.year}</time>}
+            </div>
+            <h3 id={`${project.id}-title`}>{project.title}</h3>
+            <p className="project-summary">{project.summary}</p>
+            <ul className="project-technologies" aria-label="Technologies">
+              {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+            </ul>
+
+            {(project.report || project.repository) && (
+              <div className="project-resources">
+                {project.report && (
+                  <a
+                    className="text-link project-resource"
+                    href={`${import.meta.env.BASE_URL}${project.report.href}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${project.report.label}: ${project.title} (PDF, opens in a new tab)`}
+                  >
+                    <FileText size={16} strokeWidth={1.5} aria-hidden="true" />
+                    {project.report.label}
+                  </a>
+                )}
+                {project.repository && (
+                  <a
+                    className="text-link project-resource"
+                    href={project.repository}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`View repository for ${project.title} (opens in a new tab)`}
+                  >
+                    <Github size={16} aria-hidden="true" />
+                    View repository
+                  </a>
+                )}
+              </div>
+            )}
+
+            <details className="project-disclosure">
+              <summary>
+                <span>Project details<span className="project-sr-only">: {project.title}</span></span>
+                <Plus size={16} strokeWidth={1.5} aria-hidden="true" />
+              </summary>
+              <div className="project-detail-content">
+                <div>
+                  <h4>{project.contributionLabel ?? 'My contribution'}</h4>
+                  <p>{project.contribution}</p>
+                </div>
+                <div>
+                  <h4>{project.outcomeLabel}</h4>
+                  <p>{project.outcome}</p>
+                </div>
+                {project.gallery && project.gallery.length > 0 && (
+                  <div className="project-gallery-section">
+                    <h4>From the project</h4>
+                    <div className="project-gallery">
+                      {project.gallery.map((image) => <ProjectImage key={image.src} image={image} />)}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </details>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {additionalProjects.length > 0 && (
+      <details className="projects-more">
+        <summary>
+          <span>Other engineering work <span className="projects-more-count">{additionalProjects.length}</span></span>
+          <Plus size={18} strokeWidth={1.5} aria-hidden="true" />
+        </summary>
+        <div className="projects-more-list">
+          {additionalProjects.map((project) => (
+            <article className="project-additional" key={project.id}>
+              <p className="project-category">{project.technologies}</p>
+              <h3>{project.title}</h3>
+              <p className="project-summary">{project.summary}</p>
+              {project.repository && (
+                <a
+                  className="text-link project-resource"
+                  href={project.repository}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`View repository for ${project.title} (opens in a new tab)`}
+                >
+                  <Github size={16} aria-hidden="true" />
+                  View repository
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </details>
+    )}
+  </div>
+))
 
 Projects.displayName = 'Projects'
 
 export { Projects }
-
-
-
-
