@@ -26,6 +26,7 @@ export function Navbar({
 }: NavProps) {
   const [activeLink, setActiveLink] = useState(0)
   const navRef = useRef<HTMLElement>(null)
+  const requestedAnchor = useRef('')
 
   const navItems = useMemo(
     () => navbarData.navigator.filter((item) => item.name !== 'Works'),
@@ -65,6 +66,7 @@ export function Navbar({
 
   useEffect(() => {
     let frameId: number | null = null
+    let wasAtPageBottom = false
 
     const syncActiveLink = () => {
       frameId = null
@@ -77,12 +79,19 @@ export function Navbar({
       const marker = navBottom + Math.min(window.innerHeight * 0.25, 160)
       const documentHeight = document.documentElement.scrollHeight
       const viewportBottom = window.scrollY + window.innerHeight
-      const isAtPageBottom = viewportBottom >= documentHeight - 80
+      const isAtPageBottom = viewportBottom >= documentHeight - 2
       let nextActiveLink = 0
 
       if (isAtPageBottom) {
-        nextActiveLink = sectionRefs.length - 1
+        // Short final sections can share the same scroll destination.
+        const requestedIndex = sectionRefs.findIndex(({ current }) => {
+          if (!current || requestedAnchor.current !== `#${current.id}`) return false
+          const top = current.getBoundingClientRect().top
+          return top >= navBottom && top < window.innerHeight
+        })
+        nextActiveLink = requestedIndex >= 0 ? requestedIndex : sectionRefs.length - 1
       } else {
+        if (wasAtPageBottom) requestedAnchor.current = ''
         sectionRefs.forEach((sectionRef, index) => {
           const section = sectionRef.current
 
@@ -91,6 +100,7 @@ export function Navbar({
           }
         })
       }
+      wasAtPageBottom = isAtPageBottom
 
       setActiveLink((currentLink) =>
         currentLink === nextActiveLink ? currentLink : nextActiveLink,
@@ -102,7 +112,12 @@ export function Navbar({
       frameId = window.requestAnimationFrame(syncActiveLink)
     }
 
-    requestSync()
+    const syncAnchor = () => {
+      requestedAnchor.current = window.location.hash
+      requestSync()
+    }
+
+    syncAnchor()
 
     const resizeObserver = new ResizeObserver(requestSync)
     const main = document.querySelector('main')
@@ -110,6 +125,7 @@ export function Navbar({
     if (navRef.current) resizeObserver.observe(navRef.current)
 
     window.addEventListener('scroll', requestSync, { passive: true })
+    window.addEventListener('hashchange', syncAnchor)
     window.addEventListener('resize', requestSync)
     window.addEventListener('orientationchange', requestSync)
 
@@ -120,6 +136,7 @@ export function Navbar({
       }
 
       window.removeEventListener('scroll', requestSync)
+      window.removeEventListener('hashchange', syncAnchor)
       window.removeEventListener('resize', requestSync)
       window.removeEventListener('orientationchange', requestSync)
     }
@@ -135,6 +152,7 @@ export function Navbar({
             aria-current={activeLink === index ? 'location' : undefined}
             onClick={(event) => {
               if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+                requestedAnchor.current = nav.href
                 setActiveLink(index)
               }
             }}

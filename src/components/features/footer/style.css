@@ -19,7 +19,7 @@
 .footer-top {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: var(--tap-height);
   color: var(--portfolio-muted);
   text-decoration: none;
   transition: color 180ms ease;
@@ -33,6 +33,13 @@
   outline: 2px solid var(--portfolio-accent);
   outline-offset: 4px;
   border-radius: 2px;
+}
+
+@container portfolio (max-width: 640px) {
+  .footer {
+    gap: 0.25rem 0.75rem;
+    padding-block: 0.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

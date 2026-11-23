@@ -18,7 +18,7 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
           <div className="contact-email-group">
             <p className="contact-label">Say hello</p>
             <a className="contact-email" href="mailto:Jamesacondos@gmail.com">
-              Jamesacondos@gmail.com
+              Jamesacondos@<wbr />gmail.com
             </a>
           </div>
 

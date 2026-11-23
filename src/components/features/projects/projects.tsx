@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { FileText, Plus } from 'lucide-react'
+import { FileText, Maximize2, Plus } from 'lucide-react'
 import { Github } from '../../../library/icons'
 import { additionalProjects, featuredProjects, type FeaturedProject } from '../../../library/projects'
 import './style.css'
@@ -41,7 +41,10 @@ function ProjectImage({ image, loading = 'lazy' }: {
           decoding="async"
           style={{ aspectRatio, objectFit: image.fit, height: 'auto' }}
         />
-        <span className="project-image-open" aria-hidden="true">View full size</span>
+        <span className="project-image-open" aria-hidden="true">
+          <span>View full size</span>
+          <Maximize2 size={14} />
+        </span>
       </a>
       <figcaption>{image.caption}</figcaption>
     </figure>
@@ -69,11 +72,13 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => (
         >
           <ProjectMedia project={project} />
           <div className="project-feature-content">
-            <div className="project-meta">
-              <p className="project-category">{project.category}</p>
-              {project.year && <time className="project-year" dateTime={String(project.year)}>{project.year}</time>}
+            <div className="project-heading">
+              <div className="project-meta">
+                <p className="project-category">{project.category}</p>
+                {project.year && <time className="project-year" dateTime={String(project.year)}>{project.year}</time>}
+              </div>
+              <h3 id={`${project.id}-title`}>{project.title}</h3>
             </div>
-            <h3 id={`${project.id}-title`}>{project.title}</h3>
             <p className="project-summary">{project.summary}</p>
             <ul className="project-technologies" aria-label="Technologies">
               {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}

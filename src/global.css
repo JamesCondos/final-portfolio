@@ -92,6 +92,9 @@ img, svg { vertical-align: middle; }
 }
 
 main {
+  --reading-size: 1rem;
+  --tap-height: 44px;
+  container: portfolio / inline-size;
   width: min(100%, 72rem);
   margin-inline: auto;
   padding: 138px 2rem 0;
@@ -123,7 +126,7 @@ main > [id] { scroll-margin-top: max(112px, var(--nav-clearance, 0px)); }
   max-width: 42rem;
   margin-top: 0.7rem;
   color: var(--portfolio-muted);
-  font-size: 1rem;
+  font-size: var(--reading-size);
   line-height: 1.7;
 }
 
@@ -160,17 +163,24 @@ main > [id] { scroll-margin-top: max(112px, var(--nav-clearance, 0px)); }
 }
 .skip-link:focus { transform: translateY(0); }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   main {
-    width: min(100%, 34rem);
-    gap: 3.5rem;
-    padding: max(104px, var(--nav-clearance, 0px)) clamp(1.25rem, 6vw, 1.75rem) 0;
+    /* Give phones a wider canvas, then ease back to normal size on tablets. */
+    --layout-scale: clamp(0.68, tan(atan2(100vw, 768px)), 1);
+    --reading-size: max(1rem, calc(0.75rem / var(--layout-scale)));
+    --tap-height: max(44px, calc(40px / var(--layout-scale)));
+    zoom: var(--layout-scale);
+    gap: clamp(2.5rem, 6vw, 4rem);
+    padding: calc(var(--nav-clearance, 6rem) / var(--layout-scale)) clamp(1rem, 3.5vw, 2rem) 0;
   }
-  main > [id] { scroll-margin-top: max(90px, var(--nav-clearance, 0px)); }
+  main > [id] { scroll-margin-top: calc(var(--nav-clearance, 6rem) / var(--layout-scale)); }
+}
+
+@container portfolio (max-width: 640px) {
   .section-heading { margin-bottom: 1.5rem; }
   .section-heading h2 { font-size: 1.5rem; }
   .section-eyebrow { margin-bottom: 0.5rem; font-size: 0.875rem; }
-  .section-intro { margin-top: 0.75rem; line-height: 1.7; }
+  .section-intro { margin-top: 0.5rem; line-height: 1.55; }
 }
 
 @media (prefers-reduced-motion: reduce) {

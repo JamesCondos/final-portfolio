@@ -60,6 +60,10 @@
   transition: background 160ms ease, border-color 160ms ease;
 }
 
+.project-image-open svg {
+  display: none;
+}
+
 .project-image-link:hover .project-image-open,
 .project-image-link:focus-visible .project-image-open {
   border-color: var(--portfolio-accent);
@@ -119,7 +123,7 @@
 .project-summary {
   margin: 0.8rem 0 0;
   color: #bdc6d6;
-  font-size: 1rem;
+  font-size: var(--reading-size);
   line-height: 1.75;
   overflow-wrap: anywhere;
 }
@@ -149,7 +153,7 @@
   gap: 0.55rem;
   width: fit-content;
   max-width: 100%;
-  min-height: 44px;
+  min-height: var(--tap-height);
   font-size: 0.875rem;
   line-height: 1.5;
   overflow-wrap: anywhere;
@@ -170,7 +174,7 @@
   gap: 0.6rem;
   width: fit-content;
   max-width: 100%;
-  min-height: 44px;
+  min-height: var(--tap-height);
   list-style: none;
   cursor: pointer;
   color: var(--portfolio-accent);
@@ -223,7 +227,7 @@
 .project-detail-content p {
   margin: 0;
   color: var(--portfolio-muted);
-  font-size: 1rem;
+  font-size: var(--reading-size);
   line-height: 1.75;
   overflow-wrap: anywhere;
 }
@@ -240,7 +244,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  min-height: 44px;
+  min-height: var(--tap-height);
   padding: 0.5rem 0.75rem;
   border-width: 1px 0 0;
   border-radius: 0;
@@ -255,7 +259,7 @@
   width: 100%;
   min-height: 54px;
   color: var(--portfolio-text);
-  font-size: 1rem;
+  font-size: var(--reading-size);
 }
 
 .projects-more-count {
@@ -308,91 +312,82 @@
 
 @media (max-width: 900px) {
   .project-feature {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.4rem;
+    gap: clamp(1rem, 4vw, 2.25rem);
     padding: 1.75rem 0;
   }
-}
-
-@media (max-width: 680px) {
-  .projects-more-list {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
+  .project-feature:not(.project-feature--text) {
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
   }
 }
 
-@media (max-width: 640px) {
+@container portfolio (max-width: 640px) {
   .project-feature {
-    gap: 1.25rem;
-    padding: 1.5rem 0;
+    padding: 1.1rem 0;
   }
-
-  .project-feature > .project-media .project-image-link {
-    max-width: 20rem;
-    margin-inline: auto;
+  .project-feature > .project-media .project-image-open {
+    right: 0.3rem;
+    bottom: 0.3rem;
+    padding: 0.25rem;
   }
-
-  .project-feature > .project-media figcaption {
-    margin-top: 0.6rem;
-    line-height: 1.6;
-    text-align: center;
+  .project-feature > .project-media .project-image-open span {
+    display: none;
   }
-
+  .project-feature > .project-media .project-image-open svg {
+    display: block;
+  }
+  .project-media figcaption,
+  .project-category,
+  .project-year {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+  .project-media figcaption { margin-top: 0.4rem; }
   .project-meta {
-    margin-bottom: 0.5rem;
+    gap: 0.125rem 0.75rem;
+    margin-bottom: 0.35rem;
   }
-
+  .project-feature h3,
+  .project-additional h3 {
+    font-size: 1.125rem;
+  }
   .project-summary {
-    margin-top: 0.75rem;
-    line-height: 1.7;
+    margin-top: 0.6rem;
+    line-height: 1.55;
   }
-
   .project-technologies {
-    gap: 0.35rem 0.85rem;
-    margin-top: 0.75rem;
-  }
-
-  .project-resources {
-    margin-top: 0.65rem;
-  }
-
-  .project-disclosure {
+    gap: 0.2rem 0.75rem;
     margin-top: 0.5rem;
   }
-
-  .project-detail-content {
-    gap: 1rem;
-    padding-top: 0.85rem;
+  .project-resources,
+  .project-disclosure {
+    margin-top: 0.25rem;
   }
-
-  .project-detail-content p {
-    line-height: 1.7;
-  }
-
-  .project-gallery {
-    gap: 1.5rem;
-    margin-top: 0.85rem;
-  }
-
-  .projects-more {
-    margin-top: 0.75rem;
-  }
-
-  .projects-more > summary {
-    min-height: 44px;
-  }
-
+  .projects-more { margin-top: 0.5rem; }
+  .projects-more > summary { min-height: var(--tap-height); }
   .projects-more-list {
     gap: 1rem;
-    padding-top: 0.85rem;
+    padding-top: 0.5rem;
   }
+  .project-additional { padding-top: 0.85rem; }
+}
 
-  .project-additional {
-    padding-top: 1.25rem;
+@container portfolio (max-width: 30rem) {
+  .project-feature:not(.project-feature--text) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 0 1rem;
   }
-
-  .project-additional .project-resource {
-    margin-top: 0.5rem;
+  .project-feature:not(.project-feature--text) .project-feature-content {
+    display: contents;
+  }
+  .project-heading {
+    align-self: center;
+  }
+  .project-feature-content > :not(.project-heading) {
+    grid-column: 1 / -1;
+  }
+  .project-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
   }
 }
 
