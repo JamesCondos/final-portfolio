@@ -37,6 +37,7 @@ export const featuredProjects: FeaturedProject[] = [
   {
     id: 'autonomous-robot',
     title: 'Autonomous plant-monitoring robot',
+    repository: 'https://github.com/JamesCondos/Plant_Monitoring_RObot_ASC',
     category: 'Robotics · Team project',
     year: 2026,
     summary: 'I developed the monitoring dashboard and helped integrate our team’s autonomous plant-inspection system. The robot navigates a mapped room, visits six inspection stops and saves images of the plants.',
