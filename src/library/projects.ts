@@ -1,82 +1,41 @@
-export type ProjectImage = {
+type ProjectImage = {
   src: string
+  label: string
   alt: string
   caption: string
-  width?: number
-  height?: number
-  fit?: 'cover' | 'contain'
-  aspectRatio?: '16 / 9' | '4 / 3' | 'auto'
+  width: number
+  height: number
 }
 
-export type FeaturedProject = {
-  id: string
-  title: string
-  category: string
-  summary: string
-  technologies: string[]
-  contributionLabel?: string
-  contribution: string
-  outcomeLabel: string
-  outcome: string
-  repository?: string
-  year?: number
-  media?: { type: 'image' } & ProjectImage
-  gallery?: ProjectImage[]
-  report?: { href: string; label: string }
-}
-
-// Source material supplied by James:
-// Robot: ASC_Project_Report.zip, Contribution_Statement/Contribution.tex,
-// Subsystems/GUI.tex and Validation.tex (post-repair final validation).
-// This final report supersedes the earlier ASC preliminary report.
-// Report figures are unchanged originals. The robot hero is an extracted video frame.
-// Video: youtube.com/watch?v=yv3sCIsQnJQ at 7:43.383; bottom subtitle cropped.
-// Hardware: Hardware_Accelerated_Computing_Final_Project__Copy_.zip.
-// Its unfinished results do not establish the old portfolio's 71x speedup.
-export const featuredProjects: FeaturedProject[] = [
-  {
-    id: 'autonomous-robot',
-    title: 'Autonomous plant-monitoring robot',
-    repository: 'https://github.com/JamesCondos/Plant_Monitoring_RObot_ASC',
-    category: 'Robotics · Team project',
-    year: 2026,
-    summary: 'I developed the monitoring dashboard and helped integrate our team’s autonomous plant-inspection system. The robot navigates a mapped room, visits six inspection stops and saves images of the plants.',
-    technologies: ['ROS 2', 'JavaScript', 'foxglove_bridge', 'Nav2'],
-    contributionLabel: 'My part',
-    contribution: 'I built the browser-based interface that brings robot pose, planned paths, annotated camera images and saved inspection records into one view. It uses HTML, JavaScript and foxglove_bridge to connect to ROS 2. I also supported system integration, architecture documentation, odometry, debugging and report coordination.',
-    outcomeLabel: 'From integration to a complete mission',
-    outcome: 'After a localisation failure was diagnosed and repaired, all 10 final validation runs reached the six inspection stops and saved every required image without collisions or manual intervention. The tests covered clear paths, static obstacles and temporary obstacles in the known, mapped room.',
-    media: {
-      type: 'image',
-      src: 'projects/robot-demo-still.jpg',
-      width: 1920,
-      height: 960,
-      alt: 'Front view of our wheeled ASClinic robot on a courtyard path, showing its camera, lidar and transparent chassis.',
-      caption: 'Our ASClinic robot, 2026. A still from the team’s demonstration video.',
-      aspectRatio: 'auto',
-    },
-    gallery: [
-      {
-        src: 'projects/robot-monitoring-dashboard.jpg',
-        alt: 'The BANANA INC browser dashboard showing robot pose, connection status and a plant camera image with detection labels.',
-        caption: 'The monitoring interface I developed: robot pose, connection status and annotated camera output in one browser view.',
-      },
-      {
-        src: 'projects/robot-final-mission-trajectories.png',
-        alt: 'Four representative final mission trajectories through the room, showing the six photo stops and routes around obstacles.',
-        caption: 'One representative trajectory per final validation condition, showing the six inspection stops and obstacle responses.',
-      },
-    ],
-  },
-]
-
-export const additionalProjects: Array<{
+type EngineeringProject = {
   id: string
   title: string
   technologies: string
   summary: string
-  repository?: string
-}> = [
+  repository?: string | null
+  figure?: ProjectImage
+}
+
+// Source material supplied by James:
+// Robot trajectories: ASC_Project_Report.zip, Validation.tex (final validation).
+// Hardware: Hardware_Accelerated_Computing_Final_Project__Copy_.zip.
+// Its unfinished results do not establish the old portfolio's 71x speedup.
+export const engineeringProjects: EngineeringProject[] = [
+  {
+    id: 'autonomous-robot',
+    title: 'Autonomous plant-monitoring robot',
+    repository: 'https://github.com/JamesCondos/Plant_Monitoring_RObot_ASC',
+    technologies: 'ROS 2 · JavaScript · foxglove_bridge · Nav2',
+    summary: 'An autonomous ROS 2 robot navigates a mapped room, avoids obstacles and photographs plants at six inspection stops.',
+    figure: {
+      label: 'View robot paths',
+      src: 'projects/robot-final-mission-trajectories.png',
+      width: 2796,
+      height: 1647,
+      alt: 'Floor plan with four robot paths connecting Home and the six photo stops W1–W6. The paths diverge near obstacles and meet again at the stops.',
+      caption: 'Each run starts at Home, visits W1–W6 to photograph the plants marked by orange crosses, and returns to Home. The dashed green and cyan lines show slow and fast runs on a clear route. The solid blue line shows the route around fixed obstacles, and the red line shows the route around temporary obstacles.',
+    },
+  },
   {
     id: 'cnn-accelerator',
     title: 'SRCNN hardware acceleration',

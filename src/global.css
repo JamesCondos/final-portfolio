@@ -71,7 +71,6 @@
 
 * { box-sizing: border-box; }
 body, h1, h2, h3, h4, p, figure { margin: 0; }
-html { scroll-behavior: smooth; }
 body { min-width: 280px; background: var(--background); color: var(--portfolio-text); }
 body, button, input { font-family: inherit; }
 button { appearance: none; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; }
@@ -184,6 +183,5 @@ main > [id] { scroll-margin-top: max(112px, var(--nav-clearance, 0px)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }

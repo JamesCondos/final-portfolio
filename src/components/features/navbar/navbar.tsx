@@ -66,7 +66,6 @@ export function Navbar({
 
   useEffect(() => {
     let frameId: number | null = null
-    let wasAtPageBottom = false
 
     const syncActiveLink = () => {
       frameId = null
@@ -76,22 +75,29 @@ export function Navbar({
       }
 
       const navBottom = Math.max(0, navRef.current?.getBoundingClientRect().bottom ?? 0)
-      const marker = navBottom + Math.min(window.innerHeight * 0.25, 160)
-      const documentHeight = document.documentElement.scrollHeight
-      const viewportBottom = window.scrollY + window.innerHeight
-      const isAtPageBottom = viewportBottom >= documentHeight - 2
+      const viewportHeight = window.innerHeight
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - viewportHeight)
+      const remainingScroll = Math.max(0, maxScroll - window.scrollY)
       let nextActiveLink = 0
 
-      if (isAtPageBottom) {
+      if (remainingScroll <= 2) {
         // Short final sections can share the same scroll destination.
         const requestedIndex = sectionRefs.findIndex(({ current }) => {
           if (!current || requestedAnchor.current !== `#${current.id}`) return false
           const top = current.getBoundingClientRect().top
-          return top >= navBottom && top < window.innerHeight
+          return top >= navBottom && top < viewportHeight
         })
-        nextActiveLink = requestedIndex >= 0 ? requestedIndex : sectionRefs.length - 1
+        if (requestedIndex >= 0) nextActiveLink = requestedIndex
+        else if (maxScroll > 2) nextActiveLink = sectionRefs.length - 1
       } else {
-        if (wasAtPageBottom) requestedAnchor.current = ''
+        // Only a shared bottom position needs the clicked anchor as a tie-breaker.
+        requestedAnchor.current = ''
+        // Near the end, follow the headings down the viewport as scrolling runs out.
+        const endRange = Math.min(viewportHeight, maxScroll)
+        const marker = Math.max(
+          navBottom + Math.min(viewportHeight * 0.25, 160),
+          viewportHeight * (1 - remainingScroll / endRange),
+        )
         sectionRefs.forEach((sectionRef, index) => {
           const section = sectionRef.current
 
@@ -100,7 +106,6 @@ export function Navbar({
           }
         })
       }
-      wasAtPageBottom = isAtPageBottom
 
       setActiveLink((currentLink) =>
         currentLink === nextActiveLink ? currentLink : nextActiveLink,

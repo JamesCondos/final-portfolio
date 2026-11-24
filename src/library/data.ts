@@ -16,7 +16,7 @@ export const navbarData = {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Research', href: '#papers' },
-    { name: 'Robotics', href: '#projects' },
+    { name: 'Other engineering work', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ],
 }

@@ -14,8 +14,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
 
       <div className="about-introduction">
         <p className="about-text">
-          I’m an electrical engineering master’s student at the University of Melbourne,
-          with a BSc in Mathematical Physics and a Diploma in Computer Science.
+          I hold a BSc in Mathematical Physics, a Diploma in Computer Science and a Masters in Electrical Engineering focusing on Autonoums Systems all from the University of Melbourne.
         </p>
         <div id="about-more" className="about-additional">
           <p className="about-text">
