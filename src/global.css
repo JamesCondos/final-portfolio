@@ -166,12 +166,12 @@ main > [id] { scroll-margin-top: max(112px, var(--nav-clearance, 0px)); }
 @media (max-width: 900px) {
   main {
     /* Give phones a wider canvas, then ease back to normal size on tablets. */
-    --layout-scale: clamp(0.68, tan(atan2(100vw, 768px)), 1);
-    --reading-size: max(1rem, calc(0.875rem / var(--layout-scale)));
+    --layout-scale: clamp(0.6, tan(atan2(100vw, 768px)), 1);
+    --reading-size: clamp(1rem, calc(0.875rem / var(--layout-scale)), 1.375rem);
     --tap-height: max(44px, calc(40px / var(--layout-scale)));
     zoom: var(--layout-scale);
     gap: clamp(2.5rem, 6vw, 4rem);
-    padding: calc(var(--nav-clearance, 6rem) / var(--layout-scale)) clamp(0.875rem, 4vw, 1.25rem) 0;
+    padding: calc(var(--nav-clearance, 6rem) / var(--layout-scale)) clamp(0.625rem, 2.5vw, 1.25rem) 0;
   }
   main > [id] { scroll-margin-top: calc(var(--nav-clearance, 6rem) / var(--layout-scale)); }
 }

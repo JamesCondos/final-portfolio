@@ -24,7 +24,7 @@
 .about-additional { margin-top: 1rem; }
 .about-more-toggle { display: none; }
 
-@container portfolio (max-width: 640px) {
+@media (max-width: 460px) {
   .about-section .section-heading { margin-bottom: 0.85rem; }
   .about-section .section-heading h2 { text-wrap: balance; }
   .about-text { line-height: 1.55; }
