@@ -77,8 +77,12 @@
 
 @media (max-width: 600px) {
   .nav {
-    top: calc(env(safe-area-inset-top, 0px) + 12px);
-    padding-inline: 12px;
+    top: calc(env(safe-area-inset-top, 0px) + 10px);
+    padding-inline: 8px;
+  }
+
+  .nav-links-filled {
+    padding: 2px;
   }
 
   .nav-links-item {
@@ -88,13 +92,11 @@
 
 @media (max-width: 420px) {
   .nav-links-filled {
-    width: min(100%, 22rem);
     gap: 0;
   }
 
   .nav-links-item {
-    flex: 1 1 auto;
-    padding-inline: 3px;
+    padding-inline: clamp(2px, 1vw, 4px);
   }
 }
 

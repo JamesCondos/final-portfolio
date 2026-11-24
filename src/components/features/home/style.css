@@ -38,7 +38,7 @@
   max-width: 33rem;
   margin-top: 1.1rem;
   color: var(--portfolio-muted);
-  font-size: 1rem;
+  font-size: var(--reading-size);
   line-height: 1.8;
 }
 
@@ -58,7 +58,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 44px;
+  min-height: var(--tap-height);
   font-size: 0.9375rem;
 }
 
@@ -75,85 +75,73 @@
   filter: saturate(0.8);
 }
 
-@media (max-width: 720px) {
+@container portfolio (max-width: 752px) {
   .home {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.75rem;
-    padding-block: 0.5rem 0;
-  }
-  .home-portrait {
-    grid-row: 1;
-    width: min(220px, 100%);
-    height: auto;
-    border-radius: 10px;
-    object-position: center 26%;
-  }
-  .home h1 { margin-top: 0.7rem; }
-  .home-actions { gap: 1rem 1.4rem; }
-}
-
-@media (max-width: 640px) {
-  .home {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: start;
-    column-gap: clamp(16px, 4vw, 24px);
-    row-gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr) 31%;
+    column-gap: clamp(0.75rem, 3cqi, 1.5rem);
+    row-gap: 0.65rem;
     padding-block: 0;
   }
 
-  .home-copy {
-    display: contents;
-  }
-
-  .home-identity {
-    order: 0;
-    flex: 1 1 10rem;
-    min-width: min(100%, 10rem);
-    overflow-wrap: anywhere;
-  }
-
-  .home-identity .section-eyebrow {
-    margin-bottom: 0.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.02em;
-    line-height: 1.5;
-  }
-
   .home h1 {
-    margin-block: 0.5rem 0.85rem;
-    font-size: 1.75rem;
+    margin-block: 0.35rem 0.55rem;
+    font-size: clamp(1.65rem, 7.3cqi, 2.7rem);
   }
 
   .home-focus {
-    font-size: 0.875rem;
-    line-height: 1.6;
+    font-size: clamp(1.125rem, 3.3cqi, 1.25rem);
+    line-height: 1.45;
   }
 
   .home-portrait {
-    order: 1;
-    flex: 0 0 clamp(96px, 24vw, 112px);
-    width: clamp(96px, 24vw, 112px);
-    align-self: start;
+    border-radius: 8px;
   }
 
   .home-intro {
-    order: 2;
-    flex-basis: 100%;
-    max-width: none;
-    margin-top: 0;
-    font-size: 0.875rem;
-    line-height: 1.7;
+    margin-top: 0.65rem;
+    line-height: 1.5;
   }
 
   .home-actions {
-    order: 3;
-    flex-basis: 100%;
-    gap: 0.75rem 1.25rem;
-    margin-top: 0;
+    gap: 0.35rem 1rem;
+    margin-top: 0.85rem;
+  }
+
+  .home-actions .action-link {
+    min-height: var(--tap-height);
+    padding: 0.45rem 0.8rem;
+  }
+}
+
+@container portfolio (max-width: 640px) {
+  .home-focus {
+    font-size: var(--reading-size);
   }
 
   .home-actions > a {
-    font-size: 0.8125rem;
+    font-size: calc(0.8125rem / var(--layout-scale, 1));
+  }
+}
+
+@container portfolio (max-width: 480px) {
+  .home-copy { display: contents; }
+
+  .home-identity,
+  .home-intro {
+    grid-column: 1;
+  }
+
+  .home-intro {
+    margin-top: 0;
+  }
+
+  .home-portrait {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .home-actions {
+    grid-column: 1 / -1;
+    margin-top: 0;
   }
 }

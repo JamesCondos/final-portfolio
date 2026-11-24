@@ -9,10 +9,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
     <div ref={ref} id="about" className="about-section" data-expanded={isExpanded} role="region" aria-labelledby="about-heading" tabIndex={-1}>
       <header className="section-heading">
         <p className="section-eyebrow">About</p>
-        <h2 id="about-heading">
-          <span className="about-heading-desktop">From first principles to working systems.</span>
-          <span className="about-heading-mobile">About me.</span>
-        </h2>
+        <h2 id="about-heading">From first principles to working systems.</h2>
       </header>
 
       <div className="about-introduction">
