@@ -130,8 +130,8 @@
 }
 
 @media (max-width: 600px) {
-  .projects-list { gap: calc(1.75rem / var(--layout-scale)) 4.5cqi; }
-  .project-entry { padding-top: calc(0.875rem / var(--layout-scale)); }
+  .projects-list { gap: calc(1rem / var(--layout-scale)) 4.5cqi; }
+  .project-entry { padding-top: calc(0.5rem / var(--layout-scale)); }
   .project-entry h3 { font-size: var(--item-title-size); }
   .project-summary { line-height: 1.5; }
 }

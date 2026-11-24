@@ -455,7 +455,7 @@
   }
 
   .papers .papers-year { padding-inline: 0.35rem; white-space: nowrap; }
-  .paper { padding-block: calc(1.25rem / var(--layout-scale)); }
+  .paper { padding-block: calc(0.625rem / var(--layout-scale)); }
   .papers .paper-toggle { gap: 0.5rem; }
   .paper-title { font-size: var(--item-title-size); }
 

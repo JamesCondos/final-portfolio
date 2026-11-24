@@ -187,9 +187,8 @@ main > [id] { scroll-margin-top: max(112px, var(--nav-clearance, 0px)); }
     --label-size: max(0.875rem, calc(0.59375rem / var(--layout-scale)));
     --item-title-size: max(1.125rem, calc(0.78125rem / var(--layout-scale)));
     --section-title-size: max(1.75rem, calc(1rem / var(--layout-scale)));
-    /* Keep visible margins and space between sections as the content scales down. */
     padding-inline: 6%;
-    gap: max(6rem, calc(3.75rem / var(--layout-scale)));
+    gap: max(5rem, calc(2rem / var(--layout-scale)));
   }
 }
 

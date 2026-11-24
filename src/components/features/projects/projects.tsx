@@ -7,8 +7,7 @@ import './style.css'
 const Projects = forwardRef<HTMLDivElement>((_props, ref) => (
   <div ref={ref} id="projects" className="projects" role="region" aria-labelledby="projects-heading" tabIndex={-1}>
     <header className="section-heading">
-      <p className="section-eyebrow">Projects</p>
-      <h2 id="projects-heading">Other engineering work</h2>
+      <h2 id="projects-heading">Projects</h2>
     </header>
 
     <ul className="projects-list">
