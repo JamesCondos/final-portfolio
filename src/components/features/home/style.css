@@ -75,51 +75,38 @@
   filter: saturate(0.8);
 }
 
-@container portfolio (max-width: 752px) {
+@media (max-width: 900px) {
   .home {
     grid-template-columns: minmax(0, 1fr) 31%;
-    column-gap: clamp(0.75rem, 3cqi, 1.5rem);
-    row-gap: 0.65rem;
-    padding-block: 0;
+    column-gap: clamp(1.5rem, 4cqi, 2.5rem);
+    padding-block: 1.5rem 2rem;
   }
 
   .home h1 {
-    margin-block: 0.35rem 0.55rem;
-    font-size: clamp(1.65rem, 7.3cqi, 2.7rem);
+    font-size: clamp(3rem, 7.5cqi, 4.6rem);
   }
 
   .home-focus {
-    font-size: clamp(1.125rem, 3.3cqi, 1.25rem);
+    font-size: max(1.25rem, calc(0.875rem / var(--layout-scale)));
     line-height: 1.45;
   }
 
-  .home-portrait {
-    border-radius: 8px;
-  }
-
   .home-intro {
-    margin-top: 0.65rem;
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
   .home-actions {
-    gap: 0.35rem 1rem;
-    margin-top: 0.85rem;
-  }
-
-  .home-actions .action-link {
-    min-height: var(--tap-height);
-    padding: 0.45rem 0.8rem;
-  }
-}
-
-@container portfolio (max-width: 640px) {
-  .home-focus {
-    font-size: var(--reading-size);
+    gap: 0.5rem 1.5rem;
   }
 
   .home-actions > a {
-    font-size: calc(0.8125rem / var(--layout-scale, 1));
+    min-height: var(--tap-height);
+    font-size: max(0.9375rem, var(--label-size));
+  }
+
+  .home-resume svg {
+    width: 1em;
+    height: 1em;
   }
 }
 

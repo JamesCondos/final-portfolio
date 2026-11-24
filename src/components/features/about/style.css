@@ -25,9 +25,6 @@
 .about-more-toggle { display: none; }
 
 @media (max-width: 460px) {
-  .about-section .section-heading { margin-bottom: 0.85rem; }
-  .about-section .section-heading h2 { text-wrap: balance; }
-  .about-text { line-height: 1.55; }
   .about-section[data-expanded='false'] .about-additional { display: none; }
   .about-more-toggle {
     display: inline-flex;
@@ -36,7 +33,7 @@
     min-height: var(--tap-height);
     margin-top: 0.25rem;
     color: var(--portfolio-accent);
-    font-size: calc(0.8125rem / var(--layout-scale, 1));
+    font-size: var(--label-size);
   }
   .about-section[data-expanded='true'] .about-more-toggle svg { transform: rotate(45deg); }
 }

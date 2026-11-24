@@ -98,53 +98,19 @@
   font-weight: 400;
 }
 
-@container portfolio (max-width: 700px) {
-  .contact-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    gap: clamp(0.875rem, 4vw, 1.75rem);
+@media (max-width: 900px) {
+  .contact-label,
+  .contact-resume span {
+    font-size: var(--label-size);
   }
 
   .contact-email {
-    font-size: clamp(0.875rem, 2.8cqi, 1.125rem);
-    line-height: 1.4;
-  }
-
-  .contact-label {
-    margin-bottom: 0;
-  }
-
-  .contact-elsewhere {
-    margin-top: 0.625rem;
-  }
-
-  .contact-social-links {
-    gap: 0 0.875rem;
-  }
-
-  .contact-social-links .text-link {
-    font-size: 0.875rem;
+    font-size: max(var(--reading-size), 1.125rem);
   }
 
   .contact .contact-resume {
-    gap: 0.25rem;
-    margin-top: 0.625rem;
-    padding: 0.375rem 0.625rem;
     min-height: var(--tap-height);
-    font-size: 0.875rem;
-  }
-
-  .contact-resume span {
-    font-size: 0.75rem;
-  }
-}
-
-@container portfolio (max-width: 640px) {
-  .contact-email {
-    font-size: 1rem;
-  }
-
-  .contact-label {
-    font-size: 0.75rem;
+    font-size: var(--reading-size);
   }
 }
 

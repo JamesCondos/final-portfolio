@@ -23,7 +23,7 @@
 .project-category,
 .project-media figcaption {
   color: var(--portfolio-muted);
-  font-size: 0.875rem;
+  font-size: var(--label-size);
   line-height: 1.5;
 }
 
@@ -33,7 +33,7 @@
 
 .project-entry h3 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: max(1.25rem, calc(0.875rem / var(--layout-scale, 1)));
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.025em;
@@ -54,7 +54,7 @@
   max-width: 100%;
   min-height: var(--tap-height);
   color: var(--portfolio-accent);
-  font-size: 0.875rem;
+  font-size: var(--label-size);
   line-height: 1.5;
 }
 
@@ -119,17 +119,12 @@
 }
 
 @container portfolio (max-width: 640px) {
-  .projects-list { gap: 1rem; }
-  .project-entry { padding-top: 0.85rem; }
-  .project-entry h3 { font-size: 1.125rem; }
+  .projects-list { gap: 1.5rem; }
+  .project-entry { padding-top: 1rem; }
   .project-summary { margin-top: 0.6rem; line-height: 1.55; }
-  .project-category,
-  .project-resource,
-  .project-disclosure > summary,
-  .project-media figcaption { font-size: 0.8125rem; }
   .project-media figcaption { margin-top: 0.4rem; }
 }
 
-@media (max-width: 600px) {
+@container portfolio (max-width: 34rem) {
   .projects-list { grid-template-columns: minmax(0, 1fr); }
 }

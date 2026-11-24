@@ -35,11 +35,13 @@
   border-radius: 2px;
 }
 
-@container portfolio (max-width: 640px) {
+@media (max-width: 900px) {
   .footer {
-    gap: 0.25rem 0.75rem;
-    padding-block: 0.5rem;
-    font-size: 0.8125rem;
+    font-size: var(--label-size);
+  }
+
+  .footer-top {
+    font-size: var(--reading-size);
   }
 }
 
