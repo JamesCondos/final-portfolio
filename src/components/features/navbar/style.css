@@ -69,6 +69,12 @@
   outline-offset: 1px;
 }
 
+@media (max-width: 640px) {
+  .nav-links-item {
+    font-size: 0.75rem;
+  }
+}
+
 @media (max-width: 600px) {
   .nav {
     top: calc(env(safe-area-inset-top, 0px) + 12px);

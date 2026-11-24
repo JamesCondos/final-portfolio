@@ -27,6 +27,9 @@ export const papers: Paper[] = [
     category: 'Capstone · Time-series forecasting',
     authors: 'James Condos & Sithira Jayasinghe',
     status: 'Publication planned',
+    pages: 52,
+    file: 'papers/Engineering_Capstone_Report_Paper.pdf',
+    repository: 'https://github.com/JamesCondos/Capstone_Telstra',
     summary: 'A capstone with Telstra and the University of Melbourne exploring how neural forecasting could support radio access network decisions, and when smaller models outperform an adapted language model.',
     details: [
       {
@@ -54,8 +57,10 @@ export const papers: Paper[] = [
     id: 'aegismae',
     title: 'AegisMAE: Adversarially Self-Supervised Malware Anomaly Detection Under Constrained Attacks',
     displayTitle: 'AegisMAE · Detecting unseen malware',
+    year: 2026,
+    status: 'Publication Planned',
     category: 'Machine learning · Security',
-    authors: 'James Condos & Sithira Jayasinghe',
+    authors: 'James Condos',
     summary: 'Can a detector recognise malware families it has never seen? We explored masked representation learning, anomaly detection and the limits of adversarial robustness.',
     details: [
       {
@@ -108,6 +113,7 @@ export const papers: Paper[] = [
     title: 'Performance and Reliability of a ROS2–REST Gateway under Network Constraints',
     displayTitle: 'Robot communication under network constraints',
     category: 'Communication networks',
+    year: 2026,
     authors: 'James Condos & Luke Kristitz',
     summary: 'How do robots share a limited connection? I investigated queueing, HTTP versions and gateway scheduling for communication between simulated ROS 2 robots and a central service.',
     details: [

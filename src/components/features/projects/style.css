@@ -322,6 +322,27 @@
 }
 
 @media (max-width: 640px) {
+  .project-feature h3,
+  .project-additional h3 {
+    font-size: 1rem;
+  }
+
+  .project-category,
+  .project-year,
+  .project-technologies,
+  .project-media figcaption,
+  .project-image-open,
+  .projects-more-count {
+    font-size: 0.75rem;
+  }
+
+  .project-resource,
+  .project-detail-content h4,
+  .project-disclosure > summary,
+  .projects-more > summary {
+    font-size: 0.8125rem;
+  }
+
   .project-feature {
     gap: 1.25rem;
     padding: 1.5rem 0;
@@ -344,6 +365,7 @@
 
   .project-summary {
     margin-top: 0.75rem;
+    font-size: 0.875rem;
     line-height: 1.7;
   }
 
@@ -366,6 +388,7 @@
   }
 
   .project-detail-content p {
+    font-size: 0.875rem;
     line-height: 1.7;
   }
 

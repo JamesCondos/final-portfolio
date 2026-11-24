@@ -35,6 +35,12 @@
   border-radius: 2px;
 }
 
+@media (max-width: 640px) {
+  .footer {
+    font-size: 0.8125rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .footer-top {
     transition: none;

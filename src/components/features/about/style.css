@@ -31,7 +31,7 @@
   .about-heading-mobile { display: inline; }
   .about-section .section-heading { margin-bottom: 1rem; }
   .about-section .section-heading h2 { font-size: 1.25rem; }
-  .about-text { line-height: 1.75; }
+  .about-text { font-size: 0.875rem; line-height: 1.75; }
   .about-text + .about-text,
   .about-additional { margin-top: 1rem; }
   .about-section[data-expanded='false'] .about-additional { display: none; }
@@ -42,7 +42,7 @@
     min-height: 44px;
     margin-top: 0.75rem;
     color: var(--portfolio-accent);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
   }
   .about-section[data-expanded='true'] .about-more-toggle svg { transform: rotate(45deg); }
 }

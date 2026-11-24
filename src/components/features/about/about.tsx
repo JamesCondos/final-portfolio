@@ -30,8 +30,7 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
           </p>
           <p className="about-text">
             I’m keen to get involved in interesting engineering and research projects
-            while continuing to build experience in industry. Outside of that work,
-            I’m also a Lego enjoyer.
+            while continuing to build experience in industry. Outside of that work, I also love Lego.
           </p>
         </div>
         <button
