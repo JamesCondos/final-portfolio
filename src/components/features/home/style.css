@@ -1,7 +1,7 @@
 .home {
   display: grid;
   width: min(100%, 60rem);
-  grid-template-columns: minmax(0, 1fr) clamp(220px, 28vw, 310px);
+  grid-template-columns: minmax(0, 1fr) clamp(240px, 32vw, 360px);
   align-items: center;
   gap: clamp(1.5rem, 3vw, 2.5rem);
   padding-block: 2rem 3rem;
