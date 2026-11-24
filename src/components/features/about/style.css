@@ -24,6 +24,12 @@
 .about-additional { margin-top: 1rem; }
 .about-more-toggle { display: none; }
 
+@media (max-width: 600px) {
+  .about-section .section-heading h2,
+  .about-introduction { max-width: none; }
+  .about-text { line-height: 1.55; }
+}
+
 @media (max-width: 460px) {
   .about-section[data-expanded='false'] .about-additional { display: none; }
   .about-more-toggle {

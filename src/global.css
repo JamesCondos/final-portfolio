@@ -166,8 +166,9 @@ main > [id] { scroll-margin-top: max(112px, var(--nav-clearance, 0px)); }
 
 @media (max-width: 900px) {
   main {
-    /* Fit the desktop columns into the viewport while keeping text and controls usable. */
-    --layout-scale: clamp(0.45, tan(atan2(100vw, 864px)), 1);
+    /* Use the desktop content width on small phones and ease back to the tablet layout at 640px. */
+    --layout-width: clamp(864px, 1504px - 100vw, 1088px);
+    --layout-scale: clamp(0.32, tan(atan2(100vw, var(--layout-width))), 1);
     --reading-size: max(1rem, calc(0.78125rem / var(--layout-scale)));
     --label-size: max(0.875rem, calc(0.65625rem / var(--layout-scale)));
     --section-title-size: max(1.75rem, calc(1.125rem / var(--layout-scale)));
@@ -178,6 +179,18 @@ main > [id] { scroll-margin-top: max(112px, var(--nav-clearance, 0px)); }
   }
   main > [id] { scroll-margin-top: calc(var(--nav-clearance, 6rem) / var(--layout-scale)); }
   .section-eyebrow { font-size: var(--label-size); }
+}
+
+@media (max-width: 600px) {
+  main {
+    --reading-size: max(1rem, calc(0.6875rem / var(--layout-scale)));
+    --label-size: max(0.875rem, calc(0.59375rem / var(--layout-scale)));
+    --item-title-size: max(1.125rem, calc(0.78125rem / var(--layout-scale)));
+    --section-title-size: max(1.75rem, calc(1rem / var(--layout-scale)));
+    /* Keep visible margins and space between sections as the content scales down. */
+    padding-inline: 6%;
+    gap: max(6rem, calc(3.75rem / var(--layout-scale)));
+  }
 }
 
 @container portfolio (max-width: 640px) {

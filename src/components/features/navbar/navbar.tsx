@@ -66,6 +66,7 @@ export function Navbar({
 
   useEffect(() => {
     let frameId: number | null = null
+    const main = document.querySelector('main')
 
     const syncActiveLink = () => {
       frameId = null
@@ -80,17 +81,22 @@ export function Navbar({
       const remainingScroll = Math.max(0, maxScroll - window.scrollY)
       let nextActiveLink = 0
 
-      if (remainingScroll <= 2) {
-        // Short final sections can share the same scroll destination.
-        const requestedIndex = sectionRefs.findIndex(({ current }) => {
-          if (!current || requestedAnchor.current !== `#${current.id}`) return false
-          const top = current.getBoundingClientRect().top
-          return top >= navBottom && top < viewportHeight
-        })
-        if (requestedIndex >= 0) nextActiveLink = requestedIndex
-        else if (maxScroll > 2) nextActiveLink = sectionRefs.length - 1
+      // Keep a selected link active at its native anchor position, including a clamped page end.
+      const requestedIndex = sectionRefs.findIndex(({ current }) => {
+        if (!current || requestedAnchor.current !== `#${current.id}`) return false
+        const top = current.getBoundingClientRect().top
+        const scale = main ? Number.parseFloat(window.getComputedStyle(main).zoom) || 1 : 1
+        const margin = Number.parseFloat(window.getComputedStyle(current).scrollMarginTop) * scale
+        const target = Math.min(maxScroll, Math.max(0, window.scrollY + top - margin))
+        return Math.abs(window.scrollY - target) <= 2
+      })
+
+      if (requestedIndex >= 0) {
+        nextActiveLink = requestedIndex
+      } else if (remainingScroll <= 2) {
+        requestedAnchor.current = ''
+        if (maxScroll > 2) nextActiveLink = sectionRefs.length - 1
       } else {
-        // Only a shared bottom position needs the clicked anchor as a tie-breaker.
         requestedAnchor.current = ''
         // Near the end, follow the headings down the viewport as scrolling runs out.
         const endRange = Math.min(viewportHeight, maxScroll)
@@ -125,7 +131,6 @@ export function Navbar({
     syncAnchor()
 
     const resizeObserver = new ResizeObserver(requestSync)
-    const main = document.querySelector('main')
     if (main) resizeObserver.observe(main)
     if (navRef.current) resizeObserver.observe(navRef.current)
 

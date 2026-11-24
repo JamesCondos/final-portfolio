@@ -448,6 +448,28 @@
   .paper-finding p { line-height: 1.55; }
 }
 
+@media (max-width: 600px) {
+  .papers-archive {
+    grid-template-columns: calc(5.5 * var(--label-size)) minmax(0, 1fr);
+    gap: clamp(0.75rem, 2cqi, 1.25rem);
+  }
+
+  .papers .papers-year { padding-inline: 0.35rem; white-space: nowrap; }
+  .paper { padding-block: calc(1.25rem / var(--layout-scale)); }
+  .papers .paper-toggle { gap: 0.5rem; }
+  .paper-title { font-size: var(--item-title-size); }
+
+  .paper-title,
+  .paper-full-title,
+  .paper-summary,
+  .paper-figure { max-width: none; }
+
+  .papers-intro,
+  .paper-full-title,
+  .paper-summary,
+  .paper-finding p { line-height: 1.5; }
+}
+
 /* Let enlarged text or very narrow viewports use the full reading width. */
 @container research (max-width: 17rem) {
   .papers-archive { grid-template-columns: minmax(0, 1fr); gap: 1rem; }

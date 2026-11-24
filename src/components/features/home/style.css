@@ -110,6 +110,13 @@
   }
 }
 
+@media (max-width: 600px) {
+  .home { width: 100%; }
+  .home-focus, .home-intro { max-width: none; }
+  .home-focus { font-size: var(--item-title-size); }
+  .home-intro { line-height: 1.55; }
+}
+
 @container portfolio (max-width: 480px) {
   .home-copy { display: contents; }
 
