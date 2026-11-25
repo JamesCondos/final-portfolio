@@ -18,7 +18,7 @@ const Home = forwardRef<HTMLDivElement>((_props, ref) => (
         <a className="action-link" href="#papers">Read my research</a>
         <a
           className="text-link home-resume"
-          href={`${import.meta.env.BASE_URL}James_Condos_Resume_July_2026_Updated.pdf`}
+          href={`${import.meta.env.BASE_URL}James_Condos_Nov_Resume_2026.pdf`}
           target="_blank"
           rel="noreferrer"
           aria-label="Read my resume (PDF, opens in a new tab)"
